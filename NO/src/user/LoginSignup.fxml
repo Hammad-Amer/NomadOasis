@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.LoginSignupController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <AnchorPane fx:id="Login_form" layoutX="393.0" prefHeight="500.0" prefWidth="400.0" styleClass="white-form" stylesheets="@LoginSignup.css">
+               <children>
+                  <Label layoutX="69.0" layoutY="84.0" prefHeight="43.0" prefWidth="181.0" styleClass="head-label" stylesheets="@LoginSignup.css" text="Login Account" textFill="#0d8991">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Login_username" layoutX="69.0" layoutY="196.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Username" styleClass="textfield" stylesheets="@LoginSignup.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="Login_password" layoutX="69.0" layoutY="243.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@LoginSignup.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font></PasswordField>
+                  <Button fx:id="Login_button" layoutX="69.0" layoutY="313.0" mnemonicParsing="false" onAction="#SuccessfulLogin" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@LoginSignup.css" text="Login">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="Register_Form" layoutY="1.0" prefHeight="500.0" prefWidth="400.0" styleClass="white-form" stylesheets="@LoginSignup.css">
+               <children>
+                  <Label layoutX="20.0" layoutY="87.0" prefHeight="43.0" prefWidth="201.0" styleClass="head-label" stylesheets="@LoginSignup.css" text="Register Account" textFill="#0d8991">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Rgiester_username" layoutX="108.0" layoutY="196.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Username" styleClass="textfield" stylesheets="@LoginSignup.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="Register_password" layoutX="108.0" layoutY="241.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@LoginSignup.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font></PasswordField>
+                  <Button fx:id="Register_signup_button" layoutX="73.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@LoginSignup.css" text="Sign Up" />
+                  <ChoiceBox fx:id="Register_Gender" layoutX="108.0" layoutY="338.0" prefHeight="25.0" prefWidth="101.0" />
+                  <Label layoutX="20.0" layoutY="146.0" prefHeight="35.0" prefWidth="67.0" styleClass="head-label2" stylesheets="@LoginSignup.css" text="Email:" textFill="#0d8991" />
+                  <Label layoutX="20.0" layoutY="194.0" prefHeight="35.0" prefWidth="67.0" styleClass="head-label2" stylesheets="@LoginSignup.css" text="Username:" textFill="#0d8991" />
+                  <Label layoutX="20.0" layoutY="239.0" prefHeight="35.0" prefWidth="67.0" styleClass="head-label2" stylesheets="@LoginSignup.css" text="Password:" textFill="#0d8991" />
+                  <Label layoutX="20.0" layoutY="284.0" prefHeight="35.0" prefWidth="67.0" styleClass="head-label2" stylesheets="@LoginSignup.css" text="CNIC:" textFill="#0d8991" />
+                  <Label layoutX="20.0" layoutY="333.0" prefHeight="35.0" prefWidth="67.0" styleClass="head-label2" stylesheets="@LoginSignup.css" text="Gender:" textFill="#0d8991" />
+                  <Label layoutX="20.0" layoutY="378.0" prefHeight="35.0" prefWidth="84.0" styleClass="head-label2" stylesheets="@LoginSignup.css" text="Date of Birth:" textFill="#0d8991" />
+                  <TextField fx:id="Rgiester_email1" layoutX="108.0" layoutY="148.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="email@xxxx.com" styleClass="textfield" stylesheets="@LoginSignup.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="Rgiester_CNIC" layoutX="108.0" layoutY="287.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="XXXXX-XXXXXX-X" styleClass="textfield" stylesheets="@LoginSignup.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker fx:id="Register_DOB" layoutX="104.0" layoutY="383.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="Slider_Form" layoutY="-1.0" prefHeight="501.0" prefWidth="400.0" styleClass="gradient" stylesheets="@LoginSignup.css">
+               <children>
+                  <Label fx:id="Slider_create_account" alignment="CENTER" layoutX="66.0" layoutY="392.0" prefHeight="43.0" prefWidth="254.0" text="Create Account" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="Slider_CreateNew_button" layoutX="91.0" layoutY="445.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@LoginSignup.css" text="Create new Account" />
+                  <ImageView fx:id="Slider_LOGO" fitHeight="288.0" fitWidth="263.0" layoutX="62.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../IMGs/LOGOO.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="Slider_Login_button" layoutX="91.0" layoutY="445.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@LoginSignup.css" text="Login" visible="false" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

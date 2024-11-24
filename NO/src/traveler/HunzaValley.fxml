@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerMainPageController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneHunzaValley" stylesheets="@ViewDestinations.css">
+         <children>
+            <AnchorPane layoutX="36.0" layoutY="174.0" prefHeight="299.0" prefWidth="479.0" styleClass="anchor-paneHunzaValleyText" stylesheets="@ViewDestinations.css">
+               <children>
+                  <Text fill="BEIGE" layoutX="8.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-block" text="Hunza is also home to iconic spots like the ancient Baltit and Altit Forts, which showcase the region's rich history and architectural brilliance. The tranquil Attabad Lake, formed by a landslide in 2010, is now a popular spot for boating and picnics, with its turquoise waters reflecting the surrounding mountains. Karimabad, the main town, offers charming bazaars filled with local handicrafts, while Eagle’s Nest provides a vantage point for witnessing awe-inspiring sunrises and sunsets. Hunza's warm-hearted people and unique culture make it a must-visit destination for travelers seeking both adventure and serenity." wrappingWidth="454.7944030761719" />
+                  <Text fill="BEIGE" layoutX="12.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-block" text="Nestled in the heart of the Karakoram Range, Hunza Valley is a breathtaking haven of natural beauty and cultural richness. Surrounded by towering snow-capped peaks such as Rakaposhi, Ultar Sar, and Ladyfinger, the valley offers a mesmerizing panorama that captivates every visitor. The vibrant green terraced fields, crystal-clear rivers, and serene blue skies create a picture-perfect landscape. Whether it's spring's cherry blossoms, summer's lush greenery, autumn's golden hues, or winter's snow-blanketed tranquility, Hunza Valley is stunning year-round." wrappingWidth="454.7944030761719" />
+               </children>
+            </AnchorPane>
+            <Text fill="#e6dfc9" layoutX="31.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Hunza Valley: A Paradise in the North" wrappingWidth="488.7942810058594" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="568.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IMGs/H1.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="568.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IMGs/H2.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="HUnzaVally_back_button" layoutX="663.0" layoutY="43.0" mnemonicParsing="false" onAction="#GoBackToVDfromHunza" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: rgba(90, 70, 50, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@ViewDestinations.css" text="Back" textFill="#fefff2" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

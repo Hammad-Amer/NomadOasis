@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerMainPageController">
+   <children>
+      <AnchorPane layoutY="-2.0" prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVD3" stylesheets="@ViewPackages.css">
+         <children>
+            <Button fx:id="CancelPackage_Cancel_Button" layoutX="520.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleCancelPackage" prefHeight="37.0" prefWidth="130.0" style="-fx-background-color: linear-gradient(to bottom, #d3d3d3, #a9a9a9); -fx-text-fill: #262424;" styleClass="glossy-buttonVD" stylesheets="@ViewPackages.css" text="CANCEL" textFill="#262424" />
+            <TextArea fx:id="CancelPackage_packages_text" layoutX="180.0" layoutY="162.0" prefHeight="200.0" prefWidth="200.0" />
+            <Label layoutX="180.0" layoutY="124.0" prefHeight="37.0" prefWidth="141.0" styleClass="head-label2" stylesheets="@ViewPackages.css" text="Your Packages:" textFill="#41568b">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="CancelPackage_dropdown" layoutX="520.0" layoutY="176.0" prefHeight="25.0" prefWidth="200.0" />
+            <Label layoutX="514.0" layoutY="132.0" prefHeight="44.0" prefWidth="219.0" styleClass="head-label2" stylesheets="@ViewPackages.css" text="Select package to cancel" textFill="#41568b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Text fx:id="CancelPackage_Returnprice_text" fill="#60689d" layoutX="631.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textfield" text="0" wrappingWidth="147.469970703125" />
+            <Label layoutX="520.0" layoutY="228.0" prefHeight="25.0" prefWidth="111.0" styleClass="head-label2" stylesheets="@ViewPackages.css" text="Return Price:" textFill="#41568b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="CancelPackage_Back_Button" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" onAction="#GoBackToPackagePageFromCancel" prefHeight="44.0" prefWidth="111.0" styleClass="glossy-buttonVD" stylesheets="@ViewPackages.css" text="Back" />
+   </children>
+</AnchorPane>

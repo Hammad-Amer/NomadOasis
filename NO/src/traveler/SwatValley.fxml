@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneSwatValley" stylesheets="@ViewDestinations.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerMainPageController">
+   <children>
+      <AnchorPane layoutX="35.0" layoutY="183.0" prefHeight="257.0" prefWidth="479.0" styleClass="anchor-paneSwatValleyText" stylesheets="@ViewDestinations.css">
+         <children>
+            <Text fill="BEIGE" layoutX="7.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Swat is also home to several captivating tourist spots. Malam Jabba, a famous ski resort, draws visitors for winter sports, while the historical Udegram Buddhist Monastery offers a glimpse into the valley's ancient heritage. Additionally, the charming town of Mingora and the enchanting Fizagat Park provide both cultural experiences and opportunities for outdoor activities. Swat’s scenic beauty and rich history make it a must-visit destination in Pakistan." wrappingWidth="464.1277160644531">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
+            <Text fill="BEIGE" layoutX="12.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Swat Valley, often referred to as the &quot;Switzerland of Pakistan,&quot; is renowned for its breathtaking natural beauty. Surrounded by snow-capped mountains, lush green forests, and crystal-clear rivers, this valley offers an idyllic escape for nature lovers and adventure enthusiasts alike. The serene landscapes, dotted with picturesque villages and meadows, make it a perfect destination for relaxation and exploration." wrappingWidth="454.7944030761719">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
+         </children>
+      </AnchorPane>
+      <Text fill="#e6dfc9" layoutX="31.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Swat Valley: A Jewel of Natural Beauty" wrappingWidth="488.7942810058594" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="562.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../IMGs/Sawt1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="562.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../IMGs/swat2.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="Swat_back_button" layoutX="664.0" layoutY="33.0" mnemonicParsing="false" onAction="#GoBackToVDfromSwat" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: rgba(47, 79, 79, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@ViewDestinations.css" text="Back" textFill="#fefff2" />
+   </children>
+</AnchorPane>

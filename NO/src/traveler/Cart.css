@@ -1,0 +1,42 @@
+.anchor-paneVD {
+    -fx-background-image: url("../../IMGs/Cart_background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+}		 	     
+	 	
+
+.head-label2{
+    -fx-border-color: #286155;
+    -fx-border-width: 0 0 0 0;
+    -fx-padding: 0 0 0 5px;
+}
+
+
+.textfield{
+    -fx-background-color: fff;
+    -fx-border-color: linear-gradient(to bottom right, #006598, #006598);
+    -fx-border-width: .5px;
+}
+
+.buy-btn{
+	-fx-background-color: linear-gradient(to bottom right,  #006598, #0483c3); 
+	   -fx-background-radius: 5px;
+	   -fx-cursor: hand;
+	   -fx-text-fill: #fff;
+	   -fx-font-size: 14px;
+}
+
+.buy-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom right, #0483c3,#249edb); 
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1); /* Subtle pressed shadow */
+    -fx-translate-y: 2px; /* Pressed visual feedback */
+}
+
+.head-label{
+    -fx-border-color: #286155;
+    -fx-border-width: 0 0 2 0;
+    -fx-padding: 0 0 0 5px;
+	-fx-font-family: "Arial Black", sans-serif;
+	-fx-font-weight: bold;
+}

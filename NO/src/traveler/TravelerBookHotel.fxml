@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="main-background" stylesheets="@TravelerMainPage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerBookHotelController">
+   <children>
+      <Button fx:id="goback_Main" layoutX="41.0" layoutY="41.0" mnemonicParsing="false" onAction="#goBackTravelerMain" prefHeight="43.0" prefWidth="149.0" text="Back" />
+      <ComboBox fx:id="DropDownResponse" layoutX="41.0" layoutY="156.0" prefHeight="25.0" prefWidth="149.0" promptText="Click For Options" />
+      <Text layoutX="333.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotel Name:" />
+      <Text layoutX="332.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:" />
+      <Text layoutX="335.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating:" />
+      <Text layoutX="335.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+      <Text layoutX="335.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room#:" />
+      <Text layoutX="43.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RoomType:" />
+      <Text layoutX="41.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Price:" />
+      <Text layoutX="41.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Avalibility:" />
+      <Button fx:id="bookroom" layoutX="41.0" layoutY="413.0" mnemonicParsing="false" onAction="#bookRoom" prefHeight="43.0" prefWidth="149.0" text="Book Room" />
+      <Text fx:id="hotelName" layoutX="455.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.99999499320984" />
+      <Text fx:id="hotelLocation" layoutX="455.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="149.00000095367432" />
+      <Text fx:id="hotelRating" layoutX="455.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.99999499320984" />
+      <Text fx:id="hotelDescription" layoutX="455.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="149.00000095367432" />
+      <ComboBox fx:id="RoomNumberComboBox" layoutX="455.0" layoutY="233.0" prefHeight="25.0" prefWidth="149.0" promptText="Click For Options" />
+      <Text fx:id="roomType" layoutX="141.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.99999499320984" />
+      <Text fx:id="roomPrice" layoutX="141.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.99998903274536" />
+      <Text fx:id="roomAvalibility" layoutX="141.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.9999771118164" />
+      <DatePicker fx:id="booking_date" layoutX="43.0" layoutY="367.0" prefHeight="25.0" prefWidth="149.0" />
+
+   </children>
+</AnchorPane>

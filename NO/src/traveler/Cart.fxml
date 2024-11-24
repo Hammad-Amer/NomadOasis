@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerMainPageController">
+   <children>
+      <AnchorPane layoutX="-2.0" prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVD" stylesheets="@Cart.css">
+         <children>
+            <TextField fx:id="Cart_Address_box" layoutX="223.0" layoutY="108.0" prefHeight="44.0" prefWidth="284.0" promptText="House/Building Number.Street Name.Apartment, Unit, or Suite Number " styleClass="textfield" stylesheets="@Cart.css" />
+            <TextField fx:id="Cart_City_box" layoutX="223.0" layoutY="172.0" styleClass="textfield" stylesheets="@Cart.css" />
+            <Label layoutX="125.0" layoutY="119.0" styleClass="head-label2" stylesheets="@Cart.css" text="Address:" textFill="#006598">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="281.0" styleClass="head-label2" stylesheets="@Cart.css" text="Postal Code/ZIP Code:" textFill="#006598">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="230.0" styleClass="head-label2" stylesheets="@Cart.css" text="State/Province:" textFill="#006598">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="110.0" layoutY="174.0" prefHeight="21.0" prefWidth="79.0" styleClass="head-label2" stylesheets="@Cart.css" text="City/Town:" textFill="#006598">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="326.0" styleClass="head-label2" stylesheets="@Cart.css" text="Contact Information:" textFill="#006598">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Cart_Zip_box" layoutX="223.0" layoutY="279.0" prefHeight="27.0" prefWidth="105.0" styleClass="textfield" stylesheets="@Cart.css" />
+            <TextField fx:id="Cart_Contactinfo_box" layoutX="223.0" layoutY="323.0" prefHeight="27.0" prefWidth="204.0" styleClass="textfield" stylesheets="@Cart.css" />
+            <Button fx:id="Cart_buybutton" layoutX="347.0" layoutY="417.0" mnemonicParsing="false" onAction="#CartBuyButtonPressed" prefHeight="25.0" prefWidth="119.0" styleClass="buy-btn" stylesheets="@Cart.css" text="BUY" />
+            <Button fx:id="Cart_Back_button" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#CartBackbuttontoItemShop" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: rgba(70, 70, 180, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@itemShop.css" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Label layoutX="336.0" layoutY="20.0" prefHeight="62.0" prefWidth="142.0" styleClass="head-label" stylesheets="@Cart.css" text="CART" textAlignment="CENTER" textFill="#006598" textOverrun="CLIP">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="Cart_orderSummary_area" layoutX="547.0" layoutY="151.0" prefHeight="203.0" prefWidth="236.0" styleClass="textfield" stylesheets="@Cart.css" />
+            <Label layoutX="547.0" layoutY="117.0" styleClass="head-label2" stylesheets="@Cart.css" text="Order Summary:" textFill="#006598">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Text fx:id="CART_Total_text" layoutX="637.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Text" wrappingWidth="62.0" />
+            <Label layoutX="547.0" layoutY="375.0" prefHeight="29.0" prefWidth="62.0" styleClass="head-label2" stylesheets="@Cart.css" text="TOTAL:" textFill="#370096" />
+            <Label layoutX="63.0" layoutY="370.0" styleClass="head-label2" stylesheets="@Cart.css" text="Payment Method:" textFill="#006598">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="223.0" layoutY="372.0" text="Cash on Delivery" />
+            <TextField fx:id="Cart_State_box" layoutX="223.0" layoutY="227.0" styleClass="textfield" stylesheets="@Cart.css" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,84 @@
+.anchor-paneVD {
+    -fx-background-image: url("../../IMGs/Packages_background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+}	
+
+
+.anchor-paneVD2 {
+    -fx-background-image: url("../../IMGs/Packages_Buy.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+}		
+
+.anchor-paneVD3 {
+    -fx-background-image: url("../../IMGs/CancelPackage.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+}		
+ 	
+ 	     
+.head-label2{
+    -fx-border-color: #286155;
+    -fx-border-width: 0 0 0 0;
+    -fx-padding: 0 0 0 5px;
+	-fx-font-family: "Arial Black", sans-serif; 
+}
+
+
+.textfield {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6f5ff); /* Subtle gradient background */
+    -fx-border-color: linear-gradient(to bottom right, #006598, #005580); /* Vibrant border */
+    -fx-border-width: 1.5px; /* Slightly thicker border for better emphasis */
+    -fx-border-radius: 5px; /* Rounded corners for a softer look */
+    -fx-background-radius: 5px; /* Match the background radius with the border */
+
+    -fx-font-family: "Arial Black", sans-serif; /* Bold font for emphasis */
+    -fx-font-size: 16px; /* Slightly larger text */
+    -fx-text-fill: #00334d; /* Vibrant dark blue text color for contrast */
+    
+    -fx-padding: 5px; /* Add padding for better text readability */
+
+    /* Add a subtle shadow for vibrance */
+    -fx-effect: dropshadow(gaussian, rgba(0, 101, 152, 0.3), 5, 0, 0, 1);
+
+    /* Highlight effect when focused */
+    -fx-focus-color: linear-gradient(to bottom right, #33ccff, #0099cc);
+    -fx-faint-focus-color: transparent;
+}
+
+
+.glossy-buttonVD {
+    -fx-background-color: 
+        linear-gradient(to bottom, #1E3A5F, #0F2747); /* Pure navy blue gradient */
+    -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
+    -fx-border-radius: 100%; /* Rounded border to match */
+    -fx-border-color: transparent; /* Remove the white border */
+    -fx-border-width: 0; /* Remove border width */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+    -fx-text-fill: linear-gradient(to bottom, #d7d6d4, #a19b9b); /* Gradient text: Gold to Orange */
+    -fx-font-family: "Arial Black", sans-serif; /* Bold, impactful font */
+    -fx-font-size: 12px; /* Adjust font size as needed */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1); /* Subtle shadow for text */
+    -fx-padding: 10px 20px; /* Add padding for a spacious look */
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+    
+}
+
+.glossy-buttonVD:hover {
+    -fx-background-color: linear-gradient(to bottom, #0F2747, #1A3455); /* Slightly darker navy on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Reverse gradient for text on hover */
+}
+
+.glossy-buttonVD:pressed {
+    -fx-background-color: linear-gradient(to top, #1E3A5F, #0F2747); /* Reverse navy gradient on press */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
+    -fx-translate-y: 2px; 
+    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Same as initial text color */
+}
+  

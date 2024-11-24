@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerMainPageController">
+   <children>
+      <AnchorPane fx:id="IS_Beanies_grid" layoutY="-6.0" prefHeight="507.0" prefWidth="804.0" styleClass="anchor-paneVD" stylesheets="@itemShop.css">
+         <children>
+            <Button fx:id="IS_Hikinggear_button" layoutX="65.0" layoutY="138.0" mnemonicParsing="false" onAction="#showHikingstuff" prefHeight="52.0" prefWidth="172.0" style="-fx-background-color: rgba(70, 70, 180, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@itemShop.css" text="Hiking Gear" textFill="#fefff2" />
+            <Button fx:id="IS_Clothing_button" layoutX="299.0" layoutY="141.0" mnemonicParsing="false" onAction="#ShowClothing" prefHeight="45.0" prefWidth="165.0" style="-fx-background-color: rgba(70, 70, 180, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@itemShop.css" text="Clothing" textFill="WHITE" />
+            <Button fx:id="IS_Essential_button" layoutX="532.0" layoutY="138.0" mnemonicParsing="false" onAction="#showEssential" prefHeight="52.0" prefWidth="172.0" style="-fx-background-color: rgba(70, 70, 180, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@itemShop.css" text="Essentials" textFill="WHITE" />
+            <Button fx:id="IS_Shoes_Add" layoutX="280.0" layoutY="424.0" mnemonicParsing="false" onAction="#IS_AddHandleClick" prefHeight="50.0" prefWidth="203.0" style="-fx-text-fill: #fefff2;" styleClass="glossy-buttonVD2" stylesheets="@itemShop.css" text="ADD TO CART" textFill="#24bc09">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <GridPane fx:id="IS_Shoes_grid" layoutX="49.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="true">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/hiking_boots.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Hiking Boots" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_Shoes_plus" mnemonicParsing="false" onAction="#ShoesHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                  <Button fx:id="IS_Shoes_minus" mnemonicParsing="false" onAction="#ShoesHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Text fx:id="IS_SHoes_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 10000" textFill="#f8f8f8" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_Shoes_text" fill="#ede4e4" layoutX="161.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="They feature durable materials, ankle support, and non-slip soles for optimal grip and stability" visible="true" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_bacgpack_grid" layoutX="280.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/backpack.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Hiking Bag" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_bacgpack_plus" mnemonicParsing="false" onAction="#BackpackHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_bacgpack_minus" mnemonicParsing="false" onAction="#BackpackHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_bacgpack_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 7000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_bacgpack_text" fill="#ede4e4" layoutX="392.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It features ergonomic straps, multiple compartments, and durable, lightweight materials to hold essentials." wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_Camping_grid" layoutX="518.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/camping_tent.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Camping Tent" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_camping_plus" mnemonicParsing="false" onAction="#CampingHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_camping_minus" mnemonicParsing="false" onAction="#CampingHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_camping_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 25000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_camping_text" fill="#ede4e4" layoutX="630.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfect for camping trips, it shields against the elements while creating a cozy space for rest." wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <Text fill="#d7d6d4" layoutX="164.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="popular-destinations" text="ITEM STORE" textAlignment="CENTER" wrappingWidth="454.0000813802085">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_Jacket_grid" layoutX="49.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/jackets.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Waterproof Jackets" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_Jacket_plus" mnemonicParsing="false" onAction="#JacketHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_Jacket_minus" mnemonicParsing="false" onAction="#JacketHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_jacket_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 9000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_JAcket_text" fill="#ede4e4" layoutX="161.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stay dry and comfortable in all weather conditions with our lightweight, breathable jacket." visible="false" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_gloves_grid" layoutX="280.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/gloves.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Thermal Gloves" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_gloves_plus" mnemonicParsing="false" onAction="#GlovesHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_gloves_minus" mnemonicParsing="false" onAction="#GlovesHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_gloves_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 3000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_gloves_text" fill="#ede4e4" layoutX="392.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keep your hands warm and agile with our insulated thermal gloves, perfect for cold weather" visible="false" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_beanies_grid" layoutX="518.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/beanies.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Beanies" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_beanies_plus" mnemonicParsing="false" onAction="#BeaniesHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_beanies_minus" mnemonicParsing="false" onAction="#BeaniesHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_beanies_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 2000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_beanie_text" fill="#ede4e4" layoutX="630.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Add warmth and style to your outdoor look with our cozy beanies, designed to keep you comfortable in the chill." visible="false" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_FIrstAID_grid" layoutX="49.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="21.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="19.33335367838542" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/firstaid.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="First Aid Kit" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_FirsatAid_plus" mnemonicParsing="false" onAction="#FirstAidHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_FirstAID_minus" mnemonicParsing="false" onAction="#FirstAidHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_FIrstAID_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 6000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_FIrstAID_text" fill="#ede4e4" layoutX="161.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Essential supplies for minor injuries, keeping you prepared for emergencies." visible="false" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_TOrch_grid" layoutX="280.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/torch.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="LED Torch" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_Torch_plus" mnemonicParsing="false" onAction="#TorchHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_Torch_minus" mnemonicParsing="false" onAction="#TorchHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="IS_torch_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 4000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_torch_text" fill="#ede4e4" layoutX="392.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bright, long-lasting light for outdoor adventures and emergencies." visible="false" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="IS_powerbank_grid" layoutX="518.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="0.0" prefWidth="32.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="37.00004069010416" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="2.999959309895843" prefWidth="33.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.33333333333333" minWidth="10.0" prefWidth="50.66666666666666" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.66668701171875" minHeight="10.0" prefHeight="26.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.66668701171875" minHeight="10.0" prefHeight="32.33329264322917" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.33331298828125" minHeight="10.0" prefHeight="25.66670735677083" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../IMGs/powerbank.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="itemlabel" text="Powerbank" wrappingWidth="117.47003555297852" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="IS_powerbank_plus" mnemonicParsing="false" onAction="#PowerbankHandlePlusButtonClick" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="IS_powerbank_minus" mnemonicParsing="false" onAction="#PowerbankHandleMinusButtonClick" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Text fx:id="is_powerbank_quantity" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="19.802123069763184" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="69.0" styleClass="itemlabel2" text="Rs. 13000" textFill="#f8f8f8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Text fx:id="IS_power_text" fill="#ede4e4" layoutX="630.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Portable charging for your devices, perfect for outdoor activities." visible="false" wrappingWidth="89.99999999999989">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <Button fx:id="IS_CART_button" layoutX="667.0" layoutY="22.0" mnemonicParsing="false" onAction="#CartButtoncItemStore" prefHeight="50.0" prefWidth="56.0" style="-fx-background-color: rgba(70, 70, 180, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD3" stylesheets="@itemShop.css" textFill="WHITE" />
+            <Button fx:id="IS_Back_button" layoutX="65.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBackToTravelerMainfromIS" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: rgba(70, 70, 180, 0.9); -fx-text-fill: #fefff2;" styleClass="glossy-buttonVD" stylesheets="@itemShop.css" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

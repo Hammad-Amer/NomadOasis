@@ -1,0 +1,298 @@
+		 	     
+.glossy-buttonVD {
+    -fx-background-color: 
+        linear-gradient(to bottom, #1E3A5F, #0F2747); /* Pure navy blue gradient */
+    -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
+    -fx-border-radius: 100%; /* Rounded border to match */
+    -fx-border-color: transparent; /* Remove the white border */
+    -fx-border-width: 0; /* Remove border width */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+    -fx-text-fill: linear-gradient(to bottom, #d7d6d4, #a19b9b); /* Gradient text: Gold to Orange */
+    -fx-font-family: "Arial Black", sans-serif; /* Bold, impactful font */
+    -fx-font-size: 16px; /* Adjust font size as needed */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1); /* Subtle shadow for text */
+    -fx-padding: 10px 20px; /* Add padding for a spacious look */
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+    
+}
+
+.glossy-buttonVD:hover {
+    -fx-background-color: linear-gradient(to bottom, #0F2747, #1A3455); /* Slightly darker navy on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Reverse gradient for text on hover */
+}
+
+.glossy-buttonVD:pressed {
+    -fx-background-color: linear-gradient(to top, #1E3A5F, #0F2747); /* Reverse navy gradient on press */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
+    -fx-translate-y: 2px; 
+    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Same as initial text color */
+}
+  
+
+  .anchor-paneVD {
+      -fx-background-image: url("../../IMGs/background_img_VD.png");
+      -fx-background-size: cover;
+      -fx-background-position: center;
+  }		 	     
+		 	     
+
+.popular-destinations {
+	
+    -fx-font-size: 45px; /* Adjust font size */
+    -fx-font-weight: bold; /* Make the text bold */
+    -fx-text-fill: white; /* Use a yellow-gold color to match the buttons */
+    -fx-effect: dropshadow(gaussian, #1E3A5F, 10, 0.5, 2, 2); /* Add a shadow for better visibility */
+    -fx-text-alignment: center; /* Center-align the text */
+}
+ 	     
+		 	     
+.anchor-paneHunzaValley {
+    -fx-background-image: url("../../IMGs/HunzaValley.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+
+.anchor-paneSwatValley {
+    -fx-background-image: url("../../IMGs/SwatValley.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+
+.anchor-paneWadiShogran {
+    -fx-background-image: url("../../IMGs/WadiShogran.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+
+.anchor-paneSkardu {
+    -fx-background-image: url("../../IMGs/Skardu.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+
+.anchor-paneChitral {
+    -fx-background-image: url("../../IMGs/Chitral.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+.anchor-paneFairyMeadows {
+    -fx-background-image: url("../../IMGs/FairyMeadows.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+.text-block {
+    -fx-background-color: rgba(30, 144, 255, 0.8); /* Semi-transparent DodgerBlue background */
+    -fx-text-fill: #f5f5dc; /* Beige text for elegance */
+    -fx-padding: 20px; /* Add padding around text */
+    -fx-border-radius: 15px; /* Rounded corners for border */
+    -fx-background-radius: 15px; /* Rounded corners for background */
+    -fx-font-family: "Georgia"; /* Elegant serif font */
+    -fx-font-size: 13px; /* Text size */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5); /* Shadow for depth */
+}
+
+.anchor-paneHunzaValleyText {
+	-fx-background-color: rgba(90, 70, 50, 0.8); /* Semi-transparent DodgerBlue background */
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+
+.anchor-paneSwatValleyText {
+	 -fx-background-color: rgba(47, 79, 79, 0.8); 
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}	
+
+.anchor-paneWadiShogranText {
+    -fx-background-color: rgba(60, 100, 100, 0.8); /* Lighter green with transparency */
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.anchor-paneSkarduText {
+  -fx-background-color: rgba(70, 70, 180, 0.8);
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.anchor-paneChitralText {
+ -fx-background-color: rgba(184, 134, 11, 0.8);
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.anchor-paneFairyMeadowsText {
+-fx-background-color: rgba(50, 100, 50, 0.8);
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+.title {
+    -fx-background-color: transparent; /* No background, allowing the image to flow through */
+    -fx-text-fill: #d4af37; /* Golden text for a standout yet classy look */
+    -fx-font-family: "Serif"; /* Sophisticated serif font */
+    -fx-font-size: 34px; /* Larger size for prominence */
+    -fx-font-weight: bold; /* Bold to emphasize importance */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 6, 0, 2, 2); /* Subtle shadow for depth */
+    -fx-padding: 10px; /* Adds spacing around the text */
+    -fx-alignment: center; /* Centers the title */
+}
+.button-HunzaVD {
+ 
+    -fx-background-color: linear-gradient(to bottom right, #1c3b60, #284b7c); /* Gradient background */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-background-image: url("../../IMGs/HunzaValley.png"); /* Replace with your image file */
+    -fx-background-repeat: no-repeat; /* Prevent image repetition */
+    -fx-background-position: center; /* Position image on the left */
+    -fx-background-size: 100% 100%; /* Set image size */
+    -fx-padding: 0 16 0 50; /* Add padding to position text properly */
+    -fx-text-fill: #d7d6d4; /* Text color */
+    -fx-font-size: 30px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.0, 0, 4); /* Shadow effect */
+}
+
+.button-HunzaVD:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 6); /* Stronger shadow on hover */
+    -fx-translate-y: -2; /* Slight lift on hover */
+}
+
+.button-HunzaVD:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.0, 0, 2); /* Reduced shadow on press */
+    -fx-translate-y: 2; /* Button press effect */
+}
+
+.button-Shogran {
+ 
+    -fx-background-color: linear-gradient(to bottom right, #1c3b60, #284b7c); /* Gradient background */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-background-image: url("../../IMGs/WadiShogran.png"); /* Replace with your image file */
+    -fx-background-repeat: no-repeat; /* Prevent image repetition */
+    -fx-background-position: center; /* Position image on the left */
+    -fx-background-size: 100% 100%; /* Set image size */
+    -fx-padding: 0 16 0 50; /* Add padding to position text properly */
+    -fx-text-fill: #d7d6d4; /* Text color */
+    -fx-font-size: 30px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.0, 0, 4); /* Shadow effect */
+}
+
+.button-Shogran:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 6); /* Stronger shadow on hover */
+    -fx-translate-y: -2; /* Slight lift on hover */
+}
+
+.button-Shogran:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.0, 0, 2); /* Reduced shadow on press */
+    -fx-translate-y: 2; /* Button press effect */
+}
+.button-Swat {
+ 
+    -fx-background-color: linear-gradient(to bottom right, #1c3b60, #284b7c); /* Gradient background */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-background-image: url("../../IMGs/SwatValley.png"); /* Replace with your image file */
+    -fx-background-repeat: no-repeat; /* Prevent image repetition */
+    -fx-background-position: center; /* Position image on the left */
+    -fx-background-size: 100% 100%; /* Set image size */
+    -fx-padding: 0 16 0 50; /* Add padding to position text properly */
+    -fx-text-fill: #d7d6d4; /* Text color */
+    -fx-font-size: 30px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.0, 0, 4); /* Shadow effect */
+}
+
+.button-Swat:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 6); /* Stronger shadow on hover */
+    -fx-translate-y: -2; /* Slight lift on hover */
+}
+
+.button-Swat:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.0, 0, 2); /* Reduced shadow on press */
+    -fx-translate-y: 2; /* Button press effect */
+}
+.button-Skardu {
+ 
+    -fx-background-color: linear-gradient(to bottom right, #1c3b60, #284b7c); /* Gradient background */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-background-image: url("../../IMGs/Skardu.png"); /* Replace with your image file */
+    -fx-background-repeat: no-repeat; /* Prevent image repetition */
+    -fx-background-position: center; /* Position image on the left */
+    -fx-background-size: 100% 100%; /* Set image size */
+    -fx-padding: 0 16 0 50; /* Add padding to position text properly */
+    -fx-text-fill: #d7d6d4; /* Text color */
+    -fx-font-size: 30px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.0, 0, 4); /* Shadow effect */
+}
+
+.button-Skardu:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 6); /* Stronger shadow on hover */
+    -fx-translate-y: -2; /* Slight lift on hover */
+}
+
+.button-Skardu:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.0, 0, 2); /* Reduced shadow on press */
+    -fx-translate-y: 2; /* Button press effect */
+}
+.button-Chitral {
+ 
+    -fx-background-color: linear-gradient(to bottom right, #1c3b60, #284b7c); /* Gradient background */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-background-image: url("../../IMGs/Chitral.png"); /* Replace with your image file */
+    -fx-background-repeat: no-repeat; /* Prevent image repetition */
+    -fx-background-position: center ; /* Position image on the left */
+    -fx-background-size: 100% 100%; /* Set image size */
+    -fx-padding: 0 16 0 50; /* Add padding to position text properly */
+    -fx-text-fill: #d7d6d4; /* Text color */
+    -fx-font-size: 30px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.0, 0, 4); /* Shadow effect */
+}
+
+.button-Chitral:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 6); /* Stronger shadow on hover */
+    -fx-translate-y: -2; /* Slight lift on hover */
+}
+
+.button-Chitral:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.0, 0, 2); /* Reduced shadow on press */
+    -fx-translate-y: 2; /* Button press effect */
+}	
+.button-FairyMeadows {
+ 
+    -fx-background-color: linear-gradient(to bottom right, #1c3b60, #284b7c); /* Gradient background */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-background-image: url("../../IMGs/FairyMeadows.png"); /* Replace with your image file */
+    -fx-background-repeat: no-repeat; /* Prevent image repetition */
+    -fx-background-position: center; /* Position image on the left */
+    -fx-background-size: 100% 100%; /* Set image size */
+    -fx-padding: 0 16 0 50; /* Add padding to position text properly */
+    -fx-text-fill: #d7d6d4; /* Text color */
+    -fx-font-size: 30px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.0, 0, 4); /* Shadow effect */
+}
+
+.button-FairyMeadows:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 6); /* Stronger shadow on hover */
+    -fx-translate-y: -2; /* Slight lift on hover */
+}
+
+.button-FairyMeadows:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.0, 0, 2); /* Reduced shadow on press */
+    -fx-translate-y: 2; /* Button press effect */
+}	
+    
