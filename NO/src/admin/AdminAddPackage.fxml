@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminMainPageController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVDPack" stylesheets="@AdminMainPage.css">
+         <children>
+            <Label layoutX="144.0" layoutY="125.0" prefHeight="29.0" prefWidth="43.0" text="Name:" />
+            <Label layoutX="117.0" layoutY="250.0" prefHeight="29.0" prefWidth="75.0" text="Destinations:" />
+            <Label layoutX="138.0" layoutY="168.0" prefHeight="29.0" prefWidth="98.0" text="Duration:" />
+            <Label layoutX="433.0" layoutY="125.0" prefHeight="29.0" prefWidth="98.0" text="Description:" />
+            <Label layoutX="138.0" layoutY="210.0" prefHeight="29.0" prefWidth="98.0" text="Price:" />
+            <TextField fx:id="AddPackage_Name" layoutX="236.0" layoutY="127.0" promptText="Name of the Package" />
+            <TextField fx:id="AddPackage_Duration" layoutX="236.0" layoutY="168.0" promptText="Enter duration in days" />
+            <TextArea fx:id="AddPackage_Destinations" layoutX="236.0" layoutY="250.0" prefHeight="155.0" prefWidth="149.0" promptText="max 5-6, each on 1 line" />
+            <TextField fx:id="AddPackage_Price" layoutX="236.0" layoutY="212.0" promptText="Price in PKR" />
+            <TextArea fx:id="AddPackage_Description" layoutX="431.0" layoutY="165.0" prefHeight="200.0" prefWidth="200.0" promptText="Explain your desitination" />
+            <Button fx:id="AddPackage_Add_button" layoutX="360.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleAddPackage" text="ADD PACKAGE" />
+            <Button fx:id="AddPakckage_back_button" layoutX="39.0" layoutY="49.0" mnemonicParsing="false" onAction="#goToMainPagefromAddPackage" prefHeight="25.0" prefWidth="67.0" text="Back" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

@@ -13,6 +13,7 @@
             <Button fx:id="traveler_view_destinitions" layoutX="149.0" layoutY="223.0" mnemonicParsing="false" onAction="#GotoViewDestinationPage" prefHeight="140.0" prefWidth="159.0" styleClass="glossy-button1" stylesheets="@TravelerMainPage.css" />
             <Button fx:id="viewLog" layoutX="569.0" layoutY="423.0" mnemonicParsing="false" onAction="#openLogs" prefHeight="59.0" prefWidth="195.0" styleClass="glossy-button2" stylesheets="@TravelerMainPage.css" />
             <Button fx:id="Contact_Us" layoutX="692.0" layoutY="14.0" mnemonicParsing="false" onAction="#contactUs" prefHeight="30.0" prefWidth="84.0" text="Contact Us" />
+            <Button fx:id="logout" layoutX="43.0" layoutY="34.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="97.0" text="Log Out" styleClass="logout-button"/>
             <Button fx:id="Edit_Profile" layoutX="43.0" layoutY="423.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="59.0" prefWidth="195.0" styleClass="profilebutton" stylesheets="@TravelerMainPage.css" />
          </children>
       </AnchorPane>

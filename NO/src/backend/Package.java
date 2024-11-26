@@ -17,6 +17,14 @@ public class Package {
         this.price = price;
     }
 
+    public Package( String name, String destination, int duration, String description, int price) {
+        this.name = name;
+        this.destination = destination;
+        this.duration = duration;
+        this.description = description;
+        this.price = price;
+    }
+
 	public int getId() {
 		return id;
 	}

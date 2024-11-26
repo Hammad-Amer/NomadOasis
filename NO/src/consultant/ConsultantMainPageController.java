@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import traveler.TravelerQueryResponseController;
+import user.LoginSignupController;
 
 public class ConsultantMainPageController {
 	private DBHandler dbHandler;
@@ -42,12 +43,36 @@ public class ConsultantMainPageController {
 	{
 		ConsultantID = travelerID;
 	}
-    @FXML
-    private Button logout;
+
 
     @FXML
     private Button query;
 
+    @FXML
+    private Button logout;
+
+    
+    @FXML
+    public 	void logOut(ActionEvent event) throws IOException, ClassNotFoundException 
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/LoginSignup.fxml"));
+		Parent root = loader.load();
+
+		LoginSignupController controller = loader.getController();
+		controller.setConnection(connection);
+		
+		Scene scene = new Scene(root);
+
+		scene.getStylesheets().add(getClass().getResource("/user/LoginSignup.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.setTitle("Nomad Oasis");
+		stage.show();
+
+		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+    }
+    
+    
     @FXML
     public 	void querysection(ActionEvent event) throws IOException, ClassNotFoundException 
     {

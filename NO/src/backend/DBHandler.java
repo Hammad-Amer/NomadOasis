@@ -19,8 +19,6 @@ public class DBHandler {
 
 	private Connection connection;
 
-
-	
 	public DBHandler(Connection connection) {
 		this.connection = connection;
 	}
@@ -422,8 +420,8 @@ public class DBHandler {
 	public String insertQuery(String travelerID, String queryContent) throws ClassNotFoundException {
 		String responseMessage = "Query submission failed.";
 		String query = "INSERT INTO query1 (travelerID, queryContent, response) VALUES (?, ?, NULL)";
-		try (Connection conn = connect();
-				PreparedStatement stmt = conn.prepareStatement(query)) 
+		try (
+				PreparedStatement stmt = connection.prepareStatement(query)) 
 		{
 			stmt.setString(1, travelerID);
 			stmt.setString(2, queryContent);
@@ -444,8 +442,8 @@ public class DBHandler {
 	public String assignConsultantToQuery(String travelerID, int consultantID) throws ClassNotFoundException {
 		String responseMessage = "Failed to assign consultant.";
 		String query = "UPDATE query1 SET consultantID = ? WHERE travelerID = ? AND consultantID IS NULL LIMIT 1";
-		try (Connection conn = connect();
-				PreparedStatement stmt = conn.prepareStatement(query)) {
+		try (
+				PreparedStatement stmt = connection.prepareStatement(query)) {
 
 			stmt.setInt(1, consultantID);
 			stmt.setString(2, travelerID);
@@ -463,8 +461,8 @@ public class DBHandler {
 	public int getConsultantID() throws ClassNotFoundException {
 		int consultantID = -1;
 		String query = "SELECT userID FROM User1 WHERE userType = 'Consultant' LIMIT 1";
-		try (Connection conn = connect();
-				PreparedStatement stmt = conn.prepareStatement(query); 
+		try (
+				PreparedStatement stmt = connection.prepareStatement(query); 
 				ResultSet rs = stmt.executeQuery())
 		{
 			if (rs.next())
@@ -837,8 +835,94 @@ public class DBHandler {
 		return -1; 
 	}
 
+/////////////////////////////////////////////////////////////
+//Admin Page
+///////////////////////////////////////////////
+	
+	public List<Item> getAllItems() {
+
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+
+	    List<Item> items = new ArrayList<>();
+
+	    try {
+	        // Query to fetch all items from the Item table
+	        String query = "SELECT itemID, name1, description1, price, stock FROM Item";
+	        preparedStatement = connection.prepareStatement(query);
+
+	        resultSet = preparedStatement.executeQuery();
+
+	        // Populate the list of items
+	        while (resultSet.next()) {
+	            int itemID = resultSet.getInt("itemID");
+	            String name = resultSet.getString("name1");
+	            String description = resultSet.getString("description1");
+	            int price = resultSet.getInt("price");
+	            int stock = resultSet.getInt("stock");
+
+	            // Create an Item object and add it to the list
+	            Item item = new Item();
+	            item.setItemid(itemID);
+	            item.setName(name);
+	            item.setPrice(price);
+	            item.setQuantity(stock);
+
+	            items.add(item);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } 
+
+	    return items; 
+	}
 
 
+	public void updateItemQuantity(String itemName, int amountToAdd) {
+	    String query = "UPDATE Item SET stock = stock + ? WHERE name1 = ?";
 
+	    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+	        
+	        // Set parameters for the query
+	        stmt.setInt(1, amountToAdd);  // The amount to add to the current quantity
+	        stmt.setString(2, itemName);  // The name of the selected item
+
+	        // Execute the update
+	        int rowsAffected = stmt.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Item quantity updated successfully.");
+	        } else {
+	            System.out.println("Item not found.");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Error updating item quantity: " + e.getMessage());
+	    }
+	}
+
+	
+	public boolean addPackageToDatabase(Package pkg) {
+	    try {
+	        // Prepare the SQL query
+	        String query = "INSERT INTO package (name1, destination, duration, description1, price) VALUES (?, ?, ?, ?, ?)";
+	        PreparedStatement stmt = connection.prepareStatement(query);
+
+	        // Set query parameters
+	        stmt.setString(1, pkg.getName());
+	        stmt.setString(2, pkg.getDestination());
+	        stmt.setInt(3, pkg.getDuration());
+	        stmt.setString(4, pkg.getDescription());
+	        stmt.setInt(5, pkg.getPrice());
+
+	        // Execute the query
+	        int rowsInserted = stmt.executeUpdate();
+	        return rowsInserted > 0; // Return true if a row was inserted
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+	
 
 }

@@ -36,6 +36,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import user.LoginSignupController;
 import backend.Package;
 
 public class TravelerMainPageController {
@@ -105,6 +106,31 @@ public class TravelerMainPageController {
    	@FXML
    	private Button Contact_Us;
     
+    @FXML
+    private Button logout;
+
+    
+    @FXML
+    public 	void logOut(ActionEvent event) throws IOException, ClassNotFoundException 
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/LoginSignup.fxml"));
+		Parent root = loader.load();
+
+		LoginSignupController controller = loader.getController();
+		controller.setConnection(connection);
+		
+		Scene scene = new Scene(root);
+
+		scene.getStylesheets().add(getClass().getResource("/user/LoginSignup.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.setTitle("Nomad Oasis");
+		stage.show();
+
+		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+    }
+    
+   	
     public void GotoViewDestinationPage(ActionEvent event) throws IOException
     {
     	

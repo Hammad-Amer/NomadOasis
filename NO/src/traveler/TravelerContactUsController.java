@@ -37,6 +37,7 @@ public class TravelerContactUsController {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
 	        this.connection = state.getConnection();
+			dbHandler = new DBHandler(connection);
 	        this.TravelerID = state.getTravelerID();
 
 	
@@ -124,7 +125,7 @@ public class TravelerContactUsController {
 		String username = ContactUs_username.getText();
 		String email = ContactUs_Email.getText();
 		String queryContent = ContactUs_Query.getText();
-
+		
 		if (username.isEmpty() || email.isEmpty() || queryContent.isEmpty())
 		{
 			showAlert("All fields must be filled out.");
@@ -132,8 +133,7 @@ public class TravelerContactUsController {
 		}
 
 
-		DBHandler dbHandler = new DBHandler(connection);
-
+		
 		String submissionResponse = dbHandler.insertQuery(TravelerID, queryContent);
 
 		if (submissionResponse.equals("Query submitted successfully."))

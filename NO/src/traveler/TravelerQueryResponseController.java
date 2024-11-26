@@ -121,10 +121,11 @@ public class TravelerQueryResponseController implements Initializable
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 	       // Populate the combo box when the controller is initialized
-        populateComboBox();
         SharedState state = SharedState.getInstance();
         this.connection = state.getConnection();
+        dbHandler =new DBHandler(connection);
         this.TravelerID = state.getTravelerID();
+        populateComboBox();
 	}
 	
 
