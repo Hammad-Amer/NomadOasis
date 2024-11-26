@@ -1,6 +1,8 @@
 package user;
 
 import traveler.TravelerMainPageController;
+import backend.Admin;
+import backend.Consultant;
 import backend.DBHandler;
 import backend.Traveler;
 import consultant.ConsultantMainPageController;
@@ -87,77 +89,33 @@ public class LoginSignupController implements Initializable {
 	@FXML
 	private Button Slider_Login_button;
 
-	/*  
-    public void SuccessfulLogin(ActionEvent event) throws IOException, ClassNotFoundException {
-        String username = Login_username.getText();
-        String password = Login_password.getText();
-
-        if (event.getSource() == Login_button) {
-            // Call the backend function to validate login and get travelerID
-            DBHandler dbHandler = new DBHandler(connection); // Ensure your DBHandler is properly instantiated
-
-            String travelerID = dbHandler.validateTravelerLogin(username, password);
-
-            if (travelerID != null) {
-                // Store connection and travelerID in SharedState
-
-
-  SharedState sharedState = SharedState.getInstance();
-               sharedState.setConnection(connection);
-               sharedState.setTravelerID(travelerID);
-
-                // Load the TravelerMainPage.fxml
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
-                Parent root = loader.load();
-
-                // Set the scene and show the next stage
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add(getClass().getResource("/traveler/TravelerMainPage.css").toExternalForm());
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Nomad Oasis");
-                stage.show();
-
-                // Close the current login window
-                ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-            } else {
-                // Show an error message if login fails
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Login Failed");
-                alert.setHeaderText(null);
-                alert.setContentText("Invalid username or password. Please try again.");
-                alert.showAndWait();
-            }
-        }
-    }
-	 */
 
 	public void SuccessfulLogin(ActionEvent event) throws IOException, ClassNotFoundException {
 		String username = Login_username.getText();
 		String password = Login_password.getText();
 
 		if (event.getSource() == Login_button) {
-			// Call the backend function to validate login and get travelerID
-			DBHandler dbHandler = new DBHandler(connection); // Ensure your DBHandler is properly instantiated
+		
+			DBHandler dbHandler = new DBHandler(connection); 
 
 			String travelerID = dbHandler.validateTravelerLogin(username, password);
 
 			if (travelerID != null) 
 			{
-				SharedState sharedState = SharedState.getInstance();
-				sharedState.setConnection(connection);
-				sharedState.setTravelerID(travelerID);
+
 				String userType = dbHandler.getUserType(username);
 				if(userType.equals("Traveler"))
-				{
+				{			
+					Traveler T1=new Traveler();
+					T1.setUserid(travelerID);
+					SharedState sharedState = SharedState.getInstance();
+					sharedState.setConnection(connection);
+					sharedState.setUser(T1);
+					
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
 					Parent root = loader.load();
+				
 
-					// Pass the travelerID to the next controller
-					TravelerMainPageController controller = loader.getController();
-					controller.setTravelerID(travelerID); // Pass the travelerID to the next page
-
-					// Set the scene and show the next stage
 					Scene scene = new Scene(root);
 					scene.getStylesheets().add(getClass().getResource("/traveler/TravelerMainPage.css").toExternalForm());
 					Stage stage = new Stage();
@@ -167,12 +125,15 @@ public class LoginSignupController implements Initializable {
 				}
 				else if (userType.equals("Admin"))
 				{
+					Admin A1=new Admin();
+					A1.setUserid(travelerID);
+					SharedState sharedState = SharedState.getInstance();
+					sharedState.setConnection(connection);
+					sharedState.setUser(A1);
+					
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminMainPage.fxml"));
 					Parent root = loader.load();
 
-					AdminMainPageController controller = loader.getController();
-					//controller.setConsultantID(travelerID); 
-					//controller.setDBHandler(dbHandler);
 
 					Scene scene = new Scene(root);
 					scene.getStylesheets().add(getClass().getResource("/admin/AdminMainPage.css").toExternalForm());
@@ -183,12 +144,14 @@ public class LoginSignupController implements Initializable {
 				}
 				else if (userType.equals("Consultant"))
 				{
+					Consultant C1=new Consultant();
+					C1.setUserid(travelerID);
+					SharedState sharedState = SharedState.getInstance();
+					sharedState.setConnection(connection);
+					sharedState.setUser(C1);
+					
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/consultant/ConsulatantMainPage.fxml"));
 					Parent root = loader.load();
-
-					ConsultantMainPageController controller = loader.getController();
-					controller.setConsultantID(travelerID); 
-					controller.setDBHandler(dbHandler);
 
 					Scene scene = new Scene(root);
 					scene.getStylesheets().add(getClass().getResource("/consultant/ConsultantMainPage.css").toExternalForm());
@@ -202,7 +165,6 @@ public class LoginSignupController implements Initializable {
 			}
 			else 
 			{
-				// Handle invalid login (e.g., show an error dialog)
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Login Failed");
 				alert.setHeaderText("Invalid Username or Password");
@@ -257,7 +219,7 @@ public class LoginSignupController implements Initializable {
 
 
 	public void handleSignUp(ActionEvent event) {
-		// Get all input values
+
 		String email = Rgiester_email1.getText();
 		String username = Rgiester_username.getText();
 		String password = Register_password.getText();
@@ -265,24 +227,18 @@ public class LoginSignupController implements Initializable {
 		String gender = Register_Gender.getValue(); 
 		LocalDate dob = Register_DOB.getValue(); 
 
-		// Validate empty fields
 		if (email.isEmpty() || username.isEmpty() || password.isEmpty() || cnic.isEmpty() || gender == null || dob == null) {
 			showAlert("Form Incomplete", "Please fill in all fields before submitting.");
 			return;
 		}
 
-		// Age Validation (Check if the user is at least 18 years old)
 		if (!isAgeValid(dob)) {
 			showAlert("Age Restriction", "You must be at least 18 years old to register.");
 			return;
 		}
 
-
-		// If all fields are valid, proceed with registration
-
 		Traveler T1 = new Traveler(email, username, password, cnic, gender, dob.toString());
 
-		// Call the DBHandler method to register the user
 		boolean isRegistered = T1.addtravelertoDB(connection);
 
 		if (isRegistered) {
@@ -292,8 +248,8 @@ public class LoginSignupController implements Initializable {
 		}
 	}
 
-	// Helper Method to Show Alerts
-	private void showAlert(String title, String headerText, String contentText) {
+	private void showAlert(String title, String headerText, String contentText) 
+	{
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle(title);
 		alert.setHeaderText(headerText);

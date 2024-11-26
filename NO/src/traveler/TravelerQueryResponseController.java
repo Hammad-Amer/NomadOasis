@@ -1,5 +1,5 @@
 package traveler;
-
+import backend.Traveler;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -34,22 +34,14 @@ public class TravelerQueryResponseController implements Initializable
 {
 	private DBHandler dbHandler;
 	private Connection connection;
-	private String TravelerID;
+	private Traveler Traveler;
 
 	public void setDBHandler(DBHandler dbHandler)
 	{
 	    this.dbHandler = dbHandler;
 	}
 	
-	public String getTravelerID() 
-	{
-		return TravelerID;
-	}
 
-	public void setTravelerID(String travelerID) 
-	{
-		TravelerID = travelerID;
-	}
 	@FXML
 	private Button goback_Main;
 
@@ -70,10 +62,6 @@ public class TravelerQueryResponseController implements Initializable
 		Parent root = loader.load();
 
 
-		TravelerContactUsController controller1 = loader.getController();
-		controller1.setTravelerID(TravelerID);
-
-
 		Scene scene = new Scene(root);
 
 		scene.getStylesheets().add(getClass().getResource("/traveler/TravelerContactUs.css").toExternalForm());
@@ -91,9 +79,9 @@ public class TravelerQueryResponseController implements Initializable
 
 
 	private void populateComboBox() {
-        if (TravelerID != null && !TravelerID.isEmpty())
+        if (Traveler.getUserid() != null && !Traveler.getUserid().isEmpty())
         {
-            ObservableList<Integer> queryIDs = FXCollections.observableArrayList(dbHandler.getQueryIDs(TravelerID));
+            ObservableList<Integer> queryIDs = FXCollections.observableArrayList(dbHandler.getQueryIDs(Traveler.getUserid()));
             DropDownResponse.setItems(queryIDs);
 
             DropDownResponse.setOnAction(event -> displayQueryDetails());
@@ -124,7 +112,7 @@ public class TravelerQueryResponseController implements Initializable
         SharedState state = SharedState.getInstance();
         this.connection = state.getConnection();
         dbHandler =new DBHandler(connection);
-        this.TravelerID = state.getTravelerID();
+        this.Traveler = (backend.Traveler) state.getUser();
         populateComboBox();
 	}
 	

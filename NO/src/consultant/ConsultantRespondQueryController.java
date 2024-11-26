@@ -1,8 +1,10 @@
 package consultant;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import backend.DBHandler;
 import backend.SharedState;
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,19 +23,20 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-public class ConsultantRespondQueryController {
+import backend.Consultant;
+public class ConsultantRespondQueryController implements Initializable {
 
 	private DBHandler dbHandler;
 	private Connection connection;
-	private String ConsultantID;
+	private Consultant Consultant;
 
 	 @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
 	        this.connection = state.getConnection();
-
+	        this.Consultant= (backend.Consultant) state.getUser();
+	        
 
 	
 	    }
@@ -40,14 +44,6 @@ public class ConsultantRespondQueryController {
 	public void setDBHandler(DBHandler dbHandler)
 	{
 		this.dbHandler = dbHandler;
-	}
-	public String getConsultantID()
-	{
-		return ConsultantID;
-	}
-	public void setConsultantID(String travelerID)
-	{
-		ConsultantID = travelerID;
 	}
 
 	@FXML
@@ -72,10 +68,7 @@ public class ConsultantRespondQueryController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/consultant/ConsulatantMainPage.fxml"));
 		Parent root = loader.load();
 
-		ConsultantMainPageController controller = loader.getController();
-		controller.setConsultantID(ConsultantID); 
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("/consultant/ConsultantMainPage.css").toExternalForm());
 		Stage stage = new Stage();
 		stage.setScene(scene);
 		stage.setTitle("Nomad Oasis");
@@ -92,7 +85,7 @@ public class ConsultantRespondQueryController {
 		
 		
 	
-        List<String> queryIDs = dbHandler.getAssignedQueries(ConsultantID);
+        List<String> queryIDs = dbHandler.getAssignedQueries(Consultant.getUserid());
 
         ObservableList<String> queryList = FXCollections.observableArrayList(queryIDs);
         querycombobox.setItems(queryList);
@@ -142,4 +135,13 @@ public class ConsultantRespondQueryController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        SharedState state = SharedState.getInstance();
+        this.connection = state.getConnection();
+        this.Consultant= (backend.Consultant) state.getUser();
+		
+	}
 }

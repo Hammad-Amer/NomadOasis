@@ -1,11 +1,13 @@
 package traveler;
-
+import backend.Traveler;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import backend.Booking;
 import backend.DBHandler;
@@ -17,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,10 +31,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class TravelerBookHotelController
+public class TravelerBookHotelController implements Initializable
 {
 
-	private String TravelerID;
+	private Traveler Traveler;
 	private DBHandler dbHandler;
 	private Connection connection;
 	private List<Hotel> hotelList;
@@ -41,19 +44,11 @@ public class TravelerBookHotelController
 		        // Retrieve the shared data
 		        SharedState state = SharedState.getInstance();
 		        this.connection = state.getConnection();
-		        this.TravelerID = state.getTravelerID();
+		        this.Traveler = (backend.Traveler) state.getUser();
 		        loadHotels();
 		
 		    }
 	  
-	public String getTravelerID() 
-	{
-		return TravelerID;
-	}
-
-
-		
-	
 	
 	@FXML
 	private Button goback_Main;
@@ -97,8 +92,6 @@ public class TravelerBookHotelController
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
 		Parent root = loader.load();
 
-		TravelerMainPageController controller = loader.getController();
-		controller.setTravelerID(TravelerID);
 		
 		Scene scene = new Scene(root);
 
@@ -213,9 +206,7 @@ public class TravelerBookHotelController
 	    	
 	    	
 	            
-	            // Pass the DBHandler instance to the Booking constructor
-	            Booking booking = new Booking(Integer.parseInt(TravelerID), selectedRoom.getRoomID(),
-	                    selectedHotel.getHotelID(), bookingDate, dbHandler);
+	            Booking booking = new Booking(Integer.parseInt(Traveler.getUserid()), selectedRoom.getRoomID(),selectedHotel.getHotelID(), bookingDate, dbHandler);
 
 	            // Call the booking method from the Booking class to add the booking to the database
 	            boolean isBookingSuccessful = booking.addBooking();
@@ -248,6 +239,20 @@ public class TravelerBookHotelController
 	    alert.setHeaderText(null);
 	    alert.setContentText(content);
 	    alert.showAndWait();
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        SharedState state = SharedState.getInstance();
+        this.connection = state.getConnection();
+        this.Traveler = (backend.Traveler) state.getUser();
+        try {
+			loadHotels();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

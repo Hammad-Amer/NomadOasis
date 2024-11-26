@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DBHandler {
 
@@ -128,19 +129,33 @@ public class DBHandler {
 		return traveler;
 	}
 
-	public boolean updateTravelerData(String id,String un, String emaila) {
+	public boolean updateTravelerData(String id, String un, String emaila)
+	{
 		String query = "UPDATE user1 SET username1 = ?, email = ? WHERE userID = ? AND userType = 'traveler'";
+		String logQuery = "INSERT INTO logs1 (travelerID, logtext, Date1) VALUES (?, ?, ?)";
 
-		try (PreparedStatement stmt = connection.prepareStatement(query)) {
+		try (PreparedStatement stmt = connection.prepareStatement(query);
+				PreparedStatement stmt1 = connection.prepareStatement(logQuery)) {
+
 			stmt.setString(1, un);
 			stmt.setString(2, emaila);
 			stmt.setString(3, id);
 
 			int rowsUpdated = stmt.executeUpdate();
+
+			String logMessage = "You Updated Your Profile";
+			Date currentDate = new Date(System.currentTimeMillis());
+
+			stmt1.setString(1, id);
+			stmt1.setString(2, logMessage);
+			stmt1.setDate(3, currentDate);
+
+			stmt1.executeUpdate();
+
 			return rowsUpdated > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return false; 
 		}
 	}
 
@@ -420,11 +435,21 @@ public class DBHandler {
 	public String insertQuery(String travelerID, String queryContent) throws ClassNotFoundException {
 		String responseMessage = "Query submission failed.";
 		String query = "INSERT INTO query1 (travelerID, queryContent, response) VALUES (?, ?, NULL)";
-		try (
+		String logQuery = "INSERT INTO logs1 (travelerID, logtext, Date1) VALUES (?, ?, ?)";
+		try (PreparedStatement stmt1 = connection.prepareStatement(logQuery);
 				PreparedStatement stmt = connection.prepareStatement(query)) 
 		{
 			stmt.setString(1, travelerID);
 			stmt.setString(2, queryContent);
+
+			String logMessage = "You added a Query: "+ queryContent;
+			Date currentDate = new Date(System.currentTimeMillis());	
+
+			stmt1.setString(1, travelerID);
+			stmt1.setString(2, logMessage);
+			stmt1.setDate(3, currentDate);
+
+			stmt1.executeUpdate();
 
 			int rowsAffected = stmt.executeUpdate();
 			if (rowsAffected > 0)
@@ -437,9 +462,12 @@ public class DBHandler {
 			e.printStackTrace();
 		}
 		return responseMessage;
+
+
 	}
 
-	public String assignConsultantToQuery(String travelerID, int consultantID) throws ClassNotFoundException {
+	public String assignConsultantToQuery(String travelerID, int consultantID) throws ClassNotFoundException 
+	{
 		String responseMessage = "Failed to assign consultant.";
 		String query = "UPDATE query1 SET consultantID = ? WHERE travelerID = ? AND consultantID IS NULL LIMIT 1";
 		try (
@@ -460,15 +488,21 @@ public class DBHandler {
 
 	public int getConsultantID() throws ClassNotFoundException {
 		int consultantID = -1;
-		String query = "SELECT userID FROM User1 WHERE userType = 'Consultant' LIMIT 1";
+		String query = "SELECT userID FROM User1 WHERE userType = 'Consultant'";
 		try (
 				PreparedStatement stmt = connection.prepareStatement(query); 
 				ResultSet rs = stmt.executeQuery())
 		{
-			if (rs.next())
+			List<Integer> clist = new ArrayList<>();
+			while (rs.next())
 			{
-				consultantID = rs.getInt("userID");
+				clist.add(rs.getInt("userID"));
 			}
+
+			Random random = new Random();
+			int randconsultant = random.nextInt(clist.size()); 
+			consultantID = clist.get(randconsultant);
+
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -558,15 +592,61 @@ public class DBHandler {
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	public String getRoomNumber(int roomID) {
+		String query = "SELECT roomnum FROM Room WHERE roomID = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(query)) {
+			stmt.setInt(1, roomID);
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getString("roomnum");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getHotelName(int hotelID) {
+		String query = "SELECT name1 FROM hotel WHERE hotelID = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(query)) {
+			stmt.setInt(1, hotelID);
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getString("name1");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null; 
+	}	
+
 	public boolean addBookingToDatabase(int travelerID, int roomID, int hotelID, java.sql.Date bookingDate) throws ClassNotFoundException, SQLException 
 	{
 
 		String query = "INSERT INTO BookingRoom (travelerID, roomID, hotelID, bookingDate) VALUES (?, ?, ?, ?)";
-		try (PreparedStatement stmt = connection.prepareStatement(query)) {
+		String logQuery = "INSERT INTO logs1 (travelerID, logtext, Date1) VALUES (?, ?, ?)";
+		try (PreparedStatement stmt = connection.prepareStatement(query);
+				PreparedStatement stmt1 = connection.prepareStatement(logQuery)) {
 			stmt.setInt(1, travelerID);
 			stmt.setInt(2, roomID);
 			stmt.setInt(3, hotelID);
 			stmt.setDate(4, bookingDate);
+
+			String hotelName = getHotelName(hotelID);
+			String roomNumber = getRoomNumber(roomID);
+
+			String logMessage = "You booked room " + roomNumber + " at hotel " + hotelName + " on " + bookingDate;
+			Date currentDate = new Date(System.currentTimeMillis());
+
+			stmt1.setInt(1, travelerID);
+			stmt1.setString(2, logMessage);
+			stmt1.setDate(3, currentDate);
+
+			stmt1.executeUpdate();
+
+
 			int rowsAffected = stmt.executeUpdate();
 			return rowsAffected > 0;
 		} catch (SQLException e) {
@@ -835,94 +915,123 @@ public class DBHandler {
 		return -1; 
 	}
 
-/////////////////////////////////////////////////////////////
-//Admin Page
-///////////////////////////////////////////////
-	
+	/////////////////////////////////////////////////////////////
+	//Admin Page
+	///////////////////////////////////////////////
+
 	public List<Item> getAllItems() {
 
-	    PreparedStatement preparedStatement = null;
-	    ResultSet resultSet = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 
-	    List<Item> items = new ArrayList<>();
+		List<Item> items = new ArrayList<>();
 
-	    try {
-	        // Query to fetch all items from the Item table
-	        String query = "SELECT itemID, name1, description1, price, stock FROM Item";
-	        preparedStatement = connection.prepareStatement(query);
+		try {
+			// Query to fetch all items from the Item table
+			String query = "SELECT itemID, name1, description1, price, stock FROM Item";
+			preparedStatement = connection.prepareStatement(query);
 
-	        resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 
-	        // Populate the list of items
-	        while (resultSet.next()) {
-	            int itemID = resultSet.getInt("itemID");
-	            String name = resultSet.getString("name1");
-	            String description = resultSet.getString("description1");
-	            int price = resultSet.getInt("price");
-	            int stock = resultSet.getInt("stock");
+			// Populate the list of items
+			while (resultSet.next()) {
+				int itemID = resultSet.getInt("itemID");
+				String name = resultSet.getString("name1");
+				String description = resultSet.getString("description1");
+				int price = resultSet.getInt("price");
+				int stock = resultSet.getInt("stock");
 
-	            // Create an Item object and add it to the list
-	            Item item = new Item();
-	            item.setItemid(itemID);
-	            item.setName(name);
-	            item.setPrice(price);
-	            item.setQuantity(stock);
+				// Create an Item object and add it to the list
+				Item item = new Item();
+				item.setItemid(itemID);
+				item.setName(name);
+				item.setPrice(price);
+				item.setQuantity(stock);
 
-	            items.add(item);
-	        }
+				items.add(item);
+			}
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 
-	    return items; 
+		return items; 
 	}
 
 
 	public void updateItemQuantity(String itemName, int amountToAdd) {
-	    String query = "UPDATE Item SET stock = stock + ? WHERE name1 = ?";
+		String query = "UPDATE Item SET stock = stock + ? WHERE name1 = ?";
 
-	    try (PreparedStatement stmt = connection.prepareStatement(query)) {
-	        
-	        // Set parameters for the query
-	        stmt.setInt(1, amountToAdd);  // The amount to add to the current quantity
-	        stmt.setString(2, itemName);  // The name of the selected item
+		try (PreparedStatement stmt = connection.prepareStatement(query)) {
 
-	        // Execute the update
-	        int rowsAffected = stmt.executeUpdate();
-	        if (rowsAffected > 0) {
-	            System.out.println("Item quantity updated successfully.");
-	        } else {
-	            System.out.println("Item not found.");
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        System.out.println("Error updating item quantity: " + e.getMessage());
-	    }
+			// Set parameters for the query
+			stmt.setInt(1, amountToAdd);  // The amount to add to the current quantity
+			stmt.setString(2, itemName);  // The name of the selected item
+
+			// Execute the update
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("Item quantity updated successfully.");
+			} else {
+				System.out.println("Item not found.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error updating item quantity: " + e.getMessage());
+		}
 	}
 
-	
+
 	public boolean addPackageToDatabase(Package pkg) {
-	    try {
-	        // Prepare the SQL query
-	        String query = "INSERT INTO package (name1, destination, duration, description1, price) VALUES (?, ?, ?, ?, ?)";
-	        PreparedStatement stmt = connection.prepareStatement(query);
+		try {
+			// Prepare the SQL query
+			String query = "INSERT INTO package (name1, destination, duration, description1, price) VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement stmt = connection.prepareStatement(query);
 
-	        // Set query parameters
-	        stmt.setString(1, pkg.getName());
-	        stmt.setString(2, pkg.getDestination());
-	        stmt.setInt(3, pkg.getDuration());
-	        stmt.setString(4, pkg.getDescription());
-	        stmt.setInt(5, pkg.getPrice());
+			// Set query parameters
+			stmt.setString(1, pkg.getName());
+			stmt.setString(2, pkg.getDestination());
+			stmt.setInt(3, pkg.getDuration());
+			stmt.setString(4, pkg.getDescription());
+			stmt.setInt(5, pkg.getPrice());
 
-	        // Execute the query
-	        int rowsInserted = stmt.executeUpdate();
-	        return rowsInserted > 0; // Return true if a row was inserted
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return false;
-	    }
+			// Execute the query
+			int rowsInserted = stmt.executeUpdate();
+			return rowsInserted > 0; // Return true if a row was inserted
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
-	
+
+
+	///////////////////////////////////////////////////////////
+	////////////////////////////Logs///////////////////////////
+	//////////////////////////////////////////////////////////
+
+	public List<String> getTravelerLogs(String travelerID) throws SQLException
+	{
+		List<String> logs = new ArrayList<>();
+		String query = "SELECT Date1, logtext FROM logs1 WHERE travelerID = ? ORDER BY logID DESC";
+
+		try (PreparedStatement stmt = connection.prepareStatement(query)) 
+		{
+			stmt.setString(1, travelerID);
+
+			try (ResultSet rs = stmt.executeQuery()) 
+			{
+				while (rs.next())
+				{
+					String date = rs.getDate("Date1").toString();
+					String logText = rs.getString("logtext");
+					logs.add("Date: " + date + ", " + logText);
+				}
+			}
+		}
+
+		return logs;
+	}
+
+
 
 }

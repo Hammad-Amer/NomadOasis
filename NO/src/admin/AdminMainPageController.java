@@ -27,12 +27,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import user.LoginSignupController;
-
+import backend.Admin;
 public class AdminMainPageController
 {
 	private DBHandler dbHandler;
 	private Connection connection;
-	private String AdminID;
+	private Admin Admin;
 
 	@FXML
 	public void initialize()
@@ -41,7 +41,7 @@ public class AdminMainPageController
 		
 		this.connection = state.getConnection();
 		this.dbHandler=new DBHandler(connection);
-		this.AdminID = state.getTravelerID();
+		this.Admin = (backend.Admin) state.getUser();
 	}
 
 	@FXML

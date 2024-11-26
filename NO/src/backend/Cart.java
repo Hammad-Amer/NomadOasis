@@ -11,7 +11,7 @@ public class Cart {
 	{	
 		
 		DBHandler DB=new DBHandler(conn);
-		return DB.AddItemtoCart(item.getItemid(), item.getQuantity(), T1.getTravelerid());
+		return DB.AddItemtoCart(item.getItemid(), item.getQuantity(), Integer.parseInt(T1.getUserid()));
 	}
 
 }

@@ -16,17 +16,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class TravelerEditProfileController {
+public class TravelerEditProfileController implements Initializable{
 	
     @FXML
     private Button goback_Main;
@@ -39,9 +41,6 @@ public class TravelerEditProfileController {
 
     @FXML
     private TextField UpdateProfile_Email;
-
-    @FXML
-    private TextField UpdateProfile_Info;
     
     @FXML
     private Text type_text;
@@ -49,28 +48,18 @@ public class TravelerEditProfileController {
     private Traveler currentTraveler;
     private DBHandler dbHandler;
     private Connection connection;
-    private String TravelerID;
+    private Traveler Traveler;
 
     @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
 	        this.connection = state.getConnection();
-	        this.TravelerID = state.getTravelerID();
+	        this.Traveler = (backend.Traveler) state.getUser();
 
 	
 	    }
 	 
-	
-	public String getTravelerID() {
-		return TravelerID;
-	}
-
-
-
-	public void setTravelerID(String travelerID) {
-		TravelerID = travelerID;
-	}
 
 	public void goBackTravelerMain(ActionEvent event) throws IOException
     {
@@ -78,10 +67,7 @@ public class TravelerEditProfileController {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
     		Parent root = loader.load();
     		
-    		TravelerMainPageController controller = loader.getController();
-    		controller.setTravelerID(TravelerID);
-    		
-    		
+    	    		
     		 Scene scene = new Scene(root);
     		 
     	     scene.getStylesheets().add(getClass().getResource("/traveler/TravelerMainPage.css").toExternalForm());
@@ -98,13 +84,12 @@ public class TravelerEditProfileController {
 	{
         dbHandler = new DBHandler(connection);
        
-        currentTraveler = dbHandler.fetchTravelerData(TravelerID);
+        currentTraveler = dbHandler.fetchTravelerData(Traveler.getUserid());
 
         if (currentTraveler != null)
         {	
             UpdateProfile_username.setText(currentTraveler.getUsername());
             UpdateProfile_Email.setText(currentTraveler.getEmail());
-            UpdateProfile_Info.setText("Add Profile Info Here");
             type_text.setText("Traveler"); 
         }
     }
@@ -119,19 +104,34 @@ public class TravelerEditProfileController {
         
         String updatedUsername = UpdateProfile_username.getText();
         String updatedEmail = UpdateProfile_Email.getText();
-        String updatedInfo = UpdateProfile_Info.getText();
 
-        boolean success = dbHandler.updateTravelerData(TravelerID, updatedUsername, updatedEmail);
+        boolean success = dbHandler.updateTravelerData(Traveler.getUserid(), updatedUsername, updatedEmail);
 
         if (success) 
         {
-            System.out.println("Profile updated successfully!");
+        	showAlert("Profile updated successfully!.");
         } 
         else 
         {
-            System.err.println("Failed to update profile.");
+        	showAlert("Failed to update profile.");
            
         }
     }
+    
+    private void showAlert(String message) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Nomad Oasis");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        SharedState state = SharedState.getInstance();
+        this.connection = state.getConnection();
+        this.Traveler = (backend.Traveler) state.getUser();
+	}
 
 }

@@ -2,12 +2,16 @@ package consultant;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
+import java.util.ResourceBundle;
 
+import backend.Consultant;
 import backend.DBHandler;
 import backend.SharedState;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,17 +20,17 @@ import javafx.stage.Stage;
 import traveler.TravelerQueryResponseController;
 import user.LoginSignupController;
 
-public class ConsultantMainPageController {
+public class ConsultantMainPageController  implements Initializable{
 	private DBHandler dbHandler;
 	private Connection connection;
-	private String ConsultantID;
+	private Consultant Consultant;
 
 	 @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
 	        this.connection = state.getConnection();
-	       
+	        this.Consultant= (backend.Consultant) state.getUser();
 
 	
 	    }
@@ -34,14 +38,6 @@ public class ConsultantMainPageController {
 	public void setDBHandler(DBHandler dbHandler)
 	{
 	    this.dbHandler = dbHandler;
-	}
-	public String getConsultantID()
-	{
-		return ConsultantID;
-	}
-	public void setConsultantID(String travelerID)
-	{
-		ConsultantID = travelerID;
 	}
 
 
@@ -80,9 +76,8 @@ public class ConsultantMainPageController {
 		Parent root = loader.load();
 
 		ConsultantRespondQueryController controller = loader.getController();
-		controller.setConsultantID(ConsultantID);
 		controller.loadQueries();
-		controller.setDBHandler(dbHandler);
+
 
 		Scene scene = new Scene(root);
 
@@ -95,6 +90,14 @@ public class ConsultantMainPageController {
 		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        SharedState state = SharedState.getInstance();
+        this.connection = state.getConnection();
+        this.Consultant= (backend.Consultant) state.getUser();
+	}
 
 
 }

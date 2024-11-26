@@ -6,7 +6,7 @@ public class SharedState {
     private static SharedState instance;
 
     private Connection connection;
-    private String travelerID;
+    private User User;
 
     // Private constructor to enforce singleton pattern
     private SharedState() {}
@@ -28,11 +28,13 @@ public class SharedState {
         this.connection = connection;
     }
 
-    public String getTravelerID() {
-        return travelerID;
-    }
+	public User getUser() {
+		return User;
+	}
 
-    public void setTravelerID(String travelerID) {
-        this.travelerID = travelerID;
-    }
+	public void setUser(User user) {
+		User = user;
+	}
+
+   
 }

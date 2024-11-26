@@ -39,9 +39,9 @@ import javafx.util.Duration;
 import user.LoginSignupController;
 import backend.Package;
 
-public class TravelerMainPageController {
+public class TravelerMainPageController implements Initializable{
 
-	private String TravelerID;
+	private Traveler Traveler;
 	
 	private Connection connection;
 	
@@ -54,23 +54,18 @@ public class TravelerMainPageController {
 	
 	}
 	
-	public String getTravelerID() {
-		return TravelerID;
-	}
+
 
 	 @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
 	        this.connection = state.getConnection();
-	        this.TravelerID = state.getTravelerID();
+	        this.Traveler =  (backend.Traveler) state.getUser();
 
 	
 	    }
 
-	public void setTravelerID(String travelerID) {
-		TravelerID = travelerID;
-	}
 
 	/////////////////////////////////////////////////////////
 	@FXML
@@ -803,7 +798,7 @@ public class TravelerMainPageController {
     private void goBackToTravelerMainfromIS(ActionEvent event) throws IOException, SQLException {
         // Check if the cart has items
         DBHandler dbHandler = new DBHandler(getConnection());
-        int travelerID = Integer.parseInt(getTravelerID());
+        int travelerID = Integer.parseInt(Traveler.getUserid());
 
         if (!dbHandler.isCartEmpty(travelerID)) { // Assuming isCartEmpty checks cart content for the traveler
             // Show confirmation alert
@@ -822,11 +817,6 @@ public class TravelerMainPageController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
                 Parent root = loader.load();
 
-                // Get the controller instance
-                TravelerMainPageController controller = loader.getController();
-                controller.setConnection(connection);
-                controller.setTravelerID(getTravelerID());
-
                 // Display the main page
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
@@ -841,11 +831,6 @@ public class TravelerMainPageController {
             // If the cart is empty, simply go back to the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
             Parent root = loader.load();
-
-            // Get the controller instance
-            TravelerMainPageController controller = loader.getController();
-            controller.setConnection(connection);
-            controller.setTravelerID(getTravelerID());
 
             // Display the main page
             Scene scene = new Scene(root);
@@ -1088,7 +1073,7 @@ public class TravelerMainPageController {
 
             // Call displayCartDetails with a valid traveler ID
             TravelerMainPageController controller = loader.getController(); // Get the controller instance
-            controller.displayCartDetails(Integer.parseInt(getTravelerID()));
+            controller.displayCartDetails(Integer.parseInt(Traveler.getUserid()));
 
             // Close the current window
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
@@ -1098,12 +1083,12 @@ public class TravelerMainPageController {
     
     @FXML
     private void IS_AddHandleClick() throws SQLException {
-        int travelerID = Integer.parseInt(getTravelerID()); 
+        int travelerID = Integer.parseInt(Traveler.getUserid()); 
         Connection conn = getConnection();
         Item item = new Item();
         String message = "";
-        Traveler TTemp=new Traveler();
-        TTemp.setTravelerid(travelerID);
+        Traveler TTemp=Traveler;
+    
         Cart C1=new Cart();
         // Shoes
         if (Integer.parseInt(IS_SHoes_quantity.getText()) > 0) {
@@ -1288,7 +1273,7 @@ public class TravelerMainPageController {
                 if (response == ButtonType.OK) {
                     // Order accepted
                 	DBHandler dbHandler=new DBHandler(getConnection());
-                	 dbHandler.clearCart(Integer.parseInt(TravelerID));
+                	 dbHandler.clearCart(Integer.parseInt(Traveler.getUserid()));
                 	
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Order Accepted");
@@ -1493,7 +1478,7 @@ public class TravelerMainPageController {
     		Parent root = loader.load();
     		 // Get the controller from the loader
             TravelerMainPageController controller = loader.getController();
-            controller.populateCancelPackageTextArea(Integer.parseInt(getTravelerID()));
+            controller.populateCancelPackageTextArea(Integer.parseInt(Traveler.getUserid()));
     		 Scene scene = new Scene(root);
     		 
     	     Stage stage = new Stage();
@@ -1648,7 +1633,7 @@ public class TravelerMainPageController {
                         successAlert.showAndWait();
                         
                         DBHandler dbhandler=new DBHandler(getConnection());
-                        dbhandler.addBookingPackage(Integer.parseInt(getTravelerID()), PackageBuy_Name_button.getText(), quantity);
+                        dbhandler.addBookingPackage(Integer.parseInt(Traveler.getUserid()), PackageBuy_Name_button.getText(), quantity);
                         // Reset the quantity and total after successful purchase
                         PackageBuy_quantity_button.setText("0");
                         PackageBuy_Total_text.setText("Rs. 0.00");
@@ -1675,7 +1660,6 @@ public class TravelerMainPageController {
 		
 		
 		TravelerEditProfileController controller1 = loader.getController();
-		controller1.setTravelerID(TravelerID);
 		controller1.loadTravelerData();
 		
 		
@@ -1698,10 +1682,6 @@ public class TravelerMainPageController {
 		{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerContactUs.fxml"));
 		Parent root = loader.load();
-		
-		
-		TravelerContactUsController controller1 = loader.getController();
-		controller1.setTravelerID(TravelerID);
 		
 		
 		Scene scene = new Scene(root);
@@ -1728,9 +1708,7 @@ public class TravelerMainPageController {
 		
 		Parent root = loader.load();
 		
-		
-		TravelerViewHistoryController controller1 = loader.getController();
-		controller1.setTravelerID(TravelerID);
+	
 		
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/traveler/TravelerContactUs.css").toExternalForm());
@@ -1854,7 +1832,7 @@ public class TravelerMainPageController {
 	        // Fetch price and quantity for the selected package
 	        DBHandler dbhandler = new DBHandler(connection);
 	        int price = dbhandler.getPackagePrice(packageID);
-	        int quantity = dbhandler.getBookingQuantity(Integer.parseInt(TravelerID), packageID); // Add travelerID as needed
+	        int quantity = dbhandler.getBookingQuantity(Integer.parseInt(Traveler.getUserid()), packageID); // Add travelerID as needed
 
 	        if (price == -1 || quantity == -1) {
 	            CancelPackage_Returnprice_text.setText("Error fetching package details.");
@@ -1895,7 +1873,7 @@ public class TravelerMainPageController {
 	            DBHandler dbhandler = new DBHandler(connection);
 
 	            // Remove the booking from the database
-	            boolean success = dbhandler.cancelBooking(Integer.parseInt(TravelerID), packageID);
+	            boolean success = dbhandler.cancelBooking(Integer.parseInt(Traveler.getUserid()), packageID);
 	            if (success) {
 	                // Success alert
 	                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -1927,6 +1905,14 @@ public class TravelerMainPageController {
 	            }
 	        }
 	    }
+
+		@Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
+			// TODO Auto-generated method stub
+	        SharedState state = SharedState.getInstance();
+	        this.connection = state.getConnection();
+	        this.Traveler =  (backend.Traveler) state.getUser();
+		}
 
 
    

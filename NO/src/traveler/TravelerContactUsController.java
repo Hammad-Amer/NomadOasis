@@ -1,5 +1,5 @@
 package traveler;
-
+import backend.Traveler;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -26,11 +26,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class TravelerContactUsController {
+public class TravelerContactUsController implements Initializable{
 
 	private DBHandler dbHandler;
 	private Connection connection;
-	private String TravelerID;
+	private Traveler Traveler;
 
 	 @FXML
 	 public void initialize() {
@@ -38,7 +38,7 @@ public class TravelerContactUsController {
 	        SharedState state = SharedState.getInstance();
 	        this.connection = state.getConnection();
 			dbHandler = new DBHandler(connection);
-	        this.TravelerID = state.getTravelerID();
+	        this.Traveler = (backend.Traveler) state.getUser();
 
 	
 	    }
@@ -47,14 +47,7 @@ public class TravelerContactUsController {
 	{
 	    this.dbHandler = dbHandler;
 	}
-	public String getTravelerID()
-	{
-		return TravelerID;
-	}
 
-	public void setTravelerID(String travelerID) {
-		TravelerID = travelerID;
-	}
 	@FXML
 	private Button goback_Main;
 
@@ -80,9 +73,6 @@ public class TravelerContactUsController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
 		Parent root = loader.load();
 
-		TravelerMainPageController controller = loader.getController();
-		controller.setTravelerID(TravelerID);
-
 		Scene scene = new Scene(root);
 
 		scene.getStylesheets().add(getClass().getResource("/traveler/TravelerMainPage.css").toExternalForm());
@@ -91,7 +81,6 @@ public class TravelerContactUsController {
 		stage.setTitle("Nomad Oasis");
 		stage.show();
 
-		// Close the current window
 		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
 
 	}
@@ -102,11 +91,6 @@ public class TravelerContactUsController {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerQueryResponse.fxml"));
 		Parent root = loader.load();
-
-		TravelerQueryResponseController controller = loader.getController();
-		controller.setTravelerID(TravelerID);
-		//controller.initialize(null, null);
-
 
 		Scene scene = new Scene(root);
 
@@ -134,14 +118,14 @@ public class TravelerContactUsController {
 
 
 		
-		String submissionResponse = dbHandler.insertQuery(TravelerID, queryContent);
+		String submissionResponse = dbHandler.insertQuery(Traveler.getUserid(), queryContent);
 
 		if (submissionResponse.equals("Query submitted successfully."))
 		{
 			int consultantID = dbHandler.getConsultantID();
 			if (consultantID != -1)
 			{
-				String assignmentResponse = dbHandler.assignConsultantToQuery(TravelerID, consultantID);
+				String assignmentResponse = dbHandler.assignConsultantToQuery(Traveler.getUserid(), consultantID);
 				showAlert(assignmentResponse);
 				
 				if(assignmentResponse.equals("Consultant assigned successfully."))
@@ -169,5 +153,14 @@ public class TravelerContactUsController {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        SharedState state = SharedState.getInstance();
+        this.connection = state.getConnection();
+		dbHandler = new DBHandler(connection);
+        this.Traveler = (backend.Traveler) state.getUser();
 	}
 }
