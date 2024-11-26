@@ -27,16 +27,14 @@ import backend.Consultant;
 public class ConsultantRespondQueryController implements Initializable {
 
 	private DBHandler dbHandler;
-	private Connection connection;
 	private Consultant Consultant;
 
 	 @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
-	        this.connection = state.getConnection();
 	        this.Consultant= (backend.Consultant) state.getUser();
-	        
+	        dbHandler = DBHandler.getInstance();
 
 	
 	    }
@@ -80,11 +78,6 @@ public class ConsultantRespondQueryController implements Initializable {
 	
 	public void loadQueries() throws ClassNotFoundException 
 	{	
-		
-			dbHandler=new DBHandler(connection);
-		
-		
-	
         List<String> queryIDs = dbHandler.getAssignedQueries(Consultant.getUserid());
 
         ObservableList<String> queryList = FXCollections.observableArrayList(queryIDs);
@@ -140,8 +133,7 @@ public class ConsultantRespondQueryController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
         this.Consultant= (backend.Consultant) state.getUser();
-		
+        dbHandler = DBHandler.getInstance();
 	}
 }

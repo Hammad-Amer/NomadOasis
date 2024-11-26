@@ -20,12 +20,21 @@ public class DBHandler {
 
 	private Connection connection;
 
-	public DBHandler(Connection connection) {
-		this.connection = connection;
-	}
+    private static DBHandler instance;
 
-	public DBHandler() {
-	}
+    private DBHandler() {
+    }
+
+    public static DBHandler getInstance() {
+        if (instance == null) {
+            synchronized (DBHandler.class) {
+                if (instance == null) {
+                    instance = new DBHandler();
+                }
+            }
+        }
+        return instance;
+    }
 
 	public Connection connect() throws ClassNotFoundException {
 		try {

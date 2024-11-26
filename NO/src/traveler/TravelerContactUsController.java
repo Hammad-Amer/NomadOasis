@@ -29,15 +29,13 @@ import javafx.util.Duration;
 public class TravelerContactUsController implements Initializable{
 
 	private DBHandler dbHandler;
-	private Connection connection;
 	private Traveler Traveler;
 
 	 @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
-	        this.connection = state.getConnection();
-			dbHandler = new DBHandler(connection);
+	        dbHandler = DBHandler.getInstance();
 	        this.Traveler = (backend.Traveler) state.getUser();
 
 	
@@ -159,8 +157,7 @@ public class TravelerContactUsController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
-		dbHandler = new DBHandler(connection);
+        dbHandler = DBHandler.getInstance();
         this.Traveler = (backend.Traveler) state.getUser();
 	}
 }

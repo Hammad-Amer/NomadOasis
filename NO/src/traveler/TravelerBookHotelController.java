@@ -36,15 +36,14 @@ public class TravelerBookHotelController implements Initializable
 
 	private Traveler Traveler;
 	private DBHandler dbHandler;
-	private Connection connection;
 	private List<Hotel> hotelList;
 
 	  @FXML
 		 public void initialize() throws ClassNotFoundException, SQLException {
 		        // Retrieve the shared data
 		        SharedState state = SharedState.getInstance();
-		        this.connection = state.getConnection();
 		        this.Traveler = (backend.Traveler) state.getUser();
+		        dbHandler = DBHandler.getInstance();
 		        loadHotels();
 		
 		    }
@@ -107,9 +106,7 @@ public class TravelerBookHotelController implements Initializable
 
 	public void loadHotels() throws ClassNotFoundException, SQLException 
 	{
-		
-			dbHandler = new DBHandler(connection);
-	
+
 		hotelList = dbHandler.getAllHotels();  // Get hotels from the database
 
 		// Populate the DropDownResponse with hotel names
@@ -201,10 +198,7 @@ public class TravelerBookHotelController implements Initializable
 	        {
 	            // Create a booking object
 	            Date bookingDate = Date.valueOf(selectedDate);
-	         
-	    			dbHandler = new DBHandler(connection);
-	    	
-	    	
+
 	            
 	            Booking booking = new Booking(Integer.parseInt(Traveler.getUserid()), selectedRoom.getRoomID(),selectedHotel.getHotelID(), bookingDate, dbHandler);
 
@@ -245,8 +239,8 @@ public class TravelerBookHotelController implements Initializable
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
         this.Traveler = (backend.Traveler) state.getUser();
+        dbHandler = DBHandler.getInstance();
         try {
 			loadHotels();
 		} catch (ClassNotFoundException | SQLException e) {

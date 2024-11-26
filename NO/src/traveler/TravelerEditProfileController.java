@@ -54,9 +54,8 @@ public class TravelerEditProfileController implements Initializable{
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
-	        this.connection = state.getConnection();
 	        this.Traveler = (backend.Traveler) state.getUser();
-
+	        dbHandler = DBHandler.getInstance();
 	
 	    }
 	 
@@ -82,8 +81,7 @@ public class TravelerEditProfileController implements Initializable{
 	 
 	public void loadTravelerData() throws ClassNotFoundException 
 	{
-        dbHandler = new DBHandler(connection);
-       
+
         currentTraveler = dbHandler.fetchTravelerData(Traveler.getUserid());
 
         if (currentTraveler != null)
@@ -97,10 +95,7 @@ public class TravelerEditProfileController implements Initializable{
     @FXML
     public void editedProfile(ActionEvent event) throws ClassNotFoundException
     {
-    
-           dbHandler = new DBHandler(connection);
-   
-          
+      
         
         String updatedUsername = UpdateProfile_username.getText();
         String updatedEmail = UpdateProfile_Email.getText();
@@ -130,8 +125,8 @@ public class TravelerEditProfileController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
         this.Traveler = (backend.Traveler) state.getUser();
+        dbHandler = DBHandler.getInstance();
 	}
 
 }

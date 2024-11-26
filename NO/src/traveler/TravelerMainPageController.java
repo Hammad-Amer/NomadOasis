@@ -42,32 +42,21 @@ import backend.Package;
 public class TravelerMainPageController implements Initializable{
 
 	private Traveler Traveler;
-	
-	private Connection connection;
-	
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	
-	}
-	
-
+    private DBHandler dbHandler;
 
 	 @FXML
-	 public void initialize() {
-	        // Retrieve the shared data
+	 public void initialize() 
+	 {
 	        SharedState state = SharedState.getInstance();
-	        this.connection = state.getConnection();
-	        this.Traveler =  (backend.Traveler) state.getUser();
+	        this.dbHandler = DBHandler.getInstance();
+	        this.Traveler =  (backend.Traveler) state.getUser();	
+	 }
 
-	
-	    }
+	 
+	 	/////////////////////////////////////////////////////////////////////////////
+	   //							TRAVELER MAIN PAGE BUTTONS   				  //
+	  /////////////////////////////////////////////////////////////////////////////
 
-
-	/////////////////////////////////////////////////////////
 	@FXML
     private Button traveler_book_hotels;
 
@@ -103,19 +92,49 @@ public class TravelerMainPageController implements Initializable{
     
     @FXML
     private Button logout;
+    
+ 		/////////////////////////////////////////////////////////////////////////////
+	   //						VIEW DESTINATIONS PAGE BUTTONS   				  //
+	  /////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private Button VD_Chitral;
+    @FXML
+    private Button Chitral_back_button;
+    @FXML
+    private Button VD_FairyMeadows;
+    @FXML
+    private Button FairyMeadows_back_button;
+    @FXML
+    private Button VD_HunzaValley;
+    @FXML
+    private Button Swat_back_button;
+    @FXML
+    private Button HUnzaVally_back_button;
+    @FXML
+    private Button VD_SwatValley;
+    @FXML
+    private Button VD_SkarduValley;
+    @FXML
+    private Button VD_WadiShogran;
+    @FXML
+    private Button WadiShogran_back_button;
+    @FXML
+    private Button back_button_VD;
+    @FXML
+    private Button Skardu_back_button;
+    
+    
 
+    /////////////////////////////////////////////////////////////////////////////
+   //							TRAVELER MAIN PAGE FUNCTIONS   				  //
+  /////////////////////////////////////////////////////////////////////////////
     
     @FXML
     public 	void logOut(ActionEvent event) throws IOException, ClassNotFoundException 
     {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/LoginSignup.fxml"));
-		Parent root = loader.load();
-
-		LoginSignupController controller = loader.getController();
-		controller.setConnection(connection);
-		
+		Parent root = loader.load();		
 		Scene scene = new Scene(root);
-
 		scene.getStylesheets().add(getClass().getResource("/user/LoginSignup.css").toExternalForm());
 		Stage stage = new Stage();
 		stage.setScene(scene);
@@ -127,71 +146,51 @@ public class TravelerMainPageController implements Initializable{
     
    	
     public void GotoViewDestinationPage(ActionEvent event) throws IOException
-    {
-    	
+    {   	
     	if (event.getSource() == traveler_view_destinitions)
     	{
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/ViewDesitinations.fxml"));
     		Parent root = loader.load();
-    		
-    		
-    		
-    		 Scene scene = new Scene(root);
-    		 
+    		 Scene scene = new Scene(root); 		 
     	     Stage stage = new Stage();
     	     stage.setScene(scene);
     	     stage.setTitle("Nomad Oasis");
     	     stage.show();
 
     	     ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-    	}
-    	
-       
+    	}   
     }
     
     public void GotoViewItemStore(ActionEvent event) throws IOException
-    {
-    	
+    {   	
     	if (event.getSource() == traveler_view_items)
     	{
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/itemShop.fxml"));
-    	
-    		Parent root = loader.load();
-    		
-    		
-    		
-    		 Scene scene = new Scene(root);
-    		 
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/itemShop.fxml"));    	
+    		 Parent root = loader.load();	
+    		 Scene scene = new Scene(root); 		 
     	     Stage stage = new Stage();
     	     stage.setScene(scene);
     	     stage.setTitle("Nomad Oasis");
     	     stage.show();
 
     	     ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-    	}
-    	
-       
+    	}      
     }
     
     public void GotoViewPackages(ActionEvent event) throws IOException {
         if (event.getSource() == traveler_vew_packages) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/ViewPackages.fxml"));
             Parent root = loader.load();
-
-            // Ensure the controller is properly set
+            
             TravelerMainPageController controller = loader.getController();
-
-            // Populate the ChoiceBox (move this logic from initialize to here)
             controller.loadPackages();
 
-            // Set up the new scene and stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Nomad Oasis");
             stage.show();
 
-            // Close the current stage
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         }
     }
@@ -199,10 +198,12 @@ public class TravelerMainPageController implements Initializable{
     
     
     
-    //////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////
+	   //						VIEW DESTINATIONS PAGE FUNCTIONS   				  //
+	  /////////////////////////////////////////////////////////////////////////////
     
-    @FXML
-    private Button VD_Chitral;
+
+    
     public void GoBackToChitralPage(ActionEvent event) throws IOException
     {
     	
@@ -227,8 +228,7 @@ public class TravelerMainPageController implements Initializable{
        
     }
     
-    @FXML
-    private Button Chitral_back_button;
+
     
     public void GoBackToVDfromChitral(ActionEvent event) throws IOException
     {
@@ -255,8 +255,7 @@ public class TravelerMainPageController implements Initializable{
     }
     
     
-    @FXML
-    private Button VD_FairyMeadows;
+
     public void GoBackToFairyMeadowsPage(ActionEvent event) throws IOException
     {
     	
@@ -280,8 +279,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button FairyMeadows_back_button;
+
     public void GoBackToVDfromFairyMeadows(ActionEvent event) throws IOException
     {
     	
@@ -306,8 +304,7 @@ public class TravelerMainPageController implements Initializable{
        
     }
     
-    @FXML
-    private Button VD_HunzaValley;
+
     public void GoBackToHunzaPage(ActionEvent event) throws IOException
     {
     	
@@ -332,8 +329,7 @@ public class TravelerMainPageController implements Initializable{
        
     }
     
-    @FXML
-    private Button HUnzaVally_back_button;
+ 
     public void GoBackToVDfromHunza(ActionEvent event) throws IOException
     {
     	
@@ -358,8 +354,7 @@ public class TravelerMainPageController implements Initializable{
        
     }
     
-    @FXML
-    private Button VD_SkarduValley;
+
     public void GoBackToSkarduPage(ActionEvent event) throws IOException
     {
     	
@@ -383,8 +378,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button Skardu_back_button;
+
     public void GoBackToVDfromSkardu(ActionEvent event) throws IOException
     {
     	
@@ -408,8 +402,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button VD_SwatValley;
+
     public void GoBackToSwatPage(ActionEvent event) throws IOException
     {
     	
@@ -433,8 +426,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button Swat_back_button;
+
     public void GoBackToVDfromSwat(ActionEvent event) throws IOException
     {
     	
@@ -458,8 +450,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button VD_WadiShogran;
+
     public void GoBackToShogranPage(ActionEvent event) throws IOException
     {
     	
@@ -483,8 +474,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button WadiShogran_back_button;
+
     public void GoBackToVDfromShogran(ActionEvent event) throws IOException
     {
     	
@@ -508,8 +498,7 @@ public class TravelerMainPageController implements Initializable{
     	
        
     }
-    @FXML
-    private Button back_button_VD;
+
     
    
     
@@ -796,8 +785,7 @@ public class TravelerMainPageController implements Initializable{
     
     @FXML
     private void goBackToTravelerMainfromIS(ActionEvent event) throws IOException, SQLException {
-        // Check if the cart has items
-        DBHandler dbHandler = new DBHandler(getConnection());
+
         int travelerID = Integer.parseInt(Traveler.getUserid());
 
         if (!dbHandler.isCartEmpty(travelerID)) { // Assuming isCartEmpty checks cart content for the traveler
@@ -811,7 +799,7 @@ public class TravelerMainPageController implements Initializable{
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // User confirmed to proceed, clear the cart
-                dbHandler.clearCart(travelerID);
+                Traveler.clearcart();
 
                 // Load main page
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
@@ -850,10 +838,10 @@ public class TravelerMainPageController implements Initializable{
  // Shoes Plus and Minus
     public void ShoesHandlePlusButtonClick() throws SQLException {
 
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(IS_SHoes_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(1); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(1);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_SHoes_quantity.setText(String.valueOf(currentQuantity));
@@ -875,11 +863,11 @@ public class TravelerMainPageController implements Initializable{
     // Gloves Plus and Minus
     public void GlovesHandlePlusButtonClick() throws SQLException {
         
-        
-       	DBHandler dbHandler = new DBHandler(getConnection());
+    
         int currentQuantity = Integer.parseInt(IS_gloves_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(5); 
+        Item ITEMP=new Item(5);
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_gloves_quantity.setText(String.valueOf(currentQuantity));
@@ -899,11 +887,10 @@ public class TravelerMainPageController implements Initializable{
     // Camping Plus and Minus
     public void CampingHandlePlusButtonClick() throws SQLException {
     
-        
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(IS_camping_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(3); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(3);
+        int maxStock = ITEMP.getItemStock();// Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_camping_quantity.setText(String.valueOf(currentQuantity));
@@ -923,11 +910,10 @@ public class TravelerMainPageController implements Initializable{
     // Beanies Plus and Minus
     public void BeaniesHandlePlusButtonClick() throws SQLException {
  
-       
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(IS_beanies_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(6); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(6);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_beanies_quantity.setText(String.valueOf(currentQuantity));
@@ -947,10 +933,10 @@ public class TravelerMainPageController implements Initializable{
     // Backpack Plus and Minus
     public void BackpackHandlePlusButtonClick() throws SQLException {
         
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(IS_bacgpack_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(2); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(2);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_bacgpack_quantity.setText(String.valueOf(currentQuantity));
@@ -969,11 +955,11 @@ public class TravelerMainPageController implements Initializable{
 
     // Torch Plus and Minus
     public void TorchHandlePlusButtonClick() throws SQLException {
-        
-    	DBHandler dbHandler = new DBHandler(getConnection());
+
         int currentQuantity = Integer.parseInt(IS_torch_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(8); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(8);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_torch_quantity.setText(String.valueOf(currentQuantity));
@@ -993,10 +979,10 @@ public class TravelerMainPageController implements Initializable{
     // Powerbank Plus and Minus
     public void PowerbankHandlePlusButtonClick() throws SQLException {
         
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(is_powerbank_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(9); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(9);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             is_powerbank_quantity.setText(String.valueOf(currentQuantity));
@@ -1016,10 +1002,10 @@ public class TravelerMainPageController implements Initializable{
     // Jacket Plus and Minus
     public void JacketHandlePlusButtonClick() throws SQLException {
         
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(IS_jacket_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(4); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(4);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_jacket_quantity.setText(String.valueOf(currentQuantity));
@@ -1039,10 +1025,10 @@ public class TravelerMainPageController implements Initializable{
     // First Aid Plus and Minus
     public void FirstAidHandlePlusButtonClick() throws SQLException {
         
-    	DBHandler dbHandler = new DBHandler(getConnection());
         int currentQuantity = Integer.parseInt(IS_FIrstAID_quantity.getText());
        
-        int maxStock = dbHandler.getItemStock(7); // Assume itemID = 1 for shoes
+        Item ITEMP=new Item(7);
+        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_FIrstAID_quantity.setText(String.valueOf(currentQuantity));
@@ -1083,9 +1069,9 @@ public class TravelerMainPageController implements Initializable{
     
     @FXML
     private void IS_AddHandleClick() throws SQLException {
-        int travelerID = Integer.parseInt(Traveler.getUserid()); 
-        Connection conn = getConnection();
-        Item item = new Item();
+        
+
+        Item item = new Item(0);
         String message = "";
         Traveler TTemp=Traveler;
     
@@ -1098,7 +1084,7 @@ public class TravelerMainPageController implements Initializable{
             
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Jacket
@@ -1107,7 +1093,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_jacket_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Torch
@@ -1116,7 +1102,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_torch_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Backpack
@@ -1125,7 +1111,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_bacgpack_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Gloves
@@ -1134,7 +1120,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_gloves_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Beanies
@@ -1143,7 +1129,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_beanies_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Camping gear
@@ -1152,7 +1138,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_camping_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Powerbank
@@ -1161,7 +1147,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(is_powerbank_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // First Aid
@@ -1170,7 +1156,7 @@ public class TravelerMainPageController implements Initializable{
             int quantity = Integer.parseInt(IS_FIrstAID_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
-            message += C1.ItemtoCart(item, TTemp, conn) + "\n";
+            message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
         // Show the result
@@ -1261,7 +1247,9 @@ public class TravelerMainPageController implements Initializable{
             alert.setHeaderText("Please fill all the required fields.");
             alert.setContentText("Make sure all fields (Address, City, State, Zip, and Contact Information) are filled.");
             alert.showAndWait();
-        } else {
+        } 
+        else 
+        {
             // Show confirmation dialog if all fields are filled
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirm Purchase");
@@ -1271,9 +1259,8 @@ public class TravelerMainPageController implements Initializable{
             // Wait for user response
             confirmationAlert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    // Order accepted
-                	DBHandler dbHandler=new DBHandler(getConnection());
-                	 dbHandler.clearCart(Integer.parseInt(Traveler.getUserid()));
+                    // Order accepted      	
+                	Traveler.clearcart();
                 	
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Order Accepted");
@@ -1300,8 +1287,8 @@ public class TravelerMainPageController implements Initializable{
     }
     
     public void displayCartDetails(int travelerID) {
-    	DBHandler DB=new DBHandler(getConnection());
-        List<Item> cartItems = DB.getCartItems(travelerID); // Fetch cart items
+
+        List<Item> cartItems = Traveler.getCartItems(); 
 
         StringBuilder orderSummary = new StringBuilder();
         int total = 0;
@@ -1309,18 +1296,15 @@ public class TravelerMainPageController implements Initializable{
         for (Item item : cartItems) {
             int itemTotal = item.getQuantity() * item.getPrice();
 
-            // Append to order summary
             orderSummary.append(item.getName())
                         .append(" -\t Quantity: ").append(item.getQuantity())
                         .append(",\t Price: ").append(item.getPrice())
                         .append(",\t Total: ").append(itemTotal)
                         .append("\n");
 
-            // Add to total cost
             total += itemTotal;
         }
 
-        // Update the TextArea and Total Text in JavaFX
         Cart_orderSummary_area.setText(orderSummary.toString());
         CART_Total_text.setText("Total: " + total);
     }
@@ -1359,7 +1343,7 @@ public class TravelerMainPageController implements Initializable{
     
     public void populateChoiceBox() 
     {
-    	DBHandler dbHandler=new DBHandler(connection);
+
         Packages_available_box.getItems().addAll(dbHandler.getAllPackageNames());
     }
 
@@ -1369,7 +1353,7 @@ public class TravelerMainPageController implements Initializable{
             System.out.println("ChoiceBox not initialized");
             return;
         }
-        DBHandler dbHandler=new DBHandler(connection);
+
         // Populate the ChoiceBox with data
         Packages_available_box.getItems().addAll(dbHandler.getAllPackageNames());
 
@@ -1395,7 +1379,7 @@ public class TravelerMainPageController implements Initializable{
 
     // Display package details in UI
     public void displayPackageDetails(String packageName) {
-        DBHandler dbHandler = new DBHandler(connection);
+
         Package pkg = dbHandler.getPackageDetails(packageName);
 
         if (pkg != null) {
@@ -1602,7 +1586,7 @@ public class TravelerMainPageController implements Initializable{
     @FXML
     private void handleBuyPAckageButtonClick(ActionEvent event) {
         try {
-            // Get the quantity
+
             String quantityText = PackageBuy_quantity_button.getText().trim();
             int quantity = Integer.parseInt(quantityText);
 
@@ -1632,8 +1616,8 @@ public class TravelerMainPageController implements Initializable{
                         successAlert.setContentText("Thank you for your purchase!");
                         successAlert.showAndWait();
                         
-                        DBHandler dbhandler=new DBHandler(getConnection());
-                        dbhandler.addBookingPackage(Integer.parseInt(Traveler.getUserid()), PackageBuy_Name_button.getText(), quantity);
+                        
+                        Traveler.addBookingPackage(PackageBuy_Name_button.getText(), quantity);
                         // Reset the quantity and total after successful purchase
                         PackageBuy_quantity_button.setText("0");
                         PackageBuy_Total_text.setText("Rs. 0.00");
@@ -1789,9 +1773,10 @@ public class TravelerMainPageController implements Initializable{
 	    }
 		
 	    public void populateCancelPackageTextArea(int travelerID) {
-	        DBHandler dbhandler = new DBHandler(connection);
-	        ArrayList<Package> bookedPackages = dbhandler.getBookedPackages(travelerID);
 
+	        ArrayList<Package> bookedPackages = Traveler.getBookedPackages();
+
+	        
 	        if (bookedPackages.isEmpty()) {
 	            CancelPackage_packages_text.setText("No packages booked.");
 	            CancelPackage_dropdown.getItems().clear();
@@ -1829,10 +1814,11 @@ public class TravelerMainPageController implements Initializable{
 
 	        int packageID = Integer.parseInt(selectedPackageID);
 
-	        // Fetch price and quantity for the selected package
-	        DBHandler dbhandler = new DBHandler(connection);
-	        int price = dbhandler.getPackagePrice(packageID);
-	        int quantity = dbhandler.getBookingQuantity(Integer.parseInt(Traveler.getUserid()), packageID); // Add travelerID as needed
+
+	        
+	        Package Ptemp=new Package();
+	        int price = Ptemp.getPackagePrice(packageID);
+	        int quantity = dbHandler.getBookingQuantity(Integer.parseInt(Traveler.getUserid()), packageID); // Add travelerID as needed
 
 	        if (price == -1 || quantity == -1) {
 	            CancelPackage_Returnprice_text.setText("Error fetching package details.");
@@ -1870,10 +1856,10 @@ public class TravelerMainPageController implements Initializable{
 	        Optional<ButtonType> result = confirmationAlert.showAndWait();
 	        if (result.isPresent() && result.get() == ButtonType.OK) {
 	            int packageID = Integer.parseInt(selectedPackageID);
-	            DBHandler dbhandler = new DBHandler(connection);
+
 
 	            // Remove the booking from the database
-	            boolean success = dbhandler.cancelBooking(Integer.parseInt(Traveler.getUserid()), packageID);
+	            boolean success = Traveler.cancelBooking(packageID);
 	            if (success) {
 	                // Success alert
 	                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -1910,7 +1896,7 @@ public class TravelerMainPageController implements Initializable{
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
 	        SharedState state = SharedState.getInstance();
-	        this.connection = state.getConnection();
+	        this.dbHandler=  DBHandler.getInstance();
 	        this.Traveler =  (backend.Traveler) state.getUser();
 		}
 

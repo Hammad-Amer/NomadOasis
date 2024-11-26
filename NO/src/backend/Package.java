@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.ArrayList;
+
 public class Package {
     private int id;
     private String name;
@@ -24,6 +26,11 @@ public class Package {
         this.description = description;
         this.price = price;
     }
+    
+    public Package() {
+
+    }
+
 
 	public int getId() {
 		return id;
@@ -73,4 +80,29 @@ public class Package {
 		this.price = price;
 	}
 
+	void addBookingPackage(int travellerid, String PackageName, int quantity)
+	{
+		DBHandler dbhandler=DBHandler.getInstance();
+		dbhandler.addBookingPackage(travellerid, PackageName, quantity);
+	}
+	
+	public ArrayList<Package> getBookedPackages(int travelerid)
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.getBookedPackages(travelerid);
+	}
+	
+	public int getPackagePrice(int packageID)
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.getPackagePrice(packageID);
+	}
+	
+	public boolean cancelBooking(int travelerid,int packageID)
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.cancelBooking(travelerid, packageID);
+		
+	}
+	
 }

@@ -1,6 +1,7 @@
 package backend;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import backend.Cart;
 
@@ -10,6 +11,15 @@ public class Item {
     private int price;
     private int quantity;
 
+    public Item(int itemid)
+    {
+    	this.itemid=itemid;
+    }
+    
+    public Item()
+    {
+
+    }
     // Getters and Setters
     public String getName() {
         return name;
@@ -46,5 +56,21 @@ public class Item {
 		this.itemid = itemid;
 	}
 	
+	public int getItemStock() throws SQLException
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.getItemStock(itemid);
+	}
 	
+	public List<Item> getAllItems()
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.getAllItems(); 
+	}
+	
+	public void updateItemQuantity(String selectedItem, int amountToAdd)
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		 dbHandler.updateItemQuantity(selectedItem, amountToAdd);
+	}
 }

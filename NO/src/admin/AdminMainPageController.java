@@ -31,7 +31,6 @@ import backend.Admin;
 public class AdminMainPageController
 {
 	private DBHandler dbHandler;
-	private Connection connection;
 	private Admin Admin;
 
 	@FXML
@@ -39,8 +38,8 @@ public class AdminMainPageController
 	{
 		SharedState state = SharedState.getInstance();
 		
-		this.connection = state.getConnection();
-		this.dbHandler=new DBHandler(connection);
+
+		this.dbHandler=DBHandler.getInstance();
 		this.Admin = (backend.Admin) state.getUser();
 	}
 
@@ -121,9 +120,6 @@ public class AdminMainPageController
     {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/LoginSignup.fxml"));
 		Parent root = loader.load();
-
-		LoginSignupController controller = loader.getController();
-		controller.setConnection(connection);
 		
 		Scene scene = new Scene(root);
 
@@ -199,7 +195,7 @@ public class AdminMainPageController
     	roomtypetext.getItems().clear();
     	roomtypetext.getItems().addAll("Luxury", "Single", "Double", "Suite");
         selecthotelnamecombo.getItems().clear();
-        dbHandler=new DBHandler(connection);
+        
         try {
             List<Hotel> hotels = dbHandler.getAllHotels();
             for (Hotel hotel : hotels) 
@@ -299,7 +295,7 @@ public class AdminMainPageController
              return;
          }
     	
-        List<Item> items = dbHandler.getAllItems(); // Fetch items from the database
+        List<Item> items = Admin.getAllItems(); // Fetch items from the database
         Admin_additems_combobox.getItems().clear();
 
         for (Item item : items) {
@@ -317,7 +313,7 @@ public class AdminMainPageController
         }
 
         // Fetch all items from the database
-        List<Item> items = dbHandler.getAllItems();
+        List<Item> items = Admin.getAllItems();
 
         // Find the item by name
         for (Item item : items) {
@@ -368,7 +364,8 @@ public class AdminMainPageController
             // If the user clicks "Yes", update the item
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // Update the item in the database
-                dbHandler.updateItemQuantity(selectedItem, amountToAdd);
+            	
+              Admin.updateItemQuantity(selectedItem, amountToAdd);
 
                 // After updating, refresh the displayed item details
                 displaySelectedItemDetails();
@@ -458,11 +455,11 @@ public class AdminMainPageController
             // Wait for user response
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Create package object
-                Package newPackage = new Package(name, destinationFormatted, duration, description, price);
+        
+              
 
                 // Send package to the DB handler
-                boolean success = dbHandler.addPackageToDatabase(newPackage);
+                boolean success = Admin.addPackageToDatabase(name, destinationFormatted, duration, description, price);
 
                 // Show feedback
                 if (success) {

@@ -5,6 +5,8 @@ import backend.Admin;
 import backend.Consultant;
 import backend.DBHandler;
 import backend.Traveler;
+import backend.User;
+import backend.UserFactory;
 import consultant.ConsultantMainPageController;
 
 import java.io.IOException;
@@ -37,7 +39,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import backend.SharedState;
 public class LoginSignupController implements Initializable {
-	private Connection connection;
+
 
 	@FXML
 	private TextField Rgiester_CNIC;
@@ -91,87 +93,64 @@ public class LoginSignupController implements Initializable {
 
 
 	public void SuccessfulLogin(ActionEvent event) throws IOException, ClassNotFoundException {
-		String username = Login_username.getText();
-		String password = Login_password.getText();
+	    String username = Login_username.getText();
+	    String password = Login_password.getText();
 
-		if (event.getSource() == Login_button) {
-		
-			DBHandler dbHandler = new DBHandler(connection); 
+	    if (event.getSource() == Login_button) {
+	        DBHandler dbHandler = DBHandler.getInstance();
 
-			String travelerID = dbHandler.validateTravelerLogin(username, password);
+	        String travelerID = dbHandler.validateTravelerLogin(username, password);
 
-			if (travelerID != null) 
-			{
+	        if (travelerID != null) {
+	            String userType = dbHandler.getUserType(username);
 
-				String userType = dbHandler.getUserType(username);
-				if(userType.equals("Traveler"))
-				{			
-					Traveler T1=new Traveler();
-					T1.setUserid(travelerID);
-					SharedState sharedState = SharedState.getInstance();
-					sharedState.setConnection(connection);
-					sharedState.setUser(T1);
-					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
-					Parent root = loader.load();
-				
+	          
+	            User user = UserFactory.createUser(userType);
+	            user.setUserid(travelerID);
 
-					Scene scene = new Scene(root);
-					scene.getStylesheets().add(getClass().getResource("/traveler/TravelerMainPage.css").toExternalForm());
-					Stage stage = new Stage();
-					stage.setScene(scene);
-					stage.setTitle("Nomad Oasis");
-					stage.show();
-				}
-				else if (userType.equals("Admin"))
-				{
-					Admin A1=new Admin();
-					A1.setUserid(travelerID);
-					SharedState sharedState = SharedState.getInstance();
-					sharedState.setConnection(connection);
-					sharedState.setUser(A1);
-					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminMainPage.fxml"));
-					Parent root = loader.load();
+	            SharedState sharedState = SharedState.getInstance();
+	            sharedState.setUser(user);
 
+	    
+	            String fxmlPath = "";
+	            String cssPath = "";
+	            
+	            if (user instanceof Traveler) 
+	            {
+	                fxmlPath = "/traveler/TravelerMainPage.fxml";
+	                cssPath = "/traveler/TravelerMainPage.css";
+	            } 
+	            else if (user instanceof Admin) 
+	            {
+	                fxmlPath = "/admin/AdminMainPage.fxml";
+	                cssPath = "/admin/AdminMainPage.css";
+	            } 
+	            else if (user instanceof Consultant) 
+	            {
+	                fxmlPath = "/consultant/ConsulatantMainPage.fxml";
+	                cssPath = "/consultant/ConsultantMainPage.css";
+	            }
 
-					Scene scene = new Scene(root);
-					scene.getStylesheets().add(getClass().getResource("/admin/AdminMainPage.css").toExternalForm());
-					Stage stage = new Stage();
-					stage.setScene(scene);
-					stage.setTitle("Nomad Oasis");
-					stage.show();
-				}
-				else if (userType.equals("Consultant"))
-				{
-					Consultant C1=new Consultant();
-					C1.setUserid(travelerID);
-					SharedState sharedState = SharedState.getInstance();
-					sharedState.setConnection(connection);
-					sharedState.setUser(C1);
-					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/consultant/ConsulatantMainPage.fxml"));
-					Parent root = loader.load();
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+	            Parent root = loader.load();
 
-					Scene scene = new Scene(root);
-					scene.getStylesheets().add(getClass().getResource("/consultant/ConsultantMainPage.css").toExternalForm());
-					Stage stage = new Stage();
-					stage.setScene(scene);
-					stage.setTitle("Nomad Oasis");
-					stage.show();
-				}
+	            Scene scene = new Scene(root);
+	            scene.getStylesheets().add(getClass().getResource(cssPath).toExternalForm());
+	            Stage stage = new Stage();
+	            stage.setScene(scene);
+	            stage.setTitle("Nomad Oasis");
+	            stage.show();
 
-				((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-			}
-			else 
-			{
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Login Failed");
-				alert.setHeaderText("Invalid Username or Password");
-				alert.setContentText("Please try again.");
-				alert.showAndWait();
-			}
-		}
+	          
+	            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+	        } else {
+	            Alert alert = new Alert(Alert.AlertType.ERROR);
+	            alert.setTitle("Login Failed");
+	            alert.setHeaderText("Invalid Username or Password");
+	            alert.setContentText("Please try again.");
+	            alert.showAndWait();
+	        }
+	    }
 	}
 
 	public void switchForm(ActionEvent event)
@@ -239,7 +218,7 @@ public class LoginSignupController implements Initializable {
 
 		Traveler T1 = new Traveler(email, username, password, cnic, gender, dob.toString());
 
-		boolean isRegistered = T1.addtravelertoDB(connection);
+		boolean isRegistered = T1.addtravelertoDB();
 
 		if (isRegistered) {
 			showAlertS("Registration Success", "Account Created Successfully", "You can now log in using your credentials.");
@@ -286,15 +265,6 @@ public class LoginSignupController implements Initializable {
 
 
 
-	public Connection getConnection() {
-		return connection;
-	}
-
-
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
 
 
 

@@ -33,7 +33,6 @@ import javafx.util.Duration;
 public class TravelerQueryResponseController implements Initializable
 {
 	private DBHandler dbHandler;
-	private Connection connection;
 	private Traveler Traveler;
 
 	public void setDBHandler(DBHandler dbHandler)
@@ -110,8 +109,7 @@ public class TravelerQueryResponseController implements Initializable
 		// TODO Auto-generated method stub
 	       // Populate the combo box when the controller is initialized
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
-        dbHandler =new DBHandler(connection);
+        dbHandler =DBHandler.getInstance();
         this.Traveler = (backend.Traveler) state.getUser();
         populateComboBox();
 	}

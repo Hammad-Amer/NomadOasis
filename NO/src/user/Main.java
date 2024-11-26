@@ -21,7 +21,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		dbHandler = new DBHandler();
+		dbHandler = DBHandler.getInstance();
         try {
         	  connection = dbHandler.connect();
 		} catch (ClassNotFoundException e) {
@@ -54,7 +54,6 @@ public class Main extends Application {
 		mainLayout = loader.load();
 		
 		 LoginSignupController controller = loader.getController();
-	        controller.setConnection(connection);
 	   // LoginSignupController controller = new LoginSignupController();
 	  //  loader.setController(controller);
 		

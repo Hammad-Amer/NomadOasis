@@ -22,16 +22,14 @@ import user.LoginSignupController;
 
 public class ConsultantMainPageController  implements Initializable{
 	private DBHandler dbHandler;
-	private Connection connection;
 	private Consultant Consultant;
 
 	 @FXML
 	 public void initialize() {
 	        // Retrieve the shared data
 	        SharedState state = SharedState.getInstance();
-	        this.connection = state.getConnection();
 	        this.Consultant= (backend.Consultant) state.getUser();
-
+	        dbHandler = DBHandler.getInstance();
 	
 	    }
 	 
@@ -54,8 +52,6 @@ public class ConsultantMainPageController  implements Initializable{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/LoginSignup.fxml"));
 		Parent root = loader.load();
 
-		LoginSignupController controller = loader.getController();
-		controller.setConnection(connection);
 		
 		Scene scene = new Scene(root);
 
@@ -95,8 +91,8 @@ public class ConsultantMainPageController  implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
         this.Consultant= (backend.Consultant) state.getUser();
+        dbHandler = DBHandler.getInstance();
 	}
 
 

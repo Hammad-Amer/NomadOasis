@@ -5,7 +5,6 @@ import java.sql.Connection;
 public class SharedState {
     private static SharedState instance;
 
-    private Connection connection;
     private User User;
 
     // Private constructor to enforce singleton pattern
@@ -19,14 +18,6 @@ public class SharedState {
         return instance;
     }
 
-    // Getters and setters for shared data
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
 
 	public User getUser() {
 		return User;

@@ -25,7 +25,6 @@ import traveler.TravelerViewHistoryController;
 public class TravelerViewHistoryController implements Initializable
 {
 	private DBHandler dbHandler;
-	private Connection connection;
 	private Traveler Traveler;
 
 	@FXML
@@ -58,8 +57,7 @@ public class TravelerViewHistoryController implements Initializable
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
         SharedState state = SharedState.getInstance();
-        this.connection = state.getConnection();
-        dbHandler =new DBHandler(connection);
+        dbHandler =DBHandler.getInstance();
         this.Traveler = (backend.Traveler) state.getUser();
         loadTravelerHistory();
 		
