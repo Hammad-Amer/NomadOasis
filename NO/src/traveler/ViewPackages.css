@@ -81,4 +81,15 @@
     -fx-translate-y: 2px; 
     -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Same as initial text color */
 }
+
+.view-package2s-label {
+
+    -fx-font-size: 35px; /* Adjust font size */
+    -fx-font-weight: bold; /* Make the text bold */
+    -fx-text-fill: #c5baba; /* Use a yellow-gold color to match the buttons */
+    -fx-effect: dropshadow(gaussian, #1E3A5F, 10, 0.5, 2, 2); /* Add a shadow for better visibility */
+    -fx-text-alignment: center; /* Center-align the text */
+
+ 	     
+}
   

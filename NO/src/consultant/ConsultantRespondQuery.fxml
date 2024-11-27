@@ -4,19 +4,32 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consultant.ConsultantRespondQueryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consultant.ConsultantRespondQueryController">
    <children>
-      <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-pane" stylesheets="@ConsultantMainPage.css">
+      <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-pane2" stylesheets="@ConsultantMainPage.css">
          <children>
             <Button fx:id="goback" layoutX="37.0" layoutY="21.0" mnemonicParsing="false" onAction="#goBackmain" prefHeight="30.0" prefWidth="84.0" text="Go Back" />
             <ComboBox fx:id="querycombobox" layoutX="79.0" layoutY="108.0" onAction="#onQuerySelected" prefWidth="150.0" promptText="Select Query Here" />
-            <Text layoutX="79.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Query Info:" />
-            <Text fx:id="queryinfo" layoutX="244.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="376.99999809265137" />
-            <TextField fx:id="replytextbox" alignment="TOP_LEFT" layoutX="244.0" layoutY="302.0" prefHeight="125.0" prefWidth="377.0" promptText="Enter Response" styleClass="textfield"/>
-            <Text layoutX="79.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Response:" />
-            <Button fx:id="submitbutton" layoutX="653.0" layoutY="412.0" mnemonicParsing="false" onAction="#submitResponse" prefHeight="30.0" prefWidth="84.0" text="Submit" />
+            <Text fill="#98886f" layoutX="79.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Query Info:">
+               <font>
+                  <Font size="20.0" />
+               </font></Text>
+            <Text fx:id="queryinfo" layoutX="244.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="376.99999809265137">
+               <font>
+                  <Font size="20.0" />
+               </font></Text>
+            <TextField fx:id="replytextbox" alignment="TOP_LEFT" layoutX="244.0" layoutY="302.0" prefHeight="125.0" prefWidth="377.0" promptText="Enter Response" styleClass="textfield">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
+            <Text fill="#98886f" layoutX="79.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Response:">
+               <font>
+                  <Font size="20.0" />
+               </font></Text>
+            <Button fx:id="submitbutton" layoutX="325.0" layoutY="447.0" mnemonicParsing="false" onAction="#submitResponse" prefHeight="30.0" prefWidth="150.0" text="Submit" />
          </children>
       </AnchorPane>
    </children>

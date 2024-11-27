@@ -2,34 +2,65 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminMainPageController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminMainPageController">
 	<children>
 		<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVD" stylesheets="@AdminMainPage.css">
 			<children>
-				<Button fx:id="addhotelbutton" layoutX="125.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleAddHotel" prefHeight="32.0" prefWidth="127.0" styleClass="custom-button" text="Add Hotel" />
-				<Button fx:id="addroombutton" layoutX="560.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleAddRoom" prefHeight="32.0" prefWidth="127.0" styleClass="custom-button" text="Add Room" />
-				<TextField fx:id="hotelnametext" layoutX="114.0" layoutY="108.0" promptText="Enter Hotel Name" styleClass="textfield" />
-				<TextField fx:id="hotellocationtext" layoutX="114.0" layoutY="168.0" promptText="Enter Location" styleClass="textfield" />
-				<TextField fx:id="hotelratingtext" layoutX="114.0" layoutY="238.0" promptText="Rating 1-5" styleClass="textfield" />
-				<TextField fx:id="hoteldescriptiontext" alignment="TOP_LEFT" layoutX="114.0" layoutY="303.0" prefHeight="67.0" prefWidth="149.0" promptText="Enter Description" styleClass="textfield" />
-				<Text layoutX="24.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Hotel Name:" />
-				<Text layoutX="24.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Location:" />
-				<Text layoutX="24.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Rating:" />
-				<Text layoutX="26.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Description:" />
-				<ComboBox fx:id="selecthotelnamecombo" layoutX="549.0" layoutY="108.0" prefWidth="150.0" promptText="Select Hotel" />
-				<TextField fx:id="roomnumbertext" layoutX="549.0" layoutY="173.0" promptText="Enter Room Number" styleClass="textfield" />
-				<TextField fx:id="roompricetext" layoutX="549.0" layoutY="303.0" promptText="Enter Price" styleClass="textfield" />
-				<Text layoutX="445.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Hotel Name:" />
-				<Text layoutX="445.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Room Number:" />
-				<Text layoutX="445.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Type:" />
-				<Text layoutX="448.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addhoteltext" text="Price:" />
+				<Button fx:id="addhotelbutton" layoutX="165.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleAddHotel" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 12px;" styleClass="buttonAC" text="Add Hotel" />
+				<Button fx:id="addroombutton" layoutX="560.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleAddRoom" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 12;" styleClass="buttonAC" text="Add Room" />
+				<TextField fx:id="hotelnametext" layoutX="138.0" layoutY="130.0" prefHeight="31.0" prefWidth="182.0" promptText="Enter Hotel Name" styleClass="textfield23" />
+				<TextField fx:id="hotellocationtext" layoutX="138.0" layoutY="184.0" prefHeight="31.0" prefWidth="182.0" promptText="Enter Location" styleClass="textfield23" />
+				<TextField fx:id="hotelratingtext" layoutX="138.0" layoutY="243.0" promptText="Rating 1-5" styleClass="textfield23" />
+				<TextField fx:id="hoteldescriptiontext" alignment="TOP_LEFT" layoutX="138.0" layoutY="303.0" prefHeight="80.0" prefWidth="182.0" promptText="Enter Description" styleClass="textfield23" />
+				<Text fill="WHITE" layoutX="25.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Hotel Name:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="48.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Location:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="57.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Rating:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="26.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Description:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<ComboBox fx:id="selecthotelnamecombo" layoutX="549.0" layoutY="132.0" prefWidth="150.0" promptText="Select Hotel" />
+				<TextField fx:id="roomnumbertext" layoutX="549.0" layoutY="184.0" promptText="Enter Room Number" styleClass="textfield23" />
+				<TextField fx:id="roompricetext" layoutX="549.0" layoutY="303.0" promptText="Enter Price" styleClass="textfield23" />
+				<Text fill="WHITE" layoutX="430.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Hotel Name:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="411.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Room Number:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="481.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Type:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="480.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Price:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
 				
-				<ComboBox fx:id="roomtypetext" layoutX="549.0" layoutY="230.0" prefWidth="150.0" promptText="Select Type" />
-            <Button fx:id="backadminmain" layoutX="51.0" layoutY="33.0" mnemonicParsing="false" onAction="#goBackAdminMain" prefHeight="32.0" prefWidth="127.0" styleClass="custom-button" text="Go Back" />
+				<ComboBox fx:id="roomtypetext" layoutX="549.0" layoutY="244.0" prefWidth="150.0" promptText="Select Type" />
+            <Button fx:id="backadminmain" layoutX="51.0" layoutY="33.0" mnemonicParsing="false" onAction="#goBackAdminMain" prefHeight="36.0" prefWidth="71.0" style="-fx-font-size: 11px;" styleClass="buttonAC" text="Back" />
+            <Label layoutX="316.0" layoutY="23.0" prefHeight="73.0" prefWidth="190.0" styleClass="labelAC" stylesheets="@AdminMainPage.css" text="Manage Hotels">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
 			</children>
 		</AnchorPane>
 	</children>

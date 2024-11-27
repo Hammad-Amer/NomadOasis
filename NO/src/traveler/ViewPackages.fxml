@@ -60,9 +60,10 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="Package_Cancel_button" layoutX="609.0" layoutY="27.0" mnemonicParsing="false" onAction="#GoBackToCancelPageFromPackages" prefHeight="44.0" prefWidth="155.0" styleClass="glossy-buttonVD" stylesheets="@ViewPackages.css" text="Cancel Package" />
+            <Button fx:id="Package_Cancel_button" layoutX="620.0" layoutY="27.0" mnemonicParsing="false" onAction="#GoBackToCancelPageFromPackages" prefHeight="44.0" prefWidth="155.0" styleClass="glossy-buttonVD" stylesheets="@ViewPackages.css" text="Cancel Package" />
             <Button fx:id="Package_back_button" layoutX="32.0" layoutY="27.0" mnemonicParsing="false" onAction="#GoBackToTravelermainFromPackages" prefHeight="44.0" prefWidth="111.0" styleClass="glossy-buttonVD" stylesheets="@ViewPackages.css" text="Back" />
             <Button fx:id="Package_buyPack_button" layoutX="544.0" layoutY="448.0" mnemonicParsing="false" onAction="#GoBackToBuyPageFromPackages" prefHeight="37.0" prefWidth="130.0" style="-fx-background-color: linear-gradient(to bottom, #d3d3d3, #a9a9a9); -fx-text-fill: #262424;" styleClass="glossy-buttonVD" stylesheets="@ViewPackages.css" text="Buy Package" textFill="#262424" />
+            <Label layoutX="183.0" layoutY="23.0" prefHeight="51.0" prefWidth="414.0" styleClass="view-package2s-label" stylesheets="@ViewPackages.css" text="View Available Packages" textFill="#c5baba" />
          </children>
       </AnchorPane>
    </children>

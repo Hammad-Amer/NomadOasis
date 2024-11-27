@@ -7,10 +7,10 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVDM" stylesheets="@AdminMainPage.css">
          <children>
-            <Button fx:id="admins_addhotel_button" layoutX="294.0" layoutY="119.0" mnemonicParsing="false" onAction="#goToAddHotel" prefHeight="57.0" prefWidth="161.0" text="Add Hotels" />
-            <Button fx:id="admins_additems_button" layoutX="294.0" layoutY="206.0" mnemonicParsing="false" onAction="#goToAddItemStock" prefHeight="57.0" prefWidth="161.0" text="Add items" />
-            <Button fx:id="admins_addpackages_button" layoutX="294.0" layoutY="292.0" mnemonicParsing="false" onAction="#goToAddPackage" prefHeight="57.0" prefWidth="161.0" text="Add packages" />
-            <Button fx:id="logout" layoutX="43.0" layoutY="34.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="97.0" text="Log Out" styleClass="logout-button"/>
+            <Button fx:id="admins_addhotel_button" layoutX="286.0" layoutY="116.0" mnemonicParsing="false" onAction="#goToAddHotel" prefHeight="57.0" prefWidth="221.0" styleClass="buttonAC" stylesheets="@AdminMainPage.css" text="Add Hotels" />
+            <Button fx:id="admins_additems_button" layoutX="286.0" layoutY="221.0" mnemonicParsing="false" onAction="#goToAddItemStock" prefHeight="57.0" prefWidth="221.0" styleClass="buttonAC" text="Add items" />
+            <Button fx:id="admins_addpackages_button" layoutX="286.0" layoutY="339.0" mnemonicParsing="false" onAction="#goToAddPackage" prefHeight="57.0" prefWidth="221.0" styleClass="buttonAC" text="Add packages" />
+            <Button fx:id="logout" layoutX="43.0" layoutY="34.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="97.0" styleClass="logout-button" text="Log Out" />
          </children>
       </AnchorPane>
    </children>

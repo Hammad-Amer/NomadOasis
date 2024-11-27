@@ -138,11 +138,6 @@
                   <Font size="9.0" />
                </font>
             </Text>
-            <Text fill="#d7d6d4" layoutX="164.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="popular-destinations" text="ITEM STORE" textAlignment="CENTER" wrappingWidth="454.0000813802085">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
             <GridPane fx:id="IS_Jacket_grid" layoutX="49.0" layoutY="227.0" prefHeight="153.0" prefWidth="203.0" styleClass="grid-pane" stylesheets="@itemShop.css" visible="false">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.33331298828125" minWidth="10.0" prefWidth="80.0" />
@@ -377,6 +372,7 @@
                   <Font size="10.0" />
                </font>
             </Button>
+            <Label layoutX="323.0" layoutY="30.0" prefHeight="51.0" prefWidth="117.0" styleClass="view-package2s-label" stylesheets="@ViewPackages.css" text="STORE" textFill="#c5baba" />
          </children>
       </AnchorPane>
    </children>
