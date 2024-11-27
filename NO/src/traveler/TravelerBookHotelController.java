@@ -45,7 +45,6 @@ public class TravelerBookHotelController implements Initializable
 		this.Traveler = (backend.Traveler) state.getUser();
 		dbHandler = DBHandler.getInstance();
 		loadHotels();
-
 	}
 
 	@FXML

@@ -95,14 +95,12 @@ public class AdminMainPageController
         controller.populateComboBoxWithItems(); 
 
         controller.Admin_additems_combobox.setOnAction(e -> controller.displaySelectedItemDetails());
-        // Set up the new scene
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Nomad Oasis");
         stage.show();
 
-        // Close the current stage
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
@@ -119,7 +117,6 @@ public class AdminMainPageController
         stage.setTitle("Nomad Oasis");
         stage.show();
 
-        // Close the current stage
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
     
@@ -132,14 +129,12 @@ public class AdminMainPageController
         AdminMainPageController controller = loader.getController();
         controller.populatePackagesComboBox();
  
-        // Set up the new scene
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Nomad Oasis");
         stage.show();
 
-        // Close the current stage
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
     
@@ -151,14 +146,12 @@ public class AdminMainPageController
 
         AdminMainPageController controller = loader.getController();
         controller.populateComboBoxWithRemItems(); 
-        // Set up the new scene
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Nomad Oasis");
         stage.show();
 
-        // Close the current stage
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
     
@@ -635,7 +628,6 @@ public class AdminMainPageController
     
     
     
-    //Admin remove packages
     @FXML
     private TextArea Admin_RemovePackage_Description;
 
@@ -691,7 +683,6 @@ public class AdminMainPageController
 			    Admin_RemovePackage_Pricetext.setText(  packageDetails.getPrice()+ "Rs.");
 			    Admin_RemovePackage_Description.setText(packageDetails.getDescription());
 
-			    // Show destinations, each on a new line
 			    Admin_RemovePackage_Destinations.setText(
 			        String.join("\n", packageDetails.getDestination().split(","))
 			    );
@@ -702,31 +693,26 @@ public class AdminMainPageController
     public void removeSelectedPackage(ActionEvent event) {
         String selectedPackage = RemovePackage_combobox.getValue();
         if (selectedPackage != null) {
-            // Show confirmation alert
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirm Package Removal");
             confirmationAlert.setHeaderText(null);
             confirmationAlert.setContentText("Are you sure you want to remove the package: " + selectedPackage + "?");
 
-            // Wait for user response
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // User confirmed removal
+             
                 try {
                     boolean success = Admin.removePackage(selectedPackage);
                     if (success) {
-                        // Show success alert
                         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                         successAlert.setTitle("Package Removed");
                         successAlert.setHeaderText(null);
                         successAlert.setContentText("The package \"" + selectedPackage + "\" has been removed successfully.");
                         successAlert.showAndWait();
 
-                        // Refresh the combo box and clear fields
                         populatePackagesComboBox();
                         clearFields();
                     } else {
-                        // Show error alert
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("Removal Failed");
                         errorAlert.setHeaderText(null);
@@ -735,7 +721,6 @@ public class AdminMainPageController
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    // Show error alert for SQL exception
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("Database Error");
                     errorAlert.setHeaderText(null);
@@ -744,7 +729,6 @@ public class AdminMainPageController
                 }
             }
         } else {
-            // Show warning alert if no package is selected
             Alert warningAlert = new Alert(Alert.AlertType.WARNING);
             warningAlert.setTitle("No Package Selected");
             warningAlert.setHeaderText(null);
@@ -753,8 +737,6 @@ public class AdminMainPageController
         }
     }
 
-
-    // Clear all fields
     private void clearFields() {
         Admin_RemovePackage_Nametext.setText("");
         Admin_RemovePackage_Durationtext.setText("");
@@ -886,7 +868,6 @@ public class AdminMainPageController
                         return;
                     }
 
-                    // Confirm removal
                     Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     confirmationAlert.setTitle("Confirm Stock Removal");
                     confirmationAlert.setHeaderText(null);
@@ -894,7 +875,7 @@ public class AdminMainPageController
 
                     Optional<ButtonType> result = confirmationAlert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
-                        // Update stock in database
+                    	
                         boolean updated = Admin.updateItemStock(item.getItemid(), currentStock - amountToRemove);
                         if (updated) {
                             showAlert(Alert.AlertType.INFORMATION, "Stock Removed", amountToRemove + " units of " + selectedItem + " have been removed successfully.");
@@ -977,8 +958,6 @@ public class AdminMainPageController
 					}
 				}
 				selectremoveroomnamecombo.setItems(roomNumbers);
-
-			//	selectremovehotelnamecombo.setOnAction(event -> updateRoomDetails(selectedHotel));
 			}
 		}
 	}

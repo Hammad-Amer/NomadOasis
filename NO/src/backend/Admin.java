@@ -16,8 +16,6 @@ public class Admin  extends User{
 		
 	}
 	
-	
-	
 	public List<Item> getAllItems()
 	{
 		Item Itemp=new Item();
@@ -70,7 +68,7 @@ public class Admin  extends User{
 	 public boolean removePackage(String selectedPackage) throws SQLException
 	 {
 		 Package Ptemp=new Package(selectedPackage);
-		 return Ptemp.removePackage();
+		 return Ptemp.removePackage(selectedPackage);
 	 }
 	 public boolean removeHotelDB(Hotel RH)
 	 {

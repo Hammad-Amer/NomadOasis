@@ -69,8 +69,8 @@ public class DBHandler {
 		String INSERT_TRAVELER = "INSERT INTO user1 (email, username1, password1, CNIC, Gender, DOB, userType) VALUES (?, ?, ?, ?, ?, ?, 'traveler')";
 
 
-		try (PreparedStatement Query = connection.prepareStatement(INSERT_TRAVELER)) {
-			// Set the values for the prepared statement from the method parameters
+		try (PreparedStatement Query = connection.prepareStatement(INSERT_TRAVELER)) 
+		{
 			Query.setString(1, email);
 			Query.setString(2, username);
 			Query.setString(3,password);
@@ -78,14 +78,12 @@ public class DBHandler {
 			Query.setString(5, gender);
 			Query.setString(6,dob);
 
-			// Execute the update query to insert the new traveler into the database
 			int rowsAffected = Query.executeUpdate();
 
-			// Return true if at least one row was affected, indicating success
 			return rowsAffected > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; // Return false if there was an exception
+			return false;
 		}
 
 	}
@@ -189,7 +187,6 @@ public class DBHandler {
 		ResultSet resultSet = null;
 
 		try {
-			// Step 1: Check if the traveler has an existing cart
 			String selectCartQuery = "SELECT cartID FROM Cart WHERE travelerID = ?";
 			preparedStatement = connection.prepareStatement(selectCartQuery);
 			preparedStatement.setInt(1, travelerid);
@@ -200,7 +197,6 @@ public class DBHandler {
 				// Cart exists for the traveler
 				cartID = resultSet.getInt("cartID");
 			} else {
-				// Create a new cart for the traveler
 				String insertCartQuery = "INSERT INTO Cart (travelerID) VALUES (?)";
 				preparedStatement = connection.prepareStatement(insertCartQuery, Statement.RETURN_GENERATED_KEYS);
 				preparedStatement.setInt(1, travelerid);
@@ -208,13 +204,12 @@ public class DBHandler {
 
 				resultSet = preparedStatement.getGeneratedKeys();
 				if (resultSet.next()) {
-					cartID = resultSet.getInt(1); // Get the newly generated cartID
+					cartID = resultSet.getInt(1); 
 				} else {
 					throw new SQLException("Failed to create a new cart.");
 				}
 			}
 
-			// Step 2: Check if the item already exists in the cart
 			String selectCartItemQuery = "SELECT quantity FROM CartItems WHERE cartID = ? AND itemID = ?";
 			preparedStatement = connection.prepareStatement(selectCartItemQuery);
 			preparedStatement.setInt(1, cartID);
@@ -222,15 +217,13 @@ public class DBHandler {
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				// Item exists, REPLACE the quantity
 				String updateCartItemQuery = "UPDATE CartItems SET quantity = ? WHERE cartID = ? AND itemID = ?";
 				preparedStatement = connection.prepareStatement(updateCartItemQuery);
-				preparedStatement.setInt(1, quantity); // Set the new quantity (no addition)
+				preparedStatement.setInt(1, quantity); 
 				preparedStatement.setInt(2, cartID);
 				preparedStatement.setInt(3, itemid);
 				preparedStatement.executeUpdate();
 			} else {
-				// Item does not exist, insert a new record
 				String insertCartItemQuery = "INSERT INTO CartItems (cartID, itemID, quantity) VALUES (?, ?, ?)";
 				preparedStatement = connection.prepareStatement(insertCartItemQuery);
 				preparedStatement.setInt(1, cartID);
@@ -257,8 +250,6 @@ public class DBHandler {
 
 		try {
 
-
-			// Query to fetch cart items for the traveler
 			String query = "SELECT i.name1, ci.quantity, i.price " +
 					"FROM Cart c " +
 					"JOIN CartItems ci ON c.cartID = ci.cartID " +
@@ -269,13 +260,11 @@ public class DBHandler {
 
 			resultSet = preparedStatement.executeQuery();
 
-			// Populate the list of items
 			while (resultSet.next()) {
 				String name = resultSet.getString("name1");
 				int price = resultSet.getInt("price");
 				int quantity = resultSet.getInt("quantity");
 
-				// Create an Item object and add it to the list
 				Item item = new Item();
 				item.setName(name);
 				item.setPrice(price);
@@ -297,30 +286,27 @@ public class DBHandler {
 		try (PreparedStatement stmt = connection.prepareStatement(query)) {
 			stmt.setInt(1, travelerId);
 			try (ResultSet rs = stmt.executeQuery()) {
-				return !rs.next(); // If no rows are found, the cart is empty
+				return !rs.next();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; // Error handling
+			return false; 
 		}
 	}
 
 
 	public void clearCart(int travelerID) {
-		// SQL queries updated to use travelerID
 		String deleteCartItems = "DELETE FROM CartItems WHERE cartID = (SELECT cartID FROM Cart WHERE travelerID = ?)";
 		String deleteCart = "DELETE FROM Cart WHERE travelerID = ?";
 
 		try (PreparedStatement stmtCartItems = connection.prepareStatement(deleteCartItems);
 				PreparedStatement stmtCart = connection.prepareStatement(deleteCart)) {
 
-			// Set travelerID for deleting items in CartItems
 			stmtCartItems.setInt(1, travelerID);
-			stmtCartItems.executeUpdate();  // Execute the delete for cart items
+			stmtCartItems.executeUpdate(); 
 
-			// Set travelerID for deleting the cart
 			stmtCart.setInt(1, travelerID);
-			stmtCart.executeUpdate();  // Execute the delete for the cart itself
+			stmtCart.executeUpdate();  
 
 
 
@@ -331,7 +317,6 @@ public class DBHandler {
 
 
 	public void clearCartBuy(int travelerID) {
-	    // SQL queries to perform the required operations
 	    String getCartItems = "SELECT ci.itemID, ci.quantity " +
 	                          "FROM CartItems ci " +
 	                          "INNER JOIN Cart c ON ci.cartID = c.cartID " +
@@ -348,11 +333,9 @@ public class DBHandler {
 	        PreparedStatement stmtDeleteCart = connection.prepareStatement(deleteCart);
 	        PreparedStatement stmtLog = connection.prepareStatement(logQuery)
 	    ) {
-	        // Get all items in the traveler's cart
 	        stmtGetCartItems.setInt(1, travelerID);
 	        ResultSet rs = stmtGetCartItems.executeQuery();
 
-	        // Update item stock for each item in the cart
 	        while (rs.next()) {
 	            int itemID = rs.getInt("itemID");
 	            int quantity = rs.getInt("quantity");
@@ -362,19 +345,16 @@ public class DBHandler {
 	            stmtUpdateStock.executeUpdate();
 	        }
 
-	        // Delete cart items
 	        stmtDeleteCartItems.setInt(1, travelerID);
 	        stmtDeleteCartItems.executeUpdate();
 
-	        // Delete the cart itself
 	        stmtDeleteCart.setInt(1, travelerID);
 	        stmtDeleteCart.executeUpdate();
 
-	        // Create a log entry
 	        String logText = "You Bought some stuff form the Store";
 	        stmtLog.setInt(1, travelerID);
 	        stmtLog.setString(2, logText);
-	        stmtLog.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Current date
+	        stmtLog.setDate(3, new java.sql.Date(System.currentTimeMillis())); 
 	        stmtLog.executeUpdate();
 
 	    } catch (SQLException e) {
@@ -398,7 +378,6 @@ public class DBHandler {
 		return packageNames;
 	}
 
-	// Fetch package details by name
 	public Package getPackageDetails(String packageName) {
 		String query = "SELECT * FROM Package WHERE name1 = ?";
 		Package pkg = null;
@@ -432,10 +411,8 @@ public class DBHandler {
 	    ResultSet resultSet = null;
 
 	    try {
-	        // Start transaction
 	        connection.setAutoCommit(false);
 
-	        // Step 2: Find the packageID based on the package name
 	        String findPackageSQL = "SELECT packageID FROM Package WHERE name1 = ?";
 	        findPackageStmt = connection.prepareStatement(findPackageSQL);
 	        findPackageStmt.setString(1, packageName);
@@ -446,28 +423,24 @@ public class DBHandler {
 	            packageID = resultSet.getInt("packageID");
 	        }
 
-	        // Step 3: If package exists, proceed to insert into BookingPackage
 	        if (packageID != -1) {
-	            // Insert booking
 	            String insertBookingSQL = "INSERT INTO BookingPackage (travelerID, packageID, bookingDate, quantity) VALUES (?, ?, ?, ?)";
 	            insertBookingStmt = connection.prepareStatement(insertBookingSQL);
 	            insertBookingStmt.setInt(1, travelerID);
 	            insertBookingStmt.setInt(2, packageID);
-	            insertBookingStmt.setDate(3, Date.valueOf(LocalDate.now())); // Set booking date as today's date
+	            insertBookingStmt.setDate(3, Date.valueOf(LocalDate.now())); 
 	            insertBookingStmt.setInt(4, quantity);
 	            insertBookingStmt.executeUpdate();
 
-	            // Log the action
 	            String logSQL = "INSERT INTO logs1 (travelerID, logtext, Date1) VALUES (?, ?, ?)";
 	            logStmt = connection.prepareStatement(logSQL);
 
 	            String logText = "You booked package '" + packageName + "' with quantity " + quantity + ".";
 	            logStmt.setInt(1, travelerID);
 	            logStmt.setString(2, logText);
-	            logStmt.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Current date
+	            logStmt.setDate(3, new java.sql.Date(System.currentTimeMillis()));
 	            logStmt.executeUpdate();
 
-	            // Commit the transaction
 	            connection.commit();
 
 	        } else {
@@ -477,7 +450,7 @@ public class DBHandler {
 	    } catch (SQLException e) {
 	        try {
 	            if (connection != null) {
-	                connection.rollback(); // Rollback in case of error
+	                connection.rollback(); 
 	            }
 	        } catch (SQLException ex) {
 	            ex.printStackTrace();
@@ -638,7 +611,6 @@ public class DBHandler {
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(query); 
 
-		// Fetch hotels first
 		while (resultSet.next()) {
 
 			int hotelID = resultSet.getInt("hotelID");
@@ -647,12 +619,10 @@ public class DBHandler {
 			String desc = resultSet.getString("description1");
 			int rating = resultSet.getInt("rating");
 
-			// Create a hotel object
 			Hotel hotel = new Hotel(hotelID, name, location, desc, rating);
 			hotels.add(hotel);
 		}
 
-		// Now fetch rooms for each hotel
 		for (Hotel hotel : hotels) {
 			List<Room> rooms = getRoomsByHotelID(connection, hotel.getHotelID());
 			for (Room room : rooms) {
@@ -664,7 +634,6 @@ public class DBHandler {
 		return hotels;
 	}
 
-	// Modify getRoomsByHotelID to accept the existing connection
 	private List<Room> getRoomsByHotelID(Connection connection, int hotelID) {
 		List<Room> rooms = new ArrayList<>();
 		String query = "SELECT * FROM Room WHERE hotelID = ?";
@@ -772,7 +741,6 @@ public class DBHandler {
 		}
 	}
 
-	// Method to remove a booking from the database
 	public boolean removeBookingFromDatabase(int bookingID) {
 		String query = "DELETE FROM BookingRoom WHERE bookingID = ?";
 		try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -795,7 +763,7 @@ public class DBHandler {
 		String sql = "SELECT queryID FROM query1 WHERE travelerID = ?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql))
 		{
-			stmt.setString(1, travelerID); // travelerID is now a String
+			stmt.setString(1, travelerID);
 			try (ResultSet rs = stmt.executeQuery())
 			{
 				while (rs.next()) 
@@ -809,7 +777,6 @@ public class DBHandler {
 		return queryIDs;
 	}
 
-	// Method to get Query object details for a specific queryID
 	public Query getQueryDetails(int queryID) {
 		Query query = null;
 		String sql = "SELECT queryID, consultantID, travelerID, queryContent, response FROM query1 WHERE queryID = ?";
@@ -819,12 +786,12 @@ public class DBHandler {
 				if (rs.next()) {
 					int qID = rs.getInt("queryID");
 					int consultantID = rs.getInt("consultantID");
-					String travelerID = rs.getString("travelerID"); // Now stored as a String
+					String travelerID = rs.getString("travelerID");
 					String queryContent = rs.getString("queryContent");
 					String response = rs.getString("response");
 
 					query = new Query(qID, consultantID, travelerID, queryContent);
-					query.setResponse(response); // Set the response (may be null)
+					query.setResponse(response); 
 				}
 			}
 		} catch (SQLException e) {
@@ -895,11 +862,11 @@ public class DBHandler {
 			if (rs.next()) {
 				return rs.getString("userType");
 			} else {
-				return null; // User not found
+				return null; 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null; // Return null in case of an exception
+			return null; 
 		}
 	}
 
@@ -948,7 +915,7 @@ public class DBHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return -1; // Error case
+		return -1;
 	}
 
 	public int getBookingQuantity(int travelerID, int packageID) {
@@ -963,7 +930,7 @@ public class DBHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return -1; // Error case
+		return -1; 
 	}
 	public boolean cancelBooking(int travelerID, int packageID) {
 		String query = "DELETE FROM BookingPackage WHERE travelerID = ? AND packageID = ?";
@@ -971,10 +938,10 @@ public class DBHandler {
 			stmt.setInt(1, travelerID);
 			stmt.setInt(2, packageID);
 			int rowsAffected = stmt.executeUpdate();
-			return rowsAffected > 0; // Return true if a row was deleted
+			return rowsAffected > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; // Return false if an exception occurred
+			return false; 
 		}
 	}
 
@@ -1147,7 +1114,6 @@ public class DBHandler {
 
 			resultSet = preparedStatement.executeQuery();
 
-			// Populate the list of items
 			while (resultSet.next()) {
 				int itemID = resultSet.getInt("itemID");
 				String name = resultSet.getString("name1");
@@ -1155,7 +1121,6 @@ public class DBHandler {
 				int price = resultSet.getInt("price");
 				int stock = resultSet.getInt("stock");
 
-				// Create an Item object and add it to the list
 				Item item = new Item();
 				item.setItemid(itemID);
 				item.setName(name);
@@ -1196,20 +1161,17 @@ public class DBHandler {
 
 	public boolean addPackageToDatabase(Package pkg) {
 		try {
-			// Prepare the SQL query
 			String query = "INSERT INTO package (name1, destination, duration, description1, price) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement stmt = connection.prepareStatement(query);
 
-			// Set query parameters
 			stmt.setString(1, pkg.getName());
 			stmt.setString(2, pkg.getDestination());
 			stmt.setInt(3, pkg.getDuration());
 			stmt.setString(4, pkg.getDescription());
 			stmt.setInt(5, pkg.getPrice());
 
-			// Execute the query
 			int rowsInserted = stmt.executeUpdate();
-			return rowsInserted > 0; // Return true if a row was inserted
+			return rowsInserted > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1253,7 +1215,6 @@ public class DBHandler {
 
 
 
-    // Remove package by name
     public boolean removePackage(String packageName) throws SQLException {
         String query = "DELETE FROM Package WHERE name1 = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -1264,7 +1225,6 @@ public class DBHandler {
         }
     }
     
-    // Method to update item stock in the database
     public boolean updateItemStock(int itemID, int newStock) throws SQLException {
         String query = "UPDATE Item SET stock = ? WHERE itemID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {

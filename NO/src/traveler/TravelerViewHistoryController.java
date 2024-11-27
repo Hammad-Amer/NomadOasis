@@ -49,7 +49,6 @@ public class TravelerViewHistoryController implements Initializable
 		stage.setTitle("Nomad Oasis");
 		stage.show();
 
-		// Close the current window
 		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
 
 	}
@@ -62,9 +61,6 @@ public class TravelerViewHistoryController implements Initializable
         loadTravelerHistory();
 		
 	}
-	
-
-
 	////////////////////////////////////////////////////////////////////////
 
 	public void loadTravelerHistory() {
@@ -86,17 +82,4 @@ public class TravelerViewHistoryController implements Initializable
 			textArea.setText("Failed to load history.");
 		}
 	}
-
-
-
-
-
-
-
-
-	
-
-	
-
-
 }

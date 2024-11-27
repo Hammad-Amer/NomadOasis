@@ -260,23 +260,20 @@ public class LoginSignupController implements Initializable {
 		alert.showAndWait();
 	}
 
-	// Overloaded method for simpler use
 	private void showAlert(String title, String contentText) {
 		showAlert(title, title, contentText);
 	}
 
 	private boolean isAgeValid(LocalDate dob) {
-		if (dob == null) return false; // Return false if DOB is not selected
+		if (dob == null) return false; 
 		LocalDate currentDate = LocalDate.now();
 		int age = Period.between(dob, currentDate).getYears();
 		return age >= 18;
 	}
 
-	public void initialize(URL location, ResourceBundle resources) {
-		// Populate the Gender ChoiceBox with "Male" and "Female"
+	public void initialize(URL location, ResourceBundle resources)
+	{
 		Register_Gender.getItems().addAll("Male", "Female");
-
-
 	}
 
 	private boolean validateCNIC(String input) {
@@ -284,16 +281,11 @@ public class LoginSignupController implements Initializable {
 	        return false;
 	    }
 	    try {
-	        new java.math.BigInteger(input); // Ensures all characters are numeric
+	        new java.math.BigInteger(input);
 	        return true;
 	    } catch (NumberFormatException e) {
 	        return false;
 	    }
 	}
-
-
-
-
-
 
 }

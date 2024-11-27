@@ -133,8 +133,8 @@ public class TravelerEditProfileController implements Initializable{
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	public void initialize(URL arg0, ResourceBundle arg1)
+	{
         SharedState state = SharedState.getInstance();
         this.Traveler = (backend.Traveler) state.getUser();
         dbHandler = DBHandler.getInstance();

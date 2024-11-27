@@ -1,9 +1,9 @@
 .root 
 {
     -fx-background-image: url("../../IMGs/background_img_11.png");
-    -fx-background-size: cover;  /* Ensures the image covers the entire background */
-    -fx-background-position: center center;  /* Centers the image */
-    -fx-background-repeat: no-repeat;  /* Prevents the image from repeating */
+    -fx-background-size: cover;  
+    -fx-background-position: center center;  
+    -fx-background-repeat: no-repeat;  
 }
 
 .anchor-pane
@@ -30,60 +30,60 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #DFF6FF, #BCE7F6); /* Very light blue gradient */
-    -fx-effect: dropshadow(gaussian, rgba(173, 216, 230, 0.3), 6, 0, 0, 3); /* Light blue shadow */
-    -fx-text-fill: grey; /* Retain text color */
+    -fx-background-color: linear-gradient(to bottom, #DFF6FF, #BCE7F6); 
+    -fx-effect: dropshadow(gaussian, rgba(173, 216, 230, 0.3), 6, 0, 0, 3); 
+    -fx-text-fill: grey;
 }
 
 .button:pressed {
-    -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
+    -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); 
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
     -fx-translate-y: 2px; 
 }
 
 .textfield {
-    -fx-background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
-    -fx-border-color: rgba(135, 206, 235, 0.5); /* Light blue border */
+    -fx-background-color: rgba(255, 255, 255, 0.6); 
+    -fx-border-color: rgba(135, 206, 235, 0.5); 
     -fx-border-width: 1.5px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
 }
 .textfield:hover {
-    -fx-background-color: #F7F7F7; /* Slightly lighter background on hover */
-    -fx-border-color: #B3E5FC; /* Light blue border on hover */
-    -fx-effect: dropshadow(gaussian, rgba(135, 206, 235, 0.25), 6, 0, 0, 3); /* Subtle shadow */
+    -fx-background-color: #F7F7F7;
+    -fx-border-color: #B3E5FC;
+    -fx-effect: dropshadow(gaussian, rgba(135, 206, 235, 0.25), 6, 0, 0, 3); 
 }
 
 .combo-box {
-    -fx-border-color: #B0D9FF;  /* Very light blue border */
-    -fx-background-color: #E6F9E1; /* Very light green background for empty state */
+    -fx-border-color: #B0D9FF;  
+    -fx-background-color: #E6F9E1; 
 }
 
 .combo-box .list-cell {
-    -fx-background-color: #E6F9E1; /* Very light green background for items */
-    -fx-text-fill: #333333; /* Dark text color */
+    -fx-background-color: #E6F9E1;
+    -fx-text-fill: #333333;
 }
 
 .combo-box .list-cell:hover {
-    -fx-background-color: #B0D9FF; /* Light blue on hover */
-    -fx-text-fill: white; /* White text on hover */
+    -fx-background-color: #B0D9FF; 
+    -fx-text-fill: white;
 }
 
 .date-picker {
-    -fx-border-color: #B0D9FF; /* Very light blue border */
-    -fx-background-color: #E6F9E1; /* Very light green background */
+    -fx-border-color: #B0D9FF; 
+    -fx-background-color: #E6F9E1; 
 }
 
 .date-picker .popup {
-    -fx-background-color: #E6F9E1; /* Match the popup calendar background */
+    -fx-background-color: #E6F9E1; 
 }
 .date-picker .cell {
-    -fx-background-color: #E6F9E1; /* Very light green background for calendar cells */
-    -fx-text-fill: #333333; /* Dark text color */
+    -fx-background-color: #E6F9E1; 
+    -fx-text-fill: #333333;
 }
 
 .date-picker .cell:hover {
-    -fx-background-color: #B0D9FF; /* Light blue on hover */
-    -fx-text-fill: white; /* White text on hover */
+    -fx-background-color: #B0D9FF; 
+    -fx-text-fill: white; 
 }
 
 .text-hotel 

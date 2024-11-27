@@ -20,7 +20,7 @@ public class Item {
     {
 
     }
-    // Getters and Setters
+    
     public String getName() {
         return name;
     }

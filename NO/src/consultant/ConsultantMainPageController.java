@@ -25,8 +25,8 @@ public class ConsultantMainPageController  implements Initializable{
 	private Consultant Consultant;
 
 	 @FXML
-	 public void initialize() {
-	        // Retrieve the shared data
+	 public void initialize() 
+	 {
 	        SharedState state = SharedState.getInstance();
 	        this.Consultant= (backend.Consultant) state.getUser();
 	        dbHandler = DBHandler.getInstance();
@@ -88,8 +88,8 @@ public class ConsultantMainPageController  implements Initializable{
     }
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	public void initialize(URL arg0, ResourceBundle arg1)
+	{
         SharedState state = SharedState.getInstance();
         this.Consultant= (backend.Consultant) state.getUser();
         dbHandler = DBHandler.getInstance();

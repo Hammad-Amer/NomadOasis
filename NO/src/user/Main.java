@@ -19,7 +19,8 @@ public class Main extends Application {
 	 private static DBHandler dbHandler;
 	 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) 
+	{
 		
 		dbHandler = DBHandler.getInstance();
         try {
@@ -33,13 +34,7 @@ public class Main extends Application {
 			
 			this.primaryStage=primaryStage;
 			this.primaryStage.setTitle("Nomad Oasis");
-			
-			//BorderPane root = new BorderPane();
-			//Scene scene = new Scene(root,400,400);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			//primaryStage.setScene(scene);
-			//primaryStage.show();
-			
+
 			ShowLoginSignUp();
 			
 		} catch(Exception e) {
@@ -54,10 +49,7 @@ public class Main extends Application {
 		mainLayout = loader.load();
 		
 		 LoginSignupController controller = loader.getController();
-	   // LoginSignupController controller = new LoginSignupController();
-	  //  loader.setController(controller);
-		
-		
+	
 		Scene scene= new Scene(mainLayout);
 		scene.getStylesheets().add(getClass().getResource("LoginSignup.css").toExternalForm());
 		primaryStage.setScene(scene);
@@ -70,8 +62,8 @@ public class Main extends Application {
 	}
 	
 	 @Override
-	    public void stop() {
-	        // Disconnect database on application exit
+	    public void stop() 
+	 {
 	        if (dbHandler != null) {
 	            dbHandler.disconnect();
 	        }

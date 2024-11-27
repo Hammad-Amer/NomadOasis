@@ -63,12 +63,12 @@
 }
 
 .grid-pane {
-    -fx-background-color: #758cb3; /* Light beige background color */
-    -fx-background-radius: 15px;  /* Rounded corners for background */
-    -fx-border-color: #8080ff;      /* Border color */
-    -fx-border-width: 2px;        /* Border thickness */
-    -fx-border-radius: 15px;      /* Match border radius with background */
-    -fx-padding: 10px;            /* Padding inside the GridPane */
+    -fx-background-color: #758cb3; 
+    -fx-background-radius: 15px;
+    -fx-border-color: #8080ff;    
+    -fx-border-width: 2px;       
+    -fx-border-radius: 15px;     
+    -fx-padding: 10px;           
 }
 
 
@@ -105,9 +105,9 @@
 
 .glossy-buttonVD3 {
 	-fx-background-image: url("../../IMGs/shoppingcart.png");
-	-fx-background-size: cover;         /* Ensure the image covers the entire area */
-	-fx-background-position: center;    /* Center the image */
-	-fx-background-repeat: no-repeat;   /* Prevent the image from repeating */
+	-fx-background-size: cover;        
+	-fx-background-position: center;   
+	-fx-background-repeat: no-repeat;  
     -fx-background-color: 
         linear-gradient(to bottom, #1E3A5F, #0F2747);
     -fx-background-radius: 40px; 

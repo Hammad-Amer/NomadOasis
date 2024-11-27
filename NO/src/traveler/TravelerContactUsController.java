@@ -33,8 +33,8 @@ public class TravelerContactUsController implements Initializable{
 	private Traveler Traveler;
 
 	 @FXML
-	 public void initialize() {
-	        // Retrieve the shared data
+	 public void initialize() 
+	 {
 	        SharedState state = SharedState.getInstance();
 	        dbHandler = DBHandler.getInstance();
 	        this.Traveler = (backend.Traveler) state.getUser();
@@ -157,8 +157,8 @@ public class TravelerContactUsController implements Initializable{
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	public void initialize(URL arg0, ResourceBundle arg1)
+ {
         SharedState state = SharedState.getInstance();
         dbHandler = DBHandler.getInstance();
         this.Traveler = (backend.Traveler) state.getUser();

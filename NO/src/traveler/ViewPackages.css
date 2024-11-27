@@ -30,22 +30,21 @@
 
 
 .textfield {
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6f5ff); /* Subtle gradient background */
-    -fx-border-color: linear-gradient(to bottom right, #006598, #005580); /* Vibrant border */
-    -fx-border-width: 1.5px; /* Slightly thicker border for better emphasis */
-    -fx-border-radius: 5px; /* Rounded corners for a softer look */
-    -fx-background-radius: 5px; /* Match the background radius with the border */
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6f5ff); 
+    -fx-border-color: linear-gradient(to bottom right, #006598, #005580); 
+    -fx-border-width: 1.5px; 
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 
-    -fx-font-family: "Arial Black", sans-serif; /* Bold font for emphasis */
-    -fx-font-size: 16px; /* Slightly larger text */
-    -fx-text-fill: #00334d; /* Vibrant dark blue text color for contrast */
+    -fx-font-family: "Arial Black", sans-serif; 
+    -fx-font-size: 16px; 
+    -fx-text-fill: #00334d; 
     
-    -fx-padding: 5px; /* Add padding for better text readability */
+    -fx-padding: 5px; 
 
-    /* Add a subtle shadow for vibrance */
     -fx-effect: dropshadow(gaussian, rgba(0, 101, 152, 0.3), 5, 0, 0, 1);
 
-    /* Highlight effect when focused */
+    
     -fx-focus-color: linear-gradient(to bottom right, #33ccff, #0099cc);
     -fx-faint-focus-color: transparent;
 }
@@ -53,42 +52,42 @@
 
 .glossy-buttonVD {
     -fx-background-color: 
-        linear-gradient(to bottom, #1E3A5F, #0F2747); /* Pure navy blue gradient */
-    -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
-    -fx-border-radius: 100%; /* Rounded border to match */
-    -fx-border-color: transparent; /* Remove the white border */
-    -fx-border-width: 0; /* Remove border width */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
-    -fx-text-fill: linear-gradient(to bottom, #d7d6d4, #a19b9b); /* Gradient text: Gold to Orange */
-    -fx-font-family: "Arial Black", sans-serif; /* Bold, impactful font */
-    -fx-font-size: 12px; /* Adjust font size as needed */
+        linear-gradient(to bottom, #1E3A5F, #0F2747); 
+    -fx-background-radius: 40px; 
+    -fx-border-radius: 100%; 
+    -fx-border-color: transparent; 
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2);
+    -fx-text-fill: linear-gradient(to bottom, #d7d6d4, #a19b9b); 
+    -fx-font-family: "Arial Black", sans-serif; 
+    -fx-font-size: 12px; 
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1); /* Subtle shadow for text */
-    -fx-padding: 10px 20px; /* Add padding for a spacious look */
-    -fx-cursor: hand; /* Change cursor to hand on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+    -fx-padding: 10px 20px; 
+    -fx-cursor: hand;
     
 }
 
 .glossy-buttonVD:hover {
-    -fx-background-color: linear-gradient(to bottom, #0F2747, #1A3455); /* Slightly darker navy on hover */
+    -fx-background-color: linear-gradient(to bottom, #0F2747, #1A3455);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
-    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Reverse gradient for text on hover */
+    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); 
 }
 
 .glossy-buttonVD:pressed {
-    -fx-background-color: linear-gradient(to top, #1E3A5F, #0F2747); /* Reverse navy gradient on press */
+    -fx-background-color: linear-gradient(to top, #1E3A5F, #0F2747);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
     -fx-translate-y: 2px; 
-    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b); /* Same as initial text color */
+    -fx-text-fill: linear-gradient(to bottom,#d7d6d4, #a19b9b);
 }
 
 .view-package2s-label {
 
-    -fx-font-size: 35px; /* Adjust font size */
-    -fx-font-weight: bold; /* Make the text bold */
-    -fx-text-fill: #c5baba; /* Use a yellow-gold color to match the buttons */
-    -fx-effect: dropshadow(gaussian, #1E3A5F, 10, 0.5, 2, 2); /* Add a shadow for better visibility */
-    -fx-text-alignment: center; /* Center-align the text */
+    -fx-font-size: 35px; 
+    -fx-font-weight: bold; 
+    -fx-text-fill: #c5baba; 
+    -fx-effect: dropshadow(gaussian, #1E3A5F, 10, 0.5, 2, 2); 
+    -fx-text-alignment: center; 
 
  	     
 }

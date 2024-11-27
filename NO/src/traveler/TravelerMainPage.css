@@ -10,31 +10,31 @@
 
 .profilebutton {
     -fx-background-color: 
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-        linear-gradient(to bottom, #E6E6E6, #CCCCCC); /* Light silver gradient */
-    -fx-background-radius: 40px; /* Rounded edges for bubble effect */
-    -fx-border-radius: 100%; /* Fully rounded border */
-    -fx-border-color: transparent; /* Remove border */
-    -fx-border-width: 0; /* Remove border width */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+        linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+        linear-gradient(to bottom, #E6E6E6, #CCCCCC); 
+    -fx-background-radius: 40.0px; 
+        -fx-border-radius: 100.0%; 
+    -fx-border-color: transparent;
+    -fx-border-width: 0.0;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0);
     -fx-text-fill: white;
     -fx-font-weight: bold;
 
-    -fx-background-image: url("../../IMGs/profilelogo.png"); /* Same image as before */
+    -fx-background-image: url("../../IMGs/profilelogo.png");
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: contain; /* Adjust to keep the image contained */
+    -fx-background-size: contain;
 }
 
 .profilebutton:hover {
-    -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); /* Darker hover effect */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); /* Slightly more intense shadow */
+    -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); 
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.25), 6.0, 0.0, 0.0, 3.0); 
 }
 
 .profilebutton:pressed {
-    -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1); /* Subtle pressed shadow */
-    -fx-translate-y: 2px; /* Pressed visual feedback */
+    -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6);
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+    -fx-translate-y: 2.0px; 
 }
 
   .anchor-pane {
@@ -51,222 +51,228 @@
   
   .glossy-button1 {
       -fx-background-color: 
-          linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-          linear-gradient(to bottom, #E6E6E6, #CCCCCC); /* Light silver gradient */
-      -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
-      -fx-border-radius: 100%; /* Rounded border to match */
-      -fx-border-color: transparent; /* Remove the white border */
-      -fx-border-width: 0; /* Remove border width */
-      -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+          linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+          linear-gradient(to bottom, #E6E6E6, #CCCCCC); 
+      -fx-background-radius: 40.0px; 
+      -fx-border-radius: 100.0%; 
+      -fx-border-color: transparent; 
+      -fx-border-width: 0.0; 
+      -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0); 
       -fx-text-fill: white;
       -fx-font-weight: bold;
 
       -fx-background-image: url("../../IMGs/view_destinitions.png");
       -fx-background-position: center center;
       -fx-background-repeat: no-repeat; 
-      -fx-background-size: 80% 100%;
+      -fx-background-size: 80.0% 100.0%;
   }
 
   .glossy-button1:before {
-      -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); 
-      -fx-background-radius: 50%;
+      -fx-background-color: linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.6), rgba(255.0, 255.0, 255.0, 0.0)); 
+      -fx-background-radius: 50.0%;
       -fx-opacity: 0.8;
-      -fx-padding: -5;
+      -fx-padding: -5.0;
   }
 
   .glossy-button1:hover {
-      -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); /* Slightly darker on hover */
-      -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+      -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); 
+      -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.25), 6.0, 0.0, 0.0, 3.0); 
   }
 
   .glossy-button1:pressed {
-      -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
-      -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
-      -fx-translate-y: 2px; 
+      -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); 
+      -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+      -fx-translate-y: 2.0px; 
   }
 
 
   .glossy-button2 {
       -fx-background-color: 
-          linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-          linear-gradient(to bottom, #E6E6E6, #CCCCCC); /* Light silver gradient */
-      -fx-background-radius: 40px; /* Removed rounded corners */
-      -fx-border-radius: 0; /* Removed border rounding */
-      -fx-border-color: rgba(255, 255, 255, 0.7);
-      -fx-border-width: 0;
-      -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+          linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+          linear-gradient(to bottom, #E6E6E6, #CCCCCC); 
+      -fx-background-radius: 40.0px; 
+      -fx-border-radius: 0.0; 
+      -fx-border-color: rgba(255.0, 255.0, 255.0, 0.7);
+      -fx-border-width: 0.0;
+      -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0);
       -fx-text-fill: white;
       -fx-font-weight: bold;
       
       -fx-background-image: url("../../IMGs/view_history.png");
      
       -fx-background-repeat: no-repeat; 
-      -fx-background-size: 30% 100%;
+      -fx-background-size: 30.0% 100.0%;
   }
    .glossy-button2:before {
-       -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); 
-       -fx-background-radius: 50%;
+       -fx-background-color: linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.6), rgba(255.0, 255.0, 255.0, 0.0)); 
+       -fx-background-radius: 50.0%;
        -fx-opacity: 0.8;
-       -fx-padding: -5;
+       -fx-padding: -5.0;
    }
 
    .glossy-button2:hover {
-       -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); /* Slightly darker on hover */
-       -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+       -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); 
+       -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.25), 6.0, 0.0, 0.0, 3.0); 
    }
 
    .glossy-button2:pressed {
-       -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
-       -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
-       -fx-translate-y: 2px; 
+       -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6);
+       -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+       -fx-translate-y: 2.0px; 
    }
    
    .glossy-button3 {
          -fx-background-color: 
-             linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-             linear-gradient(to bottom, #E6E6E6, #CCCCCC); /* Light silver gradient */
-         -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
-         -fx-border-radius: 100%; /* Rounded border to match */
-         -fx-border-color: transparent; /* Remove the white border */
-         -fx-border-width: 0; /* Remove border width */
-         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+             linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+             linear-gradient(to bottom, #E6E6E6, #CCCCCC); 
+              -fx-background-radius: 40.0px; 
+         -fx-border-radius: 100.0%; 
+         -fx-border-color: transparent; 
+         -fx-border-width: 0.0; 
+         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0); 
          -fx-text-fill: white;
          -fx-font-weight: bold;
 
          -fx-background-image: url("../../IMGs/view_items.png");
          -fx-background-position: center center;
          -fx-background-repeat: no-repeat; 
-         -fx-background-size: 80% 100%;
+         -fx-background-size: 80.0% 100.0%;
      }
 
      .glossy-button3:before {
-         -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); 
-         -fx-background-radius: 50%;
+         -fx-background-color: linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.6), rgba(255.0, 255.0, 255.0, 0.0)); 
+         -fx-background-radius: 50.0%;
          -fx-opacity: 0.8;
-         -fx-padding: -5;
+         -fx-padding: -5.0;
      }
 
      .glossy-button3:hover {
-         -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); /* Slightly darker on hover */
-         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+         -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); 
+         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.25), 6.0, 0.0, 0.0, 3.0); 
      }
 
      .glossy-button3:pressed {
-         -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
-         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
-         -fx-translate-y: 2px; 
+         -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); 
+         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+         -fx-translate-y: 2.0px; 
      }
    
 	 
 	 .glossy-button4 {
 	         -fx-background-color: 
-	             linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-	             linear-gradient(to bottom, #E6E6E6, #CCCCCC); /* Light silver gradient */
-	         -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
-	         -fx-border-radius: 100%; /* Rounded border to match */
-	         -fx-border-color: transparent; /* Remove the white border */
-	         -fx-border-width: 0; /* Remove border width */
-	         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+	             linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+	             linear-gradient(to bottom, #E6E6E6, #CCCCCC);
+	         -fx-background-radius: 40.0px; 
+	         -fx-border-radius: 100.0%; 
+	         -fx-border-color: transparent; 
+	         -fx-border-width: 0.0; 
+	         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0); 
 	         -fx-text-fill: white;
 	         -fx-font-weight: bold;
 
 	         -fx-background-image: url("../../IMGs/book_hotels.png");
 	         -fx-background-position: center center;
 	         -fx-background-repeat: no-repeat; 
-	         -fx-background-size: 80% 100%;
+	         -fx-background-size: 80.0% 100.0%;
 	     }
 
 	     .glossy-button4:before {
-	         -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); 
-	         -fx-background-radius: 50%;
+	         -fx-background-color: linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.6), rgba(255.0, 255.0, 255.0, 0.0)); 
+	         -fx-background-radius: 50.0%;
 	         -fx-opacity: 0.8;
-	         -fx-padding: -5;
+	         -fx-padding: -5.0;
 	     }
 
 	     .glossy-button4:hover {
-	         -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); /* Slightly darker on hover */
-	         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+	         -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3);
+	         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.25), 6.0, 0.0, 0.0, 3.0); 
 	     }
 
 	     .glossy-button4:pressed {
-	         -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
-	         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
-	         -fx-translate-y: 2px; 
+	         -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); 
+	         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+	         -fx-translate-y: 2.0px; 
 	     }
 		 
 		 
 		 .glossy-button5 {
 		 	         -fx-background-color: 
-		 	             linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-		 	             linear-gradient(to bottom, #E6E6E6, #CCCCCC); /* Light silver gradient */
-		 	         -fx-background-radius: 40px; /* Rounded edges for the bubble effect */
-		 	         -fx-border-radius: 100%; /* Rounded border to match */
-		 	         -fx-border-color: transparent; /* Remove the white border */
-		 	         -fx-border-width: 0; /* Remove border width */
-		 	         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2); /* Subtle shadow */
+		 	             linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+		 	             linear-gradient(to bottom, #E6E6E6, #CCCCCC); 
+		 	         -fx-background-radius: 40.0px; 
+		 	         -fx-border-radius: 100.0%; 
+		 	         -fx-border-color: transparent; 
+		 	         -fx-border-width: 0.0; 
+		 	         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0); 
 		 	         -fx-text-fill: white;
 		 	         -fx-font-weight: bold;
 
 		 	         -fx-background-image: url("../../IMGs/view_packages.png");
 		 	         -fx-background-position: center center;
 		 	         -fx-background-repeat: no-repeat; 
-		 	         -fx-background-size: 80% 100%;
+		 	         -fx-background-size: 80.0% 100.0%;
 		 	     }
 
 		 	     .glossy-button5:before {
-		 	         -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); 
-		 	         -fx-background-radius: 50%;
+		 	         -fx-background-color: linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.6), rgba(255.0, 255.0, 255.0, 0.0)); 
+		 	         -fx-background-radius: 50.0%;
 		 	         -fx-opacity: 0.8;
-		 	         -fx-padding: -5;
+		 	         -fx-padding: -5.0;
 		 	     }
 
 		 	     .glossy-button5:hover {
-		 	         -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); /* Slightly darker on hover */
-		 	         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 3); 
+		 	         -fx-background-color: linear-gradient(to bottom, #CCCCCC, #B3B3B3); 
+		 	         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.25), 6.0, 0.0, 0.0, 3.0); 
 		 	     }
 
 		 	     .glossy-button5:pressed {
-		 	         -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); /* Reverse gradient on press */
-		 	         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
-		 	         -fx-translate-y: 2px; 
+		 	         -fx-background-color: linear-gradient(to top, #CCCCCC, #E6E6E6); 
+		 	         -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+		 	         -fx-translate-y: 2.0px; 
 		 	     }
 		 	     
 		 	
 .logout-button {
     -fx-background-color: 
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)),
-        linear-gradient(to bottom, #F4B5B5, #E68C8C); /* Slightly darker red gradient */
-    -fx-background-radius: 40px;
-    -fx-border-radius: 100%;
+        linear-gradient(to bottom, rgba(255.0, 255.0, 255.0, 0.4), rgba(255.0, 255.0, 255.0, 0.1)),
+        linear-gradient(to bottom, #F4B5B5, #E68C8C); 
+    -fx-background-radius: 40.0px;
+    -fx-border-radius: 100.0%;
     -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 0, 2);
+    -fx-border-width: 0.0;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 4.0, 0.0, 0.0, 2.0);
     -fx-text-fill: grey;
     -fx-font-weight: bold;
     -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-font-size: 14px;
-    -fx-transition: all 0.3s ease-in-out; /* Smooth transition */
+    -fx-font-size: 14.0px;
+    -fx-transition: all 0.3s ease-in-out;
 }
 
 .logout-button:hover {
-    -fx-background-color: linear-gradient(to bottom, #F8CCCC, #F4A3A3); /* Slightly darker red hover gradient */
-    -fx-effect: dropshadow(gaussian, rgba(244, 143, 143, 0.4), 6, 0, 0, 3); /* Subtle darker red shadow */
-    -fx-text-fill: grey; /* Retain text color */
+    -fx-background-color: linear-gradient(to bottom, #F8CCCC, #F4A3A3); 
+    -fx-effect: dropshadow(gaussian, rgba(244.0, 143.0, 143.0, 0.4), 6.0, 0.0, 0.0, 3.0); 
+    -fx-text-fill: grey; 
 }
 
 .logout-button:pressed {
-    -fx-background-color: linear-gradient(to top, #E68C8C, #F4B5B5); /* Reverse darker red gradient on press */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
-    -fx-translate-y: 2px; 
+    -fx-background-color: linear-gradient(to top, #E68C8C, #F4B5B5); 
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.1), 3.0, 0.0, 0.0, 1.0);
+    -fx-translate-y: 2.0px; 
 }
 		 	 
 .text1-Update {
     -fx-font-family: "Arial"; 
-    -fx-font-size: 16px; 
+    -fx-font-size: 16.0px; 
     -fx-fill: #1a3e82; 
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 2, 0, 1, 1); 
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 2.0, 0.0, 1.0, 1.0); 
 }
   
-		 	     
+.book-hotel-label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-text-alignment: center;
+}		 	     
 		 	    

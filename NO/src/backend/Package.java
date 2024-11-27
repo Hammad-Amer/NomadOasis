@@ -109,9 +109,9 @@ public class Package {
 		
 	}
 	
-	public boolean removePackage() throws SQLException
+	public boolean removePackage(String selectedPackage) throws SQLException
 	{
 		DBHandler dbHandler=DBHandler.getInstance();
-		return dbHandler.removePackage(this.getName());
+		return dbHandler.removePackage(selectedPackage);
 	}
 }

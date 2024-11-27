@@ -11,7 +11,6 @@ public class Booking {
     private int hotelID;
     private Date bookingDate;
 
-    // Constructor
     public Booking(int travelerID, int roomID, int hotelID, java.sql.Date bookingDate) {
         this.travelerID = travelerID;
         this.roomID = roomID;

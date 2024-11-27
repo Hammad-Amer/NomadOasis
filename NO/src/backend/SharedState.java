@@ -7,10 +7,8 @@ public class SharedState {
 
     private User User;
 
-    // Private constructor to enforce singleton pattern
     private SharedState() {}
 
-    // Get the single instance of the class
     public static SharedState getInstance() {
         if (instance == null) {
             instance = new SharedState();

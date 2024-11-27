@@ -508,7 +508,7 @@ public class TravelerMainPageController implements Initializable{
     	if (event.getSource() == back_button_VD)
     	{
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
-    		TravelerMainPageController controller = new TravelerMainPageController(); // Ensure this is the correct instance
+    		TravelerMainPageController controller = new TravelerMainPageController();
 
 
     		Parent root = loader.load();
@@ -560,8 +560,6 @@ public class TravelerMainPageController implements Initializable{
 
     @FXML
     private Text IS_JAcket_text;
-
-
 
     @FXML
     private GridPane IS_Jacket_grid;
@@ -788,46 +786,39 @@ public class TravelerMainPageController implements Initializable{
 
         int travelerID = Integer.parseInt(Traveler.getUserid());
 
-        if (!dbHandler.isCartEmpty(travelerID)) { // Assuming isCartEmpty checks cart content for the traveler
-            // Show confirmation alert
+        if (!dbHandler.isCartEmpty(travelerID)) {
+        	
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Cart Confirmation");
             alert.setHeaderText("You have items in your cart!");
             alert.setContentText("If you go back, your cart will be emptied. Do you want to proceed?");
             
-            // Wait for user's decision
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // User confirmed to proceed, clear the cart
+                
                 Traveler.clearcart();
 
-                // Load main page
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
                 Parent root = loader.load();
 
-                // Display the main page
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.setTitle("Nomad Oasis");
                 stage.show();
 
-                // Close the current window
                 ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
             }
         } else {
-            // If the cart is empty, simply go back to the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
             Parent root = loader.load();
 
-            // Display the main page
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Nomad Oasis");
             stage.show();
 
-            // Close the current window
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         }
     }
@@ -835,13 +826,12 @@ public class TravelerMainPageController implements Initializable{
 
    
   
- // Shoes Plus and Minus
     public void ShoesHandlePlusButtonClick() throws SQLException {
 
         int currentQuantity = Integer.parseInt(IS_SHoes_quantity.getText());
        
         Item ITEMP=new Item(1);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_SHoes_quantity.setText(String.valueOf(currentQuantity));
@@ -860,7 +850,6 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // Gloves Plus and Minus
     public void GlovesHandlePlusButtonClick() throws SQLException {
         
     
@@ -884,13 +873,12 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // Camping Plus and Minus
     public void CampingHandlePlusButtonClick() throws SQLException {
     
         int currentQuantity = Integer.parseInt(IS_camping_quantity.getText());
        
         Item ITEMP=new Item(3);
-        int maxStock = ITEMP.getItemStock();// Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_camping_quantity.setText(String.valueOf(currentQuantity));
@@ -907,13 +895,12 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // Beanies Plus and Minus
     public void BeaniesHandlePlusButtonClick() throws SQLException {
  
         int currentQuantity = Integer.parseInt(IS_beanies_quantity.getText());
        
         Item ITEMP=new Item(6);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_beanies_quantity.setText(String.valueOf(currentQuantity));
@@ -930,13 +917,12 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // Backpack Plus and Minus
     public void BackpackHandlePlusButtonClick() throws SQLException {
         
         int currentQuantity = Integer.parseInt(IS_bacgpack_quantity.getText());
        
         Item ITEMP=new Item(2);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_bacgpack_quantity.setText(String.valueOf(currentQuantity));
@@ -952,14 +938,13 @@ public class TravelerMainPageController implements Initializable{
             IS_bacgpack_quantity.setText(String.valueOf(quantity));
         }
     }
-
-    // Torch Plus and Minus
+    
     public void TorchHandlePlusButtonClick() throws SQLException {
 
         int currentQuantity = Integer.parseInt(IS_torch_quantity.getText());
        
         Item ITEMP=new Item(8);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_torch_quantity.setText(String.valueOf(currentQuantity));
@@ -976,13 +961,12 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // Powerbank Plus and Minus
     public void PowerbankHandlePlusButtonClick() throws SQLException {
         
         int currentQuantity = Integer.parseInt(is_powerbank_quantity.getText());
        
         Item ITEMP=new Item(9);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock(); 
         if (currentQuantity < maxStock) {
             currentQuantity++;
             is_powerbank_quantity.setText(String.valueOf(currentQuantity));
@@ -999,13 +983,12 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // Jacket Plus and Minus
     public void JacketHandlePlusButtonClick() throws SQLException {
         
         int currentQuantity = Integer.parseInt(IS_jacket_quantity.getText());
        
         Item ITEMP=new Item(4);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock();
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_jacket_quantity.setText(String.valueOf(currentQuantity));
@@ -1022,13 +1005,12 @@ public class TravelerMainPageController implements Initializable{
         }
     }
 
-    // First Aid Plus and Minus
     public void FirstAidHandlePlusButtonClick() throws SQLException {
         
         int currentQuantity = Integer.parseInt(IS_FIrstAID_quantity.getText());
        
         Item ITEMP=new Item(7);
-        int maxStock = ITEMP.getItemStock(); // Assume itemID = 1 for shoes
+        int maxStock = ITEMP.getItemStock(); 
         if (currentQuantity < maxStock) {
             currentQuantity++;
             IS_FIrstAID_quantity.setText(String.valueOf(currentQuantity));
@@ -1048,20 +1030,17 @@ public class TravelerMainPageController implements Initializable{
     public void CartButtoncItemStore(ActionEvent event) throws IOException {
         if (event.getSource() == IS_CART_button) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/Cart.fxml"));
-            Parent root = loader.load(); // Removed setController(this)
+            Parent root = loader.load(); 
 
-            // Open the Cart window
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Nomad Oasis");
             stage.show();
 
-            // Call displayCartDetails with a valid traveler ID
-            TravelerMainPageController controller = loader.getController(); // Get the controller instance
+            TravelerMainPageController controller = loader.getController(); 
             controller.displayCartDetails(Integer.parseInt(Traveler.getUserid()));
 
-            // Close the current window
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         }
     }
@@ -1076,9 +1055,8 @@ public class TravelerMainPageController implements Initializable{
         Traveler TTemp=Traveler;
     
         Cart C1=new Cart();
-        // Shoes
         if (Integer.parseInt(IS_SHoes_quantity.getText()) > 0) {
-            int itemID = 1; // ID for Shoes
+            int itemID = 1; 
            
             int quantity = Integer.parseInt(IS_SHoes_quantity.getText());
             
@@ -1087,79 +1065,72 @@ public class TravelerMainPageController implements Initializable{
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Jacket
         if (Integer.parseInt(IS_jacket_quantity.getText()) > 0) {
-            int itemID = 4; // ID for Jacket
+            int itemID = 4; 
             int quantity = Integer.parseInt(IS_jacket_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Torch
         if (Integer.parseInt(IS_torch_quantity.getText()) > 0) {
-            int itemID = 8; // ID for Torch
+            int itemID = 8;
             int quantity = Integer.parseInt(IS_torch_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Backpack
         if (Integer.parseInt(IS_bacgpack_quantity.getText()) > 0) {
-            int itemID = 2; // ID for Backpack
+            int itemID = 2; 
             int quantity = Integer.parseInt(IS_bacgpack_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Gloves
         if (Integer.parseInt(IS_gloves_quantity.getText()) > 0) {
-            int itemID = 5; // ID for Gloves
+            int itemID = 5; 
             int quantity = Integer.parseInt(IS_gloves_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Beanies
+
         if (Integer.parseInt(IS_beanies_quantity.getText()) > 0) {
-            int itemID = 6; // ID for Beanies
+            int itemID = 6; 
             int quantity = Integer.parseInt(IS_beanies_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Camping gear
+
         if (Integer.parseInt(IS_camping_quantity.getText()) > 0) {
-            int itemID = 3; // ID for Camping gear
+            int itemID = 3;
             int quantity = Integer.parseInt(IS_camping_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
-
-        // Powerbank
+        
         if (Integer.parseInt(is_powerbank_quantity.getText()) > 0) {
-            int itemID = 9; // ID for Powerbank
+            int itemID = 9; 
             int quantity = Integer.parseInt(is_powerbank_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // First Aid
         if (Integer.parseInt(IS_FIrstAID_quantity.getText()) > 0) {
-            int itemID = 7; // ID for First Aid
+            int itemID = 7; 
             int quantity = Integer.parseInt(IS_FIrstAID_quantity.getText());
             item.setItemid(itemID);
             item.setQuantity(quantity);
             message += C1.ItemtoCart(item, TTemp) + "\n";
         }
 
-        // Show the result
         if (message.isEmpty()) {
             showAlert("Cart", "No items were selected to add to the cart.");
         } else {
@@ -1374,10 +1345,8 @@ public class TravelerMainPageController implements Initializable{
             return;
         }
 
-        // Populate the ChoiceBox with data
         Packages_available_box.getItems().addAll(dbHandler.getAllPackageNames());
 
-        // Add listener to handle selection
         Packages_available_box.setOnAction(event -> {
             String selectedPackage = Packages_available_box.getValue();
             if (selectedPackage != null) {
@@ -1386,7 +1355,6 @@ public class TravelerMainPageController implements Initializable{
         });
     }
 
-    // Set up listener for ChoiceBox
     public void setupChoiceBoxListener() 
     {
         Packages_available_box.setOnAction(event -> {
@@ -1397,7 +1365,6 @@ public class TravelerMainPageController implements Initializable{
         });
     }
 
-    // Display package details in UI
     public void displayPackageDetails(String packageName) {
 
         Package pkg = dbHandler.getPackageDetails(packageName);
@@ -1405,16 +1372,14 @@ public class TravelerMainPageController implements Initializable{
         if (pkg != null) {
             Packages_Name_text.setText(pkg.getName());
 
-            // Display destinations line by line
             String[] destinations = pkg.getDestination().split(",\\s*");
-            Packages_Dest_text.clear(); // Clear the TextArea before appending
+            Packages_Dest_text.clear(); 
             for (String destination : destinations) {
                 Packages_Dest_text.appendText(destination + "\n");
             }
 
-            // Display duration, price, and description
             Packages_Duration_text.setText(String.valueOf(pkg.getDuration())+" days");
-            Packages_Desc_text.setWrapText(true); // Ensure text wraps
+            Packages_Desc_text.setWrapText(true); 
             Packages_Desc_text.setText(pkg.getDescription());
             Packages_Price_text.setText(String.valueOf(pkg.getPrice())+" Rs.");
         } else {
@@ -1431,8 +1396,6 @@ public class TravelerMainPageController implements Initializable{
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/TravelerMainPage.fxml"));
     	
     		Parent root = loader.load();
-    		
-    		
     		
     		 Scene scene = new Scene(root);
     		 
@@ -1480,7 +1443,6 @@ public class TravelerMainPageController implements Initializable{
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/CancelPackage.fxml"));
     	
     		Parent root = loader.load();
-    		 // Get the controller from the loader
             TravelerMainPageController controller = loader.getController();
             controller.populateCancelPackageTextArea(Integer.parseInt(Traveler.getUserid()));
     		 Scene scene = new Scene(root);
@@ -1536,7 +1498,6 @@ public class TravelerMainPageController implements Initializable{
     		
     		 TravelerMainPageController controller = loader.getController();
 
-             // Populate the ChoiceBox (move this logic from initialize to here)
              controller.loadPackages();
     		
     		 Scene scene = new Scene(root);
@@ -1557,33 +1518,25 @@ public class TravelerMainPageController implements Initializable{
     @FXML
     private void handleQuantityChange(ActionEvent event) {
         try {
-            // Get and print the price text
             String priceText = PackageBuy_price_button.getText().replace("Rs.", "").trim();
   
-
-            // Get and print the quantity and total text
             String quantityText = PackageBuy_quantity_button.getText().trim();
             String totalText = PackageBuy_Total_text.getText().replace("Rs.", "").trim();
-    // Debugging: Print the raw total text
-
-            // Validate the price (should be a valid number)
 
             double price = Double.parseDouble(priceText);
 
-            // Validate the quantity (should be a valid integer)
             int quantity = 0;
   
                 quantity = Integer.parseInt(quantityText);
          
-
-            // Validate the total (should be a valid number)
             double total = 0;
        
                 total = Double.parseDouble(totalText);
        
 
                 if (event.getSource() == PackageBuy_add_button) {
-                    if (quantity < 9) { // Prevent quantity from going beyond 9
+                    if (quantity < 9) 
+                    {
                         quantity++;
                         total += price;
                     }
@@ -1594,12 +1547,11 @@ public class TravelerMainPageController implements Initializable{
                     }
                 }
 
-            // Update the UI with the new values
             PackageBuy_quantity_button.setText(String.valueOf(quantity));
             PackageBuy_Total_text.setText("Rs. " + String.format("%.2f", total));
         } catch (NumberFormatException e) {
             System.err.println("Invalid input for price or quantity: " + e.getMessage());
-            // You can show an error dialog or alert to the user
+          
         }
     }
 
@@ -1610,26 +1562,21 @@ public class TravelerMainPageController implements Initializable{
             String quantityText = PackageBuy_quantity_button.getText().trim();
             int quantity = Integer.parseInt(quantityText);
 
-            // Check if the quantity is 0
             if (quantity == 0) {
-                // Show an alert that nothing was bought
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("No Items Selected");
                 alert.setHeaderText(null);
                 alert.setContentText("You have not selected any items to buy.");
                 alert.showAndWait();
             } else {
-                // Show a confirmation alert for the purchase
                 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmationAlert.setTitle("Confirm Purchase");
                 confirmationAlert.setHeaderText(null);
                 confirmationAlert.setContentText("Are you sure you want to buy this package?");
 
-                // Wait for the user to respond to the confirmation
                 confirmationAlert.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        // Proceed with the buying process
-                        // For now, just show a success message (you can replace this with actual buying logic)
+                    if (response == ButtonType.OK)
+                    {
                         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                         successAlert.setTitle("Purchase Successful");
                         successAlert.setHeaderText(null);
@@ -1639,11 +1586,11 @@ public class TravelerMainPageController implements Initializable{
                         
                         try {
 							Traveler.addBookingPackage(PackageBuy_Name_button.getText(), quantity);
-						} catch (NumberFormatException | SQLException e) {
-							// TODO Auto-generated catch block
+						} catch (NumberFormatException | SQLException e)
+                        {
+							
 							e.printStackTrace();
 						} 
-                        // Reset the quantity and total after successful purchase
                         PackageBuy_quantity_button.setText("0");
                         PackageBuy_Total_text.setText("Rs. 0.00");
                     }
@@ -1651,7 +1598,6 @@ public class TravelerMainPageController implements Initializable{
             }
         } catch (NumberFormatException e) {
             System.err.println("Invalid input for quantity: " + e.getMessage());
-            // Optionally, show an alert for invalid input (if necessary)
         }
     }
 
@@ -1701,7 +1647,6 @@ public class TravelerMainPageController implements Initializable{
 		stage.setTitle("Nomad Oasis");
 		stage.show();
 		
-		// Close the current window
 		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
 		}
 		
@@ -1782,7 +1727,6 @@ public class TravelerMainPageController implements Initializable{
 	    		 Parent root = loader.load();
 	    		 TravelerMainPageController controller = loader.getController();
 
-	             // Populate the ChoiceBox (move this logic from initialize to here)
 	             controller.loadPackages();
 	    		 Scene scene = new Scene(root);
 	    		 
@@ -1816,13 +1760,11 @@ public class TravelerMainPageController implements Initializable{
 	                          .append("Name: ").append(pkg.getName()).append("\n");
 	                          
 
-	            // Add package ID to the ComboBox
 	            CancelPackage_dropdown.getItems().add(String.valueOf(pkg.getId()));
 	        }
 
 	        CancelPackage_packages_text.setText(packageDetails.toString());
 
-	        // Add listener for ComboBox selection
 	        CancelPackage_dropdown.setOnAction(this::handlePackageSelection);
 	    }
 
@@ -1850,17 +1792,17 @@ public class TravelerMainPageController implements Initializable{
 	            return;
 	        }
 
-	        // Calculate refund: total price minus 25%
 	        int totalCost = price * quantity;
-	        double refundAmount = totalCost * 0.75; // Deduct 25%
+	        double refundAmount = totalCost * 0.75; 
 
 	        CancelPackage_Returnprice_text.setText("Refund Amount: " + refundAmount+" RS.");
 	    }
 
 
 	    @FXML
-	    public void handleCancelPackage(ActionEvent event) throws IOException {
-	        // Get selected package ID from the ComboBox
+	    public void handleCancelPackage(ActionEvent event) throws IOException
+	    {
+	      
 	        String selectedPackageID = CancelPackage_dropdown.getValue();
 
 	        if (selectedPackageID == null || selectedPackageID.isEmpty()) {
@@ -1872,7 +1814,6 @@ public class TravelerMainPageController implements Initializable{
 	            return;
 	        }
 
-	        // Confirmation dialog
 	        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
 	        confirmationAlert.setTitle("Confirmation");
 	        confirmationAlert.setHeaderText("Are you sure?");
@@ -1883,22 +1824,19 @@ public class TravelerMainPageController implements Initializable{
 	            int packageID = Integer.parseInt(selectedPackageID);
 
 
-	            // Remove the booking from the database
 	            boolean success = Traveler.cancelBooking(packageID);
 	            if (success) {
-	                // Success alert
+	            	
 	                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
 	                successAlert.setTitle("Success");
 	                successAlert.setHeaderText("Cancellation Successful");
 	                successAlert.setContentText("The package has been successfully canceled.");
 	                successAlert.showAndWait();
 
-	                // Redirect to ViewPackages page
 	                FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/ViewPackages.fxml"));
 	                Parent root = loader.load();
 		    		 TravelerMainPageController controller = loader.getController();
 
-		             // Populate the ChoiceBox (move this logic from initialize to here)
 		             controller.loadPackages();
 	                Scene scene = new Scene(root);
 
@@ -1906,8 +1844,9 @@ public class TravelerMainPageController implements Initializable{
 	                stage.setScene(scene);
 	                stage.setTitle("Nomad Oasis");
 	                stage.show();
-	            } else {
-	                // Failure alert
+	            }
+	            else 
+	            {
 	                Alert failureAlert = new Alert(Alert.AlertType.ERROR);
 	                failureAlert.setTitle("Error");
 	                failureAlert.setHeaderText("Cancellation Failed");
@@ -1918,8 +1857,8 @@ public class TravelerMainPageController implements Initializable{
 	    }
 
 		@Override
-		public void initialize(URL arg0, ResourceBundle arg1) {
-			// TODO Auto-generated method stub
+		public void initialize(URL arg0, ResourceBundle arg1)
+		{
 	        SharedState state = SharedState.getInstance();
 	        this.dbHandler=  DBHandler.getInstance();
 	        this.Traveler =  (backend.Traveler) state.getUser();
