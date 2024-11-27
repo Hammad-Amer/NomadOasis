@@ -69,10 +69,12 @@ public class TravelerViewHistoryController implements Initializable
 
 	public void loadTravelerHistory() {
 		try {
-			List<String> logs = dbHandler.getTravelerLogs(Traveler.getUserid());
+			
+			List<String> logs = Traveler.getLog(); 
 			StringBuilder history = new StringBuilder();
 
-			for (String log : logs) {
+			for (String log : logs)
+			{
 				history.append(log).append("\n");
 			}
 

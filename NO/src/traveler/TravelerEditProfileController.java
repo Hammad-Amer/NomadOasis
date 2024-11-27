@@ -45,6 +45,9 @@ public class TravelerEditProfileController implements Initializable{
     @FXML
     private Text type_text;
     
+    @FXML
+    private TextField UpdateProfile_Password;
+    
     private Traveler currentTraveler;
     private DBHandler dbHandler;
     private Connection connection;
@@ -82,8 +85,7 @@ public class TravelerEditProfileController implements Initializable{
 	public void loadTravelerData() throws ClassNotFoundException 
 	{
 
-        currentTraveler = dbHandler.fetchTravelerData(Traveler.getUserid());
-
+        currentTraveler = Traveler.getTravelerInfo();
         if (currentTraveler != null)
         {	
             UpdateProfile_username.setText(currentTraveler.getUsername());
@@ -96,24 +98,33 @@ public class TravelerEditProfileController implements Initializable{
     public void editedProfile(ActionEvent event) throws ClassNotFoundException
     {
       
-        
         String updatedUsername = UpdateProfile_username.getText();
         String updatedEmail = UpdateProfile_Email.getText();
-
-        boolean success = dbHandler.updateTravelerData(Traveler.getUserid(), updatedUsername, updatedEmail);
-
+        String password = UpdateProfile_Password.getText();
+        boolean success=false;
+        if(password.equals(""))
+        {
+            success = Traveler.updateProfile(updatedUsername, updatedEmail);
+        }
+        else
+        {   	
+        	System.out.println(password);
+            success = Traveler.updateProfile(updatedUsername, updatedEmail,password);
+        }
+        
         if (success) 
         {
+        	UpdateProfile_Password.clear();
         	showAlert("Profile updated successfully!.");
         } 
         else 
         {
         	showAlert("Failed to update profile.");
-           
         }
     }
     
-    private void showAlert(String message) {
+    private void showAlert(String message)
+    {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Nomad Oasis");
 		alert.setHeaderText(null);

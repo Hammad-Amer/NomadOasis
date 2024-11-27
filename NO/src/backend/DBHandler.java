@@ -440,6 +440,61 @@ public class DBHandler {
 	/////SHAYYYYAAAAANNNSSSS
 	////////////////////////////
 
+	public boolean updateTravelerData(String id, String un, String emaila, String pass)
+	{
+		String query = "UPDATE user1 SET username1 = ?, email = ?, password1 = ?  WHERE userID = ? AND userType = 'traveler'";
+		String logQuery = "INSERT INTO logs1 (travelerID, logtext, Date1) VALUES (?, ?, ?)";
+
+		try (PreparedStatement stmt = connection.prepareStatement(query);
+				PreparedStatement stmt1 = connection.prepareStatement(logQuery)) {
+
+			stmt.setString(1, un);
+			stmt.setString(2, emaila);
+			stmt.setString(3, pass);
+			stmt.setString(4, id);
+
+			int rowsUpdated = stmt.executeUpdate();
+
+			String logMessage = "You Updated Your Profile";
+			Date currentDate = new Date(System.currentTimeMillis());
+
+			stmt1.setString(1, id);
+			stmt1.setString(2, logMessage);
+			stmt1.setDate(3, currentDate);
+
+			stmt1.executeUpdate();
+
+			return rowsUpdated > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false; 
+		}
+	}
+	
+	public boolean validateTravelerUsername(String uname)
+	{
+        int count=0;
+		 try {
+		        String query = "SELECT COUNT(*) FROM User1 WHERE username1 = ?";
+		        
+		        PreparedStatement stmt = connection.prepareStatement(query);
+		        stmt.setString(1, uname);
+		        
+		        ResultSet rs = stmt.executeQuery();
+		        if (rs.next()) 
+		        {
+		        	count=rs.getInt(1);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		 	if(count==0)
+		 	{
+		 		return true; 
+		 	}
+		   
+		 	return false;
+	}
 
 	public String insertQuery(String travelerID, String queryContent) throws ClassNotFoundException {
 		String responseMessage = "Query submission failed.";
@@ -1041,6 +1096,37 @@ public class DBHandler {
 		return logs;
 	}
 
+	
+	
+	
+	////////////////////////////
+	//remove package admin
+	
 
+
+
+    // Remove package by name
+    public boolean removePackage(String packageName) throws SQLException {
+        String query = "DELETE FROM Package WHERE name1 = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, packageName);
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        }
+    }
+    
+    // Method to update item stock in the database
+    public boolean updateItemStock(int itemID, int newStock) throws SQLException {
+        String query = "UPDATE Item SET stock = ? WHERE itemID = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, newStock);
+            preparedStatement.setInt(2, itemID);
+
+            return preparedStatement.executeUpdate() > 0;
+        }
+    }
+    
+    
 
 }

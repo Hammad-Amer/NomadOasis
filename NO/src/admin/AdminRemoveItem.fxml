@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminMainPageController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVD" stylesheets="@AdminMainPage.css">
+         <children>
+            <Label layoutX="83.0" layoutY="157.0" prefHeight="23.0" prefWidth="169.0" styleClass="head-label2" stylesheets="@AdminMainPage.css" text="Select Item to Add:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="Admin_removeitems_combobox" layoutX="289.0" layoutY="155.0" onAction="#displaySelectedRemItemDetails" prefHeight="28.0" prefWidth="239.0" />
+            <Label layoutX="88.0" layoutY="215.0" prefHeight="23.0" prefWidth="159.0" styleClass="head-label2" stylesheets="@AdminMainPage.css" text="How much to Add:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Admin_removeitems_amounttext" layoutX="289.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Amount" />
+            <Label layoutX="370.0" layoutY="275.0" prefHeight="23.0" prefWidth="159.0" styleClass="head-label2" stylesheets="@AdminMainPage.css" text="Item Information:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="369.0" layoutY="311.0" prefHeight="23.0" prefWidth="66.0" styleClass="head-label2" stylesheets="@AdminMainPage.css" text="Name:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="371.0" layoutY="344.0" prefHeight="23.0" prefWidth="58.0" styleClass="head-label2" stylesheets="@AdminMainPage.css" text="Price:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="367.0" layoutY="380.0" prefHeight="23.0" prefWidth="66.0" styleClass="head-label2" stylesheets="@AdminMainPage.css" text="Stock:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="Admin_Removeitems_button" layoutX="399.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleRemoveItemStock" prefHeight="35.0" prefWidth="127.0" style="-fx-font-size: 10px;" styleClass="buttonAC" stylesheets="@AdminMainPage.css" text="REMOVE TO ITEM" />
+            <Text fx:id="Admin_removeitems_Nametext" fill="#f4e38e" layoutX="450.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textfield" wrappingWidth="312.1366271972656" />
+            <Text fx:id="Admin_removeitems_Pricetext" fill="#f4e38e" layoutX="453.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textfield" wrappingWidth="120.80337524414062" />
+            <Text fx:id="Admin_removeitems_Stocktext" fill="#f4e38e" layoutX="453.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textfield" wrappingWidth="120.80337524414062" />
+            <Button fx:id="removeItem_back_button" layoutX="83.0" layoutY="37.0" mnemonicParsing="false" onAction="#goBackAdminMainfromRemItems" prefHeight="36.0" prefWidth="66.0" style="-fx-font-size: 11;" styleClass="buttonAC" stylesheets="@AdminMainPage.css" text="Back" />
+            <Label layoutX="277.0" layoutY="18.0" prefHeight="73.0" prefWidth="249.0" styleClass="labelAC" stylesheets="@AdminMainPage.css" text="Remove Item Stock">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

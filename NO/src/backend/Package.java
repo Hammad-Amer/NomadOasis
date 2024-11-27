@@ -1,5 +1,6 @@
 package backend;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Package {
@@ -31,6 +32,9 @@ public class Package {
 
     }
 
+    public Package(String name) {
+
+    }
 
 	public int getId() {
 		return id;
@@ -105,4 +109,9 @@ public class Package {
 		
 	}
 	
+	public boolean removePackage() throws SQLException
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.removePackage(this.getName());
+	}
 }

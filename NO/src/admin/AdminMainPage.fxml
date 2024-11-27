@@ -7,10 +7,13 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVDM" stylesheets="@AdminMainPage.css">
          <children>
-            <Button fx:id="admins_addhotel_button" layoutX="286.0" layoutY="116.0" mnemonicParsing="false" onAction="#goToAddHotel" prefHeight="57.0" prefWidth="221.0" styleClass="buttonAC" stylesheets="@AdminMainPage.css" text="Add Hotels" />
-            <Button fx:id="admins_additems_button" layoutX="286.0" layoutY="221.0" mnemonicParsing="false" onAction="#goToAddItemStock" prefHeight="57.0" prefWidth="221.0" styleClass="buttonAC" text="Add items" />
-            <Button fx:id="admins_addpackages_button" layoutX="286.0" layoutY="339.0" mnemonicParsing="false" onAction="#goToAddPackage" prefHeight="57.0" prefWidth="221.0" styleClass="buttonAC" text="Add packages" />
+            <Button fx:id="admins_addhotel_button" layoutX="95.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToAddHotel" prefHeight="57.0" prefWidth="285.0" styleClass="buttonAC" stylesheets="@AdminMainPage.css" text="Add Hotels" />
+            <Button fx:id="admins_additems_button" layoutX="95.0" layoutY="215.0" mnemonicParsing="false" onAction="#goToAddItemStock" prefHeight="57.0" prefWidth="285.0" styleClass="buttonAC" text="Add Items Stock" />
+            <Button fx:id="admins_addpackages_button" layoutX="95.0" layoutY="333.0" mnemonicParsing="false" onAction="#goToAddPackage" prefHeight="57.0" prefWidth="285.0" styleClass="buttonAC" text="Add Packages" />
             <Button fx:id="logout" layoutX="43.0" layoutY="34.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="97.0" styleClass="logout-button" text="Log Out" />
+            <Button fx:id="admins_removehotel_button1" layoutX="444.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToAddHotel" prefHeight="57.0" prefWidth="285.0" styleClass="buttonAC" stylesheets="@AdminMainPage.css" text="Remove Hotel" />
+            <Button fx:id="admins_removeitems_button1" layoutX="444.0" layoutY="215.0" mnemonicParsing="false" onAction="#goToRemoveItem" prefHeight="57.0" prefWidth="285.0" styleClass="buttonAC" text="Remove Items Stock" />
+            <Button fx:id="admins_removepackages_button1" layoutX="444.0" layoutY="333.0" mnemonicParsing="false" onAction="#goToRemovePackage" prefHeight="57.0" prefWidth="285.0" styleClass="buttonAC" text="Remove Packages" />
          </children>
       </AnchorPane>
    </children>

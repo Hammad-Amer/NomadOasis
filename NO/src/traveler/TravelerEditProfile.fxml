@@ -6,18 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="main-background" stylesheets="@TravelerMainPage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerEditProfileController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="main-background" stylesheets="@TravelerMainPage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traveler.TravelerEditProfileController">
    <children>
       <Button fx:id="goback_Main" layoutX="41.0" layoutY="41.0" mnemonicParsing="false" onAction="#goBackTravelerMain" prefHeight="43.0" prefWidth="149.0" text="Back" />
       <Button fx:id="ProfileEdit" layoutX="320.0" layoutY="401.0" mnemonicParsing="false" onAction="#editedProfile" prefHeight="50.0" prefWidth="161.0" text="Update" />
 
       <Text fill="#1a3e82" layoutX="171.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1-Update" text="Name:" />
-      <Text layoutX="173.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1-Update" text="Email:" />
-      <Text layoutX="176.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1-Update" text="Type:" />
-      <Text fx:id="type_text" fill="#1c3b6e" layoutX="309.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="169.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1-Update" text="Email:" />
+      <Text layoutX="169.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1-Update" text="Type:" />
+      <Text fx:id="type_text" fill="#1c3b6e" layoutX="301.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0" />
 
       <TextField fx:id="UpdateProfile_username" layoutX="301.0" layoutY="149.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Username" styleClass="textfield" />
-      <TextField fx:id="UpdateProfile_Email" layoutX="301.0" layoutY="204.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Emailbox" styleClass="textfield" />
+      <TextField fx:id="UpdateProfile_Email" layoutX="301.0" layoutY="203.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Emailbox" styleClass="textfield" />
       <Label layoutX="278.0" layoutY="37.0" prefHeight="51.0" prefWidth="246.0" styleClass="view-package2s-label" stylesheets="@ViewPackages.css" text="Update Profile" textFill="#c5baba" />
+      <Text layoutX="171.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1-Update" text="Password:" />
+      <TextField fx:id="UpdateProfile_Password" layoutX="304.0" layoutY="306.0" maxHeight="30.0" maxWidth="220.0" prefHeight="25.0" prefWidth="220.0" promptText="Password" styleClass="textfield" />
    </children>
 </AnchorPane>

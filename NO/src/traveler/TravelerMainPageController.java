@@ -1232,16 +1232,27 @@ public class TravelerMainPageController implements Initializable{
     	}
     }
     
- // Buy button logic
-    public void CartBuyButtonPressed(ActionEvent event) {
-        // Check if all fields are filled
+    private boolean validateInt(String input)
+    {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    public void CartBuyButtonPressed(ActionEvent event) 
+    {
         if (Cart_Address_box.getText().isEmpty() ||
             Cart_City_box.getText().isEmpty() ||
             Cart_Contactinfo_box.getText().isEmpty() ||
             Cart_State_box.getText().isEmpty() ||
-            Cart_Zip_box.getText().isEmpty()) {
+            Cart_Zip_box.getText().isEmpty()) 
+        {
 
-            // Show an alert if any field is empty
+        	
+        	
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Incomplete Information");
             alert.setHeaderText("Please fill all the required fields.");
@@ -1250,16 +1261,25 @@ public class TravelerMainPageController implements Initializable{
         } 
         else 
         {
-            // Show confirmation dialog if all fields are filled
+        	if(!validateInt(Cart_Zip_box.getText()))
+        	{
+        		Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Incomplete Information");
+                alert.setHeaderText("DataType MisMatch");
+                alert.setContentText("Postal/Zip Code should be an integer");
+                alert.showAndWait();
+                
+                return;
+        	}
+        	
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirm Purchase");
             confirmationAlert.setHeaderText("Are you sure?");
             confirmationAlert.setContentText("Do you want to confirm your order?");
 
-            // Wait for user response
             confirmationAlert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    // Order accepted      	
+                if (response == ButtonType.OK) 
+                { 	
                 	Traveler.clearcart();
                 	
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -1268,7 +1288,6 @@ public class TravelerMainPageController implements Initializable{
                     successAlert.setContentText("Your order has been successfully placed!");
                     successAlert.showAndWait();
 
-                    // Navigate back to Item Shop
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/traveler/itemShop.fxml"));
                         Parent root = loader.load();

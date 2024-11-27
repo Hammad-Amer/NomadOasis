@@ -69,20 +69,16 @@ public class TravelerQueryResponseController implements Initializable
 		stage.setTitle("Nomad Oasis");
 		stage.show();
 
-		// Close the current window
 		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
 
 	}
 	
-	
-
-
-	private void populateComboBox() {
+	private void populateComboBox()
+	{
         if (Traveler.getUserid() != null && !Traveler.getUserid().isEmpty())
         {
-            ObservableList<Integer> queryIDs = FXCollections.observableArrayList(dbHandler.getQueryIDs(Traveler.getUserid()));
+            ObservableList<Integer> queryIDs = FXCollections.observableArrayList(Traveler.retunQueryIds());
             DropDownResponse.setItems(queryIDs);
-
             DropDownResponse.setOnAction(event -> displayQueryDetails());
         }
     }
@@ -93,7 +89,7 @@ public class TravelerQueryResponseController implements Initializable
 
         if (selectedQueryID != null)
         {
-            Query query = dbHandler.getQueryDetails(selectedQueryID);
+            Query query = Traveler.getQueryDetails(selectedQueryID);
 
             if (query != null) 
             {
@@ -105,9 +101,8 @@ public class TravelerQueryResponseController implements Initializable
     }
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-	       // Populate the combo box when the controller is initialized
+	public void initialize(URL arg0, ResourceBundle arg1) 
+	{
         SharedState state = SharedState.getInstance();
         dbHandler =DBHandler.getInstance();
         this.Traveler = (backend.Traveler) state.getUser();

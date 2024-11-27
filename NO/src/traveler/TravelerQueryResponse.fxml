@@ -11,13 +11,13 @@
    <children>
       <Button fx:id="goback_Main" layoutX="41.0" layoutY="41.0" mnemonicParsing="false" onAction="#contactUs" prefHeight="43.0" prefWidth="103.0" text="Back" />
       <ComboBox fx:id="DropDownResponse" layoutX="115.0" layoutY="136.0" prefWidth="150.0" promptText="Click For Options" />
-      <Text fx:id="QueryInfo" layoutX="286.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="338.0" />
+      <Text fx:id="QueryInfo" layoutX="286.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="338.0" styleClass="text-hotel1"/>
       <Text fill="WHITE" layoutX="184.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-hotel" text="QueryInfo:" />
       <Text layoutX="183.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-hotel" text="Response:">
          <font>
             <Font size="18.0" />
          </font></Text>
-      <Text fx:id="ResponseText" layoutX="281.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="348.46483993530273" />
+      <Text fx:id="ResponseText" layoutX="281.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="348.46483993530273" styleClass="text-hotel1"/>
       <Label layoutX="258.0" layoutY="37.0" prefHeight="51.0" prefWidth="269.0" styleClass="view-package2s-label" stylesheets="@ViewPackages.css" text="Query Response" textFill="#c5baba" />
 
    </children>

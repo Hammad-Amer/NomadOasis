@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import backend.DBHandler;
+import backend.Query;
 import backend.SharedState;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -114,16 +115,17 @@ public class TravelerContactUsController implements Initializable{
 			return;
 		}
 
-
+		String submissionResponse = Traveler.addQueryToDB(queryContent);
+		Query q1= new Query(Traveler.getUserid(),queryContent);
 		
-		String submissionResponse = dbHandler.insertQuery(Traveler.getUserid(), queryContent);
-
 		if (submissionResponse.equals("Query submitted successfully."))
 		{
 			int consultantID = dbHandler.getConsultantID();
 			if (consultantID != -1)
 			{
-				String assignmentResponse = dbHandler.assignConsultantToQuery(Traveler.getUserid(), consultantID);
+				String assignmentResponse = q1.assignConsultantToQuery(Traveler.getUserid(), consultantID);
+				
+				
 				showAlert(assignmentResponse);
 				
 				if(assignmentResponse.equals("Consultant assigned successfully."))
@@ -145,7 +147,8 @@ public class TravelerContactUsController implements Initializable{
     }
 
 
-	private void showAlert(String message) {
+	private void showAlert(String message)
+	{
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Nomad Oasis");
 		alert.setHeaderText(null);

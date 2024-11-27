@@ -68,7 +68,8 @@ public class Hotel {
         System.out.println("Room is not available.");
         return false;
     }
-	public String getDescription() {
+	public String getDescription() 
+	{
 		return description;
 	}
 	public void setDescription(String description) {

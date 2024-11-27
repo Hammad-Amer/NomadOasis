@@ -7,15 +7,20 @@ public class Query {
     private String queryContent;
     private String response; 
 
-    public Query(int queryID, int consultantID, String travelerID2, String queryContent)
+    public Query(int queryID,int cID, String travelerID2, String queryContent)
     {
         this.queryID = queryID;
-        this.consultantID = consultantID;
+        this.consultantID=cID;
         this.travelerID = travelerID2;
         this.queryContent = queryContent;
         this.response = null; 
     }
-
+    public Query(String travelerID2, String queryContent)
+    {
+        this.travelerID = travelerID2;
+        this.queryContent = queryContent;
+        this.response = null; 
+    }
     public int getQueryID() 
     {
         return queryID;
@@ -88,6 +93,12 @@ public class Query {
         {
             return "Query already responded to.";
         }
+    }
+    
+    public String assignConsultantToQuery(String id, int consultantID) throws ClassNotFoundException
+    {
+		DBHandler dbHandler=DBHandler.getInstance();
+    	return dbHandler.assignConsultantToQuery(id, consultantID);
     }
     
 }

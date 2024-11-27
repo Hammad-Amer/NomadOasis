@@ -197,32 +197,48 @@ public class LoginSignupController implements Initializable {
 	}
 
 
-	public void handleSignUp(ActionEvent event) {
-
+	public void handleSignUp(ActionEvent event)
+	{
 		String email = Rgiester_email1.getText();
 		String username = Rgiester_username.getText();
 		String password = Register_password.getText();
 		String cnic = Rgiester_CNIC.getText();
 		String gender = Register_Gender.getValue(); 
 		LocalDate dob = Register_DOB.getValue(); 
-
-		if (email.isEmpty() || username.isEmpty() || password.isEmpty() || cnic.isEmpty() || gender == null || dob == null) {
+		
+		
+		
+		if (email.isEmpty() || username.isEmpty() || password.isEmpty() || cnic.isEmpty() || gender == null || dob == null)
+		{
 			showAlert("Form Incomplete", "Please fill in all fields before submitting.");
 			return;
 		}
-
-		if (!isAgeValid(dob)) {
+		if (!isAgeValid(dob)) 
+		{
 			showAlert("Age Restriction", "You must be at least 18 years old to register.");
 			return;
 		}
-
-		Traveler T1 = new Traveler(email, username, password, cnic, gender, dob.toString());
+		if (!validateCNIC(cnic)) 
+		{
+		    showAlert("Invalid CNIC", "Please enter a valid 13-digit CNIC without dashes.");
+		    return;
+		}
+		Traveler T1 = new Traveler();
+		if(!T1.validateUsername1(username))
+		{
+			showAlert("Username Taken", "This Username is already taken, Try another one");
+			return;
+		}
+		T1 = new Traveler(email, username, password, cnic, gender, dob.toString());
 
 		boolean isRegistered = T1.addtravelertoDB();
 
-		if (isRegistered) {
+		if (isRegistered) 
+		{
 			showAlertS("Registration Success", "Account Created Successfully", "You can now log in using your credentials.");
-		} else {
+		} 
+		else 
+		{
 			showAlert("Registration Failed", "Error Creating Account", "Please check your details and try again.");
 		}
 	}
@@ -263,7 +279,17 @@ public class LoginSignupController implements Initializable {
 
 	}
 
-
+	private boolean validateCNIC(String input) {
+	    if (input == null || input.length() != 13) {
+	        return false;
+	    }
+	    try {
+	        new java.math.BigInteger(input); // Ensures all characters are numeric
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
 
 
 

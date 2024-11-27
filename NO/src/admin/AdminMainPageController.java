@@ -52,6 +52,14 @@ public class AdminMainPageController
 	@FXML
 	private Button admins_addpackages_button;
 	
+    @FXML
+    private Button admins_removehotel_button1;
+
+    @FXML
+    private Button admins_removeitems_button1;
+
+    @FXML
+    private Button admins_removepackages_button1;
    
     @FXML
     public void goToAddHotel(ActionEvent event) throws IOException
@@ -80,7 +88,7 @@ public class AdminMainPageController
 
         
         AdminMainPageController controller = loader.getController();
-        controller.populateComboBoxWithItems(); // Populate the ComboBox with items
+        controller.populateComboBoxWithItems(); 
 
         controller.Admin_additems_combobox.setOnAction(e -> controller.displaySelectedItemDetails());
         // Set up the new scene
@@ -100,6 +108,45 @@ public class AdminMainPageController
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminAddPackage.fxml"));
         Parent root = loader.load();
 
+        // Set up the new scene
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Nomad Oasis");
+        stage.show();
+
+        // Close the current stage
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+    
+    @FXML
+    public void goToRemovePackage(ActionEvent event) throws IOException, SQLException {
+     
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminRemovePackage.fxml"));
+        Parent root = loader.load();
+        
+        AdminMainPageController controller = loader.getController();
+        controller.populatePackagesComboBox();
+ 
+        // Set up the new scene
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Nomad Oasis");
+        stage.show();
+
+        // Close the current stage
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+    
+    @FXML
+    public void goToRemoveItem(ActionEvent event) throws IOException {
+     
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminRemoveItem.fxml"));
+        Parent root = loader.load();
+
+        AdminMainPageController controller = loader.getController();
+        controller.populateComboBoxWithRemItems(); 
         // Set up the new scene
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -177,8 +224,6 @@ public class AdminMainPageController
 		Parent root = loader.load();
 
 		AdminMainPageController controller = loader.getController();
-		//controller.setConsultantID(travelerID); 
-		//controller.setDBHandler(dbHandler);
 
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/admin/AdminMainPage.css").toExternalForm());
@@ -197,7 +242,7 @@ public class AdminMainPageController
         selecthotelnamecombo.getItems().clear();
         
         try {
-            List<Hotel> hotels = dbHandler.getAllHotels();
+            List<Hotel> hotels = Admin.hotels();
             for (Hotel hotel : hotels) 
             {
                 selecthotelnamecombo.getItems().add(hotel.getName());
@@ -206,56 +251,113 @@ public class AdminMainPageController
             e.printStackTrace();
         }
     }
-
+    private boolean validateDouble(String input) {
+        try {
+            Double.parseDouble(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     @FXML
-    private void handleAddHotel(ActionEvent event) {
+    private void handleAddHotel(ActionEvent event)
+    {
         try {
             String name = hotelnametext.getText();
             String location = hotellocationtext.getText();
             String description = hoteldescriptiontext.getText();
-            double rating = Double.parseDouble(hotelratingtext.getText());
-
-            if (dbHandler.addHotel(name, location, description, rating)) {
+            String rating1 =hotelratingtext.getText();
+            
+            if (name == null || location == null ||  description == null || rating1 == null) 
+            {
+                    showAlert(AlertType.ERROR, "Missing Fields", "Please fill in all fields.");
+                    return;
+            }
+            
+            if(!validateDouble(rating1))
+            {
+            	showAlert(AlertType.ERROR, "Invalid Input", "Please enter a valid rating (e.g., 4.5).");
+                return;
+            }
+            
+            double rating = Double.parseDouble(rating1);
+            
+            if (Admin.addHotelToDB(name, location, description, rating))
+            {
                 showAlert(AlertType.INFORMATION, "Success", "Hotel added successfully!");
                 loadHotelNames();
-            } else {
+            } 
+            else 
+            {
                 showAlert(AlertType.ERROR, "Error", "Failed to add hotel. Please try again.");
             }
-        } catch (NumberFormatException e) {
+        } 
+        catch (NumberFormatException e)
+        {
+        	
             showAlert(AlertType.ERROR, "Invalid Input", "Please enter a valid rating.");
         }
     }
 
     @FXML
-    private void handleAddRoom(ActionEvent event) {
+    private void handleAddRoom(ActionEvent event)
+    {
         String selectedHotel = selecthotelnamecombo.getValue();
-        if (selectedHotel == null || selectedHotel.isEmpty()) {
-            showAlert(AlertType.WARNING, "Selection Required", "Please select a hotel.");
+        String hotelID1 = String.valueOf(Admin.getHotelID(selectedHotel));
+        String roomNum1 = roomnumbertext.getText();
+        String type = roomtypetext.getValue(); 
+        String price1 = roompricetext.getText();
+        
+        if (selectedHotel == null || hotelID1==null||roomNum1==null||type==null||price1==null) 
+        {
+            showAlert(AlertType.WARNING, "Selection Required", "Please Fill Out All The Fields");
             return;
         }
+        
+        if(!validateInt(hotelID1))
+        {
+        	showAlert(AlertType.ERROR, "Invalid Input", "HotelID shouild be an Integer");
+        	return;
+        }
+        if(!validateInt(roomNum1))
+        {
+        	showAlert(AlertType.ERROR, "Invalid Input", "RoomNumber shouild be an Integer");
+        	return;
+        }
+        if(!validateInt(price1))
+        {
+        	showAlert(AlertType.ERROR, "Invalid Input", "Price shouild be an Integer");
+        	return;
+        }
+        
+        int hotelID = Admin.getHotelID(selectedHotel);
+        int roomNum = Integer.parseInt(roomnumbertext.getText());
+        int price = Integer.parseInt(roompricetext.getText());
+        
+        
+        
 
-        try {
-            int hotelID = dbHandler.getHotelIDByName(selectedHotel);
-            int roomNum = Integer.parseInt(roomnumbertext.getText());
-            String type = roomtypetext.getValue(); 
-            if (type == null) {
-                showAlert(AlertType.WARNING, "Selection Required", "Please select a room type.");
-                return;
-            }
-            int price = Integer.parseInt(roompricetext.getText());
-
-            if (dbHandler.addRoom(hotelID, roomNum, type, price)) {
+        try 
+        {
+        	
+            if (Admin.addRoomToDB(hotelID, roomNum, type, price))
+            {
                 showAlert(AlertType.INFORMATION, "Success", "Room added successfully!");
-            } else {
+            }
+            else 
+            {
                 showAlert(AlertType.ERROR, "Error", "Failed to add room. Please try again.");
             }
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e) 
+        {
             showAlert(AlertType.ERROR, "Invalid Input", "Please enter valid numbers for room number and price.");
         }
     }
 
-    private void showAlert(AlertType alertType, String title, String message) {
+    private void showAlert(AlertType alertType, String title, String message)
+    {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -289,36 +391,39 @@ public class AdminMainPageController
     @FXML
     private ComboBox<String> Admin_additems_combobox;
     
-    public void populateComboBoxWithItems() {
-    	 if (Admin_additems_combobox == null) {
+    public void populateComboBoxWithItems() 
+    {
+    	 if (Admin_additems_combobox == null) 
+    	 {
              System.out.println("ChoiceBox not initialized");
              return;
          }
     	
-        List<Item> items = Admin.getAllItems(); // Fetch items from the database
+        List<Item> items = Admin.getAllItems(); 
         Admin_additems_combobox.getItems().clear();
 
-        for (Item item : items) {
+        for (Item item : items) 
+        {
             Admin_additems_combobox.getItems().add(item.getName());
         }
     }
     
-    private void displaySelectedItemDetails() {
-        // Get the selected item
+    public void displaySelectedItemDetails() 
+    {
         String selectedItem = Admin_additems_combobox.getValue();
 
-        if (selectedItem == null || selectedItem.isEmpty()) {
+        if (selectedItem == null || selectedItem.isEmpty())
+        {
             System.out.println("No item selected.");
             return;
         }
 
-        // Fetch all items from the database
         List<Item> items = Admin.getAllItems();
 
-        // Find the item by name
-        for (Item item : items) {
-            if (item.getName().equals(selectedItem)) {
-                // Set the text fields with the item's details
+        for (Item item : items)
+        {
+            if (item.getName().equals(selectedItem)) 
+            {
                 Admin_additems_Nametext.setText(item.getName());
                 Admin_additems_Pricetext.setText(String.valueOf(item.getPrice()));
                 Admin_additems_Stocktext.setText(String.valueOf(item.getQuantity()));
@@ -326,55 +431,55 @@ public class AdminMainPageController
             }
         }
 
-        // If the item was not found
         System.out.println("Item not found in the database.");
     }
     
     @FXML
-    void handleAddItemStock(ActionEvent event) {
-        // Get the selected item from ComboBox
+    void handleAddItemStock(ActionEvent event) 
+    {
         String selectedItem = Admin_additems_combobox.getValue();
         System.out.println(selectedItem);
-        if (selectedItem == null || selectedItem.isEmpty()) {
+        if (selectedItem == null || selectedItem.isEmpty())
+        {
             System.out.println("No item selected.");
             return;
         }
 
-        // Get the amount to add from the TextField
         String amountText = Admin_additems_amounttext.getText();
         
-        if (amountText == null || amountText.isEmpty()) {
+        if (amountText == null || amountText.isEmpty()) 
+        {
             System.out.println("Amount is empty.");
             return;
         }
 
         try {
-            // Parse the amount to add
             int amountToAdd = Integer.parseInt(amountText);
 
-            // Create an Alert for confirmation
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Quantity Update");
             alert.setHeaderText("Are you sure you want to update the quantity of this item?");
             alert.setContentText("Item: " + selectedItem + "\nAmount to Add: " + amountToAdd);
             
-            // Show the alert and wait for a response
             Optional<ButtonType> result = alert.showAndWait();
             
-            // If the user clicks "Yes", update the item
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Update the item in the database
+            if (result.isPresent() && result.get() == ButtonType.OK)
+            {
             	
               Admin.updateItemQuantity(selectedItem, amountToAdd);
 
-                // After updating, refresh the displayed item details
                 displaySelectedItemDetails();
-            } else {
+            }
+            else
+            {
                 System.out.println("Update canceled.");
             }
             
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid amount entered: " + e.getMessage());
+        }
+        catch (NumberFormatException e) 
+        {
+        	showAlert(AlertType.ERROR, "Invalid Input", "Amount should be a number");
+        	return;
         }
     }
 
@@ -383,7 +488,6 @@ public class AdminMainPageController
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminMainPage.fxml"));
 		Parent root = loader.load();
 
-	
 		Scene scene = new Scene(root);
 		
 		Stage stage = new Stage();
@@ -420,49 +524,43 @@ public class AdminMainPageController
     private TextField AddPackage_Price;
     
     @FXML
-    private void handleAddPackage() {
-        // Check if all fields are filled
+    private void handleAddPackage() 
+    {
         if (AddPackage_Name.getText().trim().isEmpty() || 
             AddPackage_Destinations.getText().trim().isEmpty() || 
             AddPackage_Duration.getText().trim().isEmpty() || 
             AddPackage_Description.getText().trim().isEmpty() || 
             AddPackage_Price.getText().trim().isEmpty()) {
 
-            // Show error alert if any field is empty
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Input Error");
             errorAlert.setHeaderText("Missing Information");
             errorAlert.setContentText("Please fill in all the fields before adding the package.");
             errorAlert.showAndWait();
-            return; // Exit method if fields are incomplete
+            return; 
         }
 
         try {
-            // Collect data from UI
             String name = AddPackage_Name.getText().trim();
             String destinations = AddPackage_Destinations.getText().trim();
-            String destinationFormatted = destinations.replace("\n", ", "); // Replace newlines with commas
+            String destinationFormatted = destinations.replace("\n", ", "); 
             int duration = Integer.parseInt(AddPackage_Duration.getText().trim());
             String description = AddPackage_Description.getText().trim();
             int price = Integer.parseInt(AddPackage_Price.getText().trim());
 
-            // Confirmation alert
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
             confirmationAlert.setHeaderText("Add New Package");
             confirmationAlert.setContentText("Are you sure you want to add this package?");
 
-            // Wait for user response
             Optional<ButtonType> result = confirmationAlert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
+            if (result.isPresent() && result.get() == ButtonType.OK)
+            {
         
-              
-
-                // Send package to the DB handler
                 boolean success = Admin.addPackageToDatabase(name, destinationFormatted, duration, description, price);
 
-                // Show feedback
-                if (success) {
+                if (success) 
+                {
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Success");
                     successAlert.setHeaderText("Package Added");
@@ -476,24 +574,28 @@ public class AdminMainPageController
                     AddPackage_Price.clear();
                     
                     
-                } else {
+                } 
+                else 
+                {
                     Alert failureAlert = new Alert(Alert.AlertType.ERROR);
                     failureAlert.setTitle("Database Error");
                     failureAlert.setHeaderText("Failed to Add Package");
                     failureAlert.setContentText("There was an error while adding the package. Please try again.");
                     failureAlert.showAndWait();
                 }
-            } // If "Cancel" is pressed, do nothing
-        } catch (NumberFormatException e) {
-            // Show error alert for invalid input (non-integer for duration/price)
+            } 
+        } 
+        catch (NumberFormatException e) 
+        {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Input Error");
             errorAlert.setHeaderText("Invalid Data");
             errorAlert.setContentText("Please ensure that 'Duration' and 'Price' are valid numbers.");
             errorAlert.showAndWait();
-        } catch (Exception e) {
+        } 
+        catch (Exception e)
+        {
             e.printStackTrace();
-            // Generic error handling
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Error");
             errorAlert.setHeaderText("Unexpected Error");
@@ -502,21 +604,316 @@ public class AdminMainPageController
         }
     }
 
-    public void goToMainPagefromAddPackage(ActionEvent event) throws IOException {
+    public void goToMainPagefromAddPackage(ActionEvent event) throws IOException
+    {
         
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminMainPage.fxml"));
         Parent root = loader.load();
 
-        // Set up the new scene
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Nomad Oasis");
         stage.show();
 
-        // Close the current stage
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
     
+    
+    private boolean validateInt(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    
+    
+    //Admin remove packages
+    @FXML
+    private TextArea Admin_RemovePackage_Description;
+
+    @FXML
+    private TextArea Admin_RemovePackage_Destinations;
+
+    @FXML
+    private Text Admin_RemovePackage_Durationtext;
+
+    @FXML
+    private Text Admin_RemovePackage_Nametext;
+
+    @FXML
+    private Text Admin_RemovePackage_Pricetext;
+
+    @FXML
+    private ComboBox<String> RemovePackage_combobox;
+
+    @FXML
+    private Button RemovePackage_remove_button;
+
+    @FXML
+    private Button RemovePakckage_back_button;
+
+    public void goToMainPagefromRemovePackage(ActionEvent event) throws IOException
+    {
+        
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminMainPage.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Nomad Oasis");
+        stage.show();
+
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+    
+    public void populatePackagesComboBox() throws SQLException {
+        List<String> packageNames = dbHandler.getAllPackageNames();
+		RemovePackage_combobox.getItems().clear();
+		RemovePackage_combobox.getItems().addAll(packageNames);
+    }
+    
+    public void displayPackageDetails() throws SQLException {
+        String selectedPackage = RemovePackage_combobox.getValue();
+        if (selectedPackage != null) {
+            Package packageDetails = dbHandler.getPackageDetails(selectedPackage);
+			if (packageDetails != null) {
+			    Admin_RemovePackage_Nametext.setText(packageDetails.getName());
+			    Admin_RemovePackage_Durationtext.setText(packageDetails.getDuration() + " days");
+			    Admin_RemovePackage_Pricetext.setText(  packageDetails.getPrice()+ "Rs.");
+			    Admin_RemovePackage_Description.setText(packageDetails.getDescription());
+
+			    // Show destinations, each on a new line
+			    Admin_RemovePackage_Destinations.setText(
+			        String.join("\n", packageDetails.getDestination().split(","))
+			    );
+			}
+        }
+    }
+    
+    public void removeSelectedPackage(ActionEvent event) {
+        String selectedPackage = RemovePackage_combobox.getValue();
+        if (selectedPackage != null) {
+            // Show confirmation alert
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Package Removal");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to remove the package: " + selectedPackage + "?");
+
+            // Wait for user response
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // User confirmed removal
+                try {
+                    boolean success = Admin.removePackage(selectedPackage);
+                    if (success) {
+                        // Show success alert
+                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                        successAlert.setTitle("Package Removed");
+                        successAlert.setHeaderText(null);
+                        successAlert.setContentText("The package \"" + selectedPackage + "\" has been removed successfully.");
+                        successAlert.showAndWait();
+
+                        // Refresh the combo box and clear fields
+                        populatePackagesComboBox();
+                        clearFields();
+                    } else {
+                        // Show error alert
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Removal Failed");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Failed to remove the package. Please try again.");
+                        errorAlert.showAndWait();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    // Show error alert for SQL exception
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Database Error");
+                    errorAlert.setHeaderText(null);
+                    errorAlert.setContentText("An error occurred while removing the package.");
+                    errorAlert.showAndWait();
+                }
+            }
+        } else {
+            // Show warning alert if no package is selected
+            Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+            warningAlert.setTitle("No Package Selected");
+            warningAlert.setHeaderText(null);
+            warningAlert.setContentText("Please select a package to remove.");
+            warningAlert.showAndWait();
+        }
+    }
+
+
+    // Clear all fields
+    private void clearFields() {
+        Admin_RemovePackage_Nametext.setText("");
+        Admin_RemovePackage_Durationtext.setText("");
+        Admin_RemovePackage_Pricetext.setText("");
+        Admin_RemovePackage_Description.setText("");
+        Admin_RemovePackage_Destinations.setText("");
+    }
+    
+    
+    ////////////////////////////////////////////
+    /// remove items
+    
+    @FXML
+    private Button Admin_Removeitems_button;
+
+    @FXML
+    private Text Admin_removeitems_Nametext;
+
+    @FXML
+    private Text Admin_removeitems_Pricetext;
+
+    @FXML
+    private Text Admin_removeitems_Stocktext;
+
+    @FXML
+    private TextField Admin_removeitems_amounttext;
+
+    @FXML
+    private ComboBox<String> Admin_removeitems_combobox;
+
+    @FXML
+    private Button removeItem_back_button;
+
+    @FXML
+    void goBackAdminMainfromRemItems(ActionEvent event) throws IOException
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminMainPage.fxml"));
+		Parent root = loader.load();
+
+		
+
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("/admin/AdminMainPage.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.setTitle("Nomad Oasis");
+		stage.show();
+		((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+    
+    public void populateComboBoxWithRemItems() 
+    {
+    	 if (Admin_removeitems_combobox == null) 
+    	 {
+             System.out.println("ChoiceBox not initialized");
+             return;
+         }
+    	
+        List<Item> items = Admin.getAllItems(); 
+        Admin_removeitems_combobox.getItems().clear();
+
+        for (Item item : items) 
+        {
+        	Admin_removeitems_combobox.getItems().add(item.getName());
+        }
+    }
+    
+    public void displaySelectedRemItemDetails() 
+    {
+        String selectedItem = Admin_removeitems_combobox.getValue();
+
+        if (selectedItem == null || selectedItem.isEmpty())
+        {
+          
+            return;
+        }
+
+        List<Item> items = Admin.getAllItems();
+
+        for (Item item : items)
+        {
+            if (item.getName().equals(selectedItem)) 
+            {
+            	Admin_removeitems_Nametext.setText(item.getName());
+            	Admin_removeitems_Pricetext.setText(String.valueOf(item.getPrice()));
+            	Admin_removeitems_Stocktext.setText(String.valueOf(item.getQuantity()));
+                return;
+            }
+        }
+
+        System.out.println("Item not found in the database.");
+    }
+    
+    
+    public void handleRemoveItemStock() {
+        String selectedItem = Admin_removeitems_combobox.getValue();
+        if (selectedItem == null || selectedItem.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "No Item Selected", "Please select an item to remove stock.");
+            return;
+        }
+
+        String amountText = Admin_removeitems_amounttext.getText();
+        if (amountText == null || amountText.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Invalid Amount", "Please enter a valid amount to remove.");
+            return;
+        }
+
+        int amountToRemove;
+        try {
+            amountToRemove = Integer.parseInt(amountText);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter a numeric value for the amount.");
+            return;
+        }
+
+        try {
+            List<Item> items = dbHandler.getAllItems();
+            for (Item item : items) {
+                if (item.getName().equals(selectedItem)) {
+                    int currentStock = item.getQuantity();
+
+                    if (amountToRemove < 1) {
+                        showAlert(Alert.AlertType.WARNING, "Invalid Amount", "Amount must be at least 1.");
+                        return;
+                    }
+
+                    if (amountToRemove > currentStock) {
+                        showAlert(Alert.AlertType.WARNING, "Insufficient Stock", "The amount exceeds current stock. Current stock: " + currentStock);
+                        return;
+                    }
+
+                    // Confirm removal
+                    Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmationAlert.setTitle("Confirm Stock Removal");
+                    confirmationAlert.setHeaderText(null);
+                    confirmationAlert.setContentText("Are you sure you want to remove " + amountToRemove + " from the stock of " + selectedItem + "?");
+
+                    Optional<ButtonType> result = confirmationAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        // Update stock in database
+                        boolean updated = Admin.updateItemStock(item.getItemid(), currentStock - amountToRemove);
+                        if (updated) {
+                            showAlert(Alert.AlertType.INFORMATION, "Stock Removed", amountToRemove + " units of " + selectedItem + " have been removed successfully.");
+                            populateComboBoxWithRemItems();
+                            Admin_removeitems_amounttext.clear();
+                        } else {
+                            showError("Database Error", "Failed to update stock in the database.");
+                        }
+                    }
+                    return;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Database Error", "An error occurred while accessing the database.");
+        }
+    }
+
+
+
+    // Utility method to show an error alert
+    private void showError(String title, String message) {
+        showAlert(Alert.AlertType.ERROR, title, message);
+    }
 
 }

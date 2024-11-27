@@ -73,4 +73,11 @@ public class Item {
 		DBHandler dbHandler=DBHandler.getInstance();
 		 dbHandler.updateItemQuantity(selectedItem, amountToAdd);
 	}
+	
+	public boolean updateItemStock(int itemid, int stock) throws SQLException
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		return dbHandler.updateItemStock(itemid,stock);
+	}
+	 
 }
