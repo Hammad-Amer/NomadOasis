@@ -71,7 +71,16 @@ public class Admin  extends User{
 	 {
 		 Package Ptemp=new Package(selectedPackage);
 		 return Ptemp.removePackage();
-		 
+	 }
+	 public boolean removeHotelDB(Hotel RH)
+	 {
+		 DBHandler dbHandler=DBHandler.getInstance();
+		 return dbHandler.removeHotel(RH.getHotelID());
+	 }
+	 public boolean removeRoomDB(Hotel RH,int roomNum)
+	 {
+		 DBHandler dbHandler=DBHandler.getInstance();
+		 return dbHandler.removeRoom(RH.getHotelID(),roomNum);
 	 }
 	
 }

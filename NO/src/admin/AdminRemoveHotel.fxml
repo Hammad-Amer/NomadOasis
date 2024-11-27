@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminMainPageController">
+	<children>
+		<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor-paneVD" stylesheets="@AdminMainPage.css">
+			<children>
+				<Button fx:id="removehotelbutton" layoutX="115.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleRemoveHotel" prefHeight="37.0" prefWidth="165.0" style="-fx-font-size: 12px;" styleClass="buttonAC" text="Remove Entire Hotel " />
+				<Button fx:id="removeboombutton" layoutX="529.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleRemoveRoom" prefHeight="37.0" prefWidth="165.0" style="-fx-font-size: 12;" styleClass="buttonAC" text="Remove Room" />
+				<ComboBox fx:id="selectremovehotelnamecombo" layoutX="115.0" layoutY="195.0" prefHeight="27.0" prefWidth="165.0" promptText="Select Hotel" />
+				<Text fill="WHITE" layoutX="64.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Hotel Name:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				<Text fill="WHITE" layoutX="469.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="head-label2" text="Room Number:">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+				
+				<ComboBox fx:id="selectremoveroomnamecombo" layoutX="529.0" layoutY="195.0" prefHeight="27.0" prefWidth="165.0" promptText="Select Room" />
+            <Button fx:id="backadminmain" layoutX="51.0" layoutY="33.0" mnemonicParsing="false" onAction="#goBackAdminMain" prefHeight="36.0" prefWidth="71.0" style="-fx-font-size: 11px;" styleClass="buttonAC" text="Back" />
+            <Label layoutX="289.0" layoutY="15.0" prefHeight="73.0" prefWidth="190.0" styleClass="labelAC" stylesheets="@AdminMainPage.css" text="Manage Hotels">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>

@@ -84,7 +84,7 @@ public class Package {
 		this.price = price;
 	}
 
-	void addBookingPackage(int travellerid, String PackageName, int quantity)
+	void addBookingPackage(int travellerid, String PackageName, int quantity) throws SQLException
 	{
 		DBHandler dbhandler=DBHandler.getInstance();
 		dbhandler.addBookingPackage(travellerid, PackageName, quantity);

@@ -27,6 +27,11 @@ public class Traveler extends User{
 		Cart CTEMP=new Cart();
 		CTEMP.clearcart(Integer.parseInt(getUserid()));
 	}
+	public void clearcartBuy()
+	{
+		Cart CTEMP=new Cart();
+		CTEMP.clearcartBuy(Integer.parseInt(getUserid()));
+	}
 	
 	public List<Item> getCartItems()
 	{
@@ -46,7 +51,7 @@ public class Traveler extends User{
 		
 	}
 	
-	public void addBookingPackage(String name,int quantity)
+	public void addBookingPackage(String name,int quantity) throws NumberFormatException, SQLException
 	{
 		Package Ptemp=new Package();
 		Ptemp.addBookingPackage(Integer.parseInt(getUserid()), name, quantity);
@@ -121,4 +126,6 @@ public class Traveler extends User{
 		DBHandler dbhandler = DBHandler.getInstance();
 		return dbhandler.validateTravelerUsername(uname);
 	}
+	
+	
 }

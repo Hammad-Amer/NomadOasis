@@ -1280,7 +1280,8 @@ public class TravelerMainPageController implements Initializable{
             confirmationAlert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) 
                 { 	
-                	Traveler.clearcart();
+                	
+                	Traveler.clearcartBuy();
                 	
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Order Accepted");
@@ -1636,7 +1637,12 @@ public class TravelerMainPageController implements Initializable{
                         successAlert.showAndWait();
                         
                         
-                        Traveler.addBookingPackage(PackageBuy_Name_button.getText(), quantity);
+                        try {
+							Traveler.addBookingPackage(PackageBuy_Name_button.getText(), quantity);
+						} catch (NumberFormatException | SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} 
                         // Reset the quantity and total after successful purchase
                         PackageBuy_quantity_button.setText("0");
                         PackageBuy_Total_text.setText("Rs. 0.00");

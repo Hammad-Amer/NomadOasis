@@ -1,6 +1,8 @@
 package admin;
 
 import backend.Package;
+import backend.Room;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,6 +13,8 @@ import backend.DBHandler;
 import backend.Hotel;
 import backend.Item;
 import backend.SharedState;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -911,9 +915,128 @@ public class AdminMainPageController
 
 
 
-    // Utility method to show an error alert
-    private void showError(String title, String message) {
+    private void showError(String title, String message) 
+    {
         showAlert(Alert.AlertType.ERROR, title, message);
+    }
+    
+    ///////////////////////////////
+    @FXML
+    private Button removehotelbutton;
+
+    @FXML
+    private Button removeboombutton;
+
+    @FXML
+    private ComboBox<String> selectremovehotelnamecombo;
+
+    @FXML
+    private ComboBox<Integer> selectremoveroomnamecombo;
+    
+	private List<Hotel> hotelList;
+    
+    public void loadHotels() throws ClassNotFoundException, SQLException 
+	{
+
+		hotelList = dbHandler.getAllHotels(); 
+
+		ObservableList<String> hotelNames = FXCollections.observableArrayList();
+		for (Hotel hotel : hotelList) {
+			hotelNames.add(hotel.getName());
+		}
+		selectremovehotelnamecombo.setItems(hotelNames);
+
+		selectremovehotelnamecombo.setOnAction(event -> loadRooms());
+	}
+    
+    private Hotel findHotelByName(String hotelName) 
+	{
+		for (Hotel hotel : hotelList) {
+			if (hotel.getName().equals(hotelName))
+			{
+				return hotel;
+			}
+		}
+		return null;
+	}
+    private void loadRooms() 
+	{
+		String selectedHotelName = (String) selectremovehotelnamecombo.getValue();
+		if (selectedHotelName != null) 
+		{
+			Hotel selectedHotel = findHotelByName(selectedHotelName);
+
+			if (selectedHotel != null)
+			{
+				ObservableList<Integer> roomNumbers = FXCollections.observableArrayList();
+				for (Room room : selectedHotel.getRooms()) 
+				{
+					if (room.isAvailable()) 
+					{
+						roomNumbers.add(room.getRoomNum());
+					}
+				}
+				selectremoveroomnamecombo.setItems(roomNumbers);
+
+			//	selectremovehotelnamecombo.setOnAction(event -> updateRoomDetails(selectedHotel));
+			}
+		}
+	}
+    
+    @FXML
+    void handleRemoveHotel(ActionEvent event) throws ClassNotFoundException, SQLException 
+    {
+    	String hotelName=(String) selectremovehotelnamecombo.getValue();
+    	Hotel RemoveHotel =  findHotelByName(hotelName);
+    	if(Admin.removeHotelDB(RemoveHotel))
+    	{
+    		showAlert(AlertType.INFORMATION, "Success", "Hotel Removed successfully!");
+    		selectremoveroomnamecombo.setItems(null);
+    		loadHotels();
+    	}
+    	else 
+    	{
+    		showError("Database Error", "An Error Occured while trying to delete the Hotel");
+    	}
+    }
+    @FXML
+    void handleRemoveRoom(ActionEvent event) throws ClassNotFoundException, SQLException 
+    {
+    	int RoomNum= selectremoveroomnamecombo.getValue();
+    	String hotelName=(String) selectremovehotelnamecombo.getValue();
+    	Hotel RemoveHotel =  findHotelByName(hotelName);
+    	
+    	
+    	if(Admin.removeRoomDB(RemoveHotel,RoomNum))
+    	{
+    		showAlert(AlertType.INFORMATION, "Success", "Hotel Room Removed successfully!");
+    		selectremoveroomnamecombo.setItems(null);
+    		loadHotels();
+    		loadRooms();
+    	}
+    	else 
+    	{
+    		showError("Database Error", "An Error Occured while trying to delete the Room");
+    	}
+    }
+    
+    @FXML
+    public void goToRemoveHotel(ActionEvent event) throws IOException, ClassNotFoundException, SQLException
+    {
+
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminRemoveHotel.fxml"));
+		Parent root = loader.load();
+
+		AdminMainPageController controller = loader.getController();
+		controller.loadHotels();
+
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("/admin/AdminMainPage.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.setTitle("Nomad Oasis");
+		stage.show();
+		((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
 }

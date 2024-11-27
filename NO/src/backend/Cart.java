@@ -22,6 +22,12 @@ public class Cart {
 		 dbHandler.clearCart(TravelerID);
 	}
 
+	public void clearcartBuy(int TravelerID)
+	{
+		DBHandler dbHandler=DBHandler.getInstance();
+		 dbHandler.clearCartBuy(TravelerID);
+	}
+	
 	public List<Item> getCartItems(int travelerID) 
 	{
 		DBHandler dbHandler=DBHandler.getInstance();
