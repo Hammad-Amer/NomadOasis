@@ -12,12 +12,7 @@ CREATE TABLE User1 (
     userType ENUM('Traveler', 'Admin', 'Consultant') NOT NULL
 );
 
-select * from user1;
-UPDATE user1 SET password1 = 'skc12'  WHERE userID = 1 AND userType = 'traveler';
-select * from query1;
-
-
-INSERT INTO User1 (username1, email, password1, CNIC, DOB, Gender, userType) 
+INSERT INTO User1 (username1, email, password1, CNIC, DOB, Gender, userType)
 VALUES ('c2', 'c2d@example.com', 'c2', '123', '3002-01-23', 'Male', 'Admin');
 
 CREATE TABLE Item (
@@ -106,18 +101,6 @@ create Table logs1(
 	
     FOREIGN KEY (travelerID) REFERENCES User1(userID)
 );
-
-select * from logs1;
-
-select * from User1;
-
-select * from bookingroom;
-
-select * from query1;
-
-UPDATE query1 SET response = "got it" WHERE queryID = 8;
-
-delete from query1 where travelerID = 1;
 
 -- Insert Consultant (userType = 'Consultant')
 INSERT INTO User1 (username1, email, password1, CNIC, DOB, Gender, userType)

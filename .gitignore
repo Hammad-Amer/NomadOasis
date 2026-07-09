@@ -1,0 +1,13 @@
+# Compiled output
+bin/
+build/
+*.class
+
+# Local DB credentials (copy db.properties.example -> db.properties)
+db.properties
+src/db.properties
+
+# OS / IDE cruft
+.DS_Store
+Thumbs.db
+*.log

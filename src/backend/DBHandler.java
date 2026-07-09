@@ -1,5 +1,7 @@
 package backend;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -10,13 +12,31 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 public class DBHandler {
 
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/NOMADOASIS";
-	private static final String DB_USERNAME = "root";
-	private static final String DB_PASSWORD = "12345";
+	// Loaded from db.properties on the classpath (copy db.properties.example to db.properties).
+	private static final String DB_URL;
+	private static final String DB_USERNAME;
+	private static final String DB_PASSWORD;
+
+	static {
+		Properties props = new Properties();
+		try (InputStream in = DBHandler.class.getResourceAsStream("/db.properties")) {
+			if (in == null) {
+				throw new IllegalStateException(
+						"db.properties not found on the classpath. Copy db.properties.example to db.properties and set your credentials.");
+			}
+			props.load(in);
+		} catch (IOException e) {
+			throw new IllegalStateException("Failed to load db.properties", e);
+		}
+		DB_URL = props.getProperty("db.url");
+		DB_USERNAME = props.getProperty("db.username");
+		DB_PASSWORD = props.getProperty("db.password");
+	}
 
 	private Connection connection;
 
@@ -461,10 +481,6 @@ public class DBHandler {
 	}
 
 
-
-	///////////////////////////////
-	/////SHAYYYYAAAAANNNSSSS
-	////////////////////////////
 
 	public boolean updateTravelerData(String id, String un, String emaila, String pass)
 	{
